@@ -9,7 +9,7 @@
     "postinstall": "patch-package"
   },
   "build": {
-    "appId": "com.yourcompany.yourapp",
+    "appId": "com.dragosstefannecula.technology_migration_engine",
     "win": {
       "target": "portable"
     }
