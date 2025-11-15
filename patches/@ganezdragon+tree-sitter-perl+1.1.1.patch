@@ -1,0 +1,13 @@
+diff --git a/node_modules/@ganezdragon/tree-sitter-perl/grammar.js b/node_modules/@ganezdragon/tree-sitter-perl/grammar.js
+index 7bbe5a7..318d2d8 100644
+--- a/node_modules/@ganezdragon/tree-sitter-perl/grammar.js
++++ b/node_modules/@ganezdragon/tree-sitter-perl/grammar.js
+@@ -531,7 +531,7 @@ module.exports = grammar({
+       choice(
+         seq(
+           optional($.function_prototype),
+-          optional($.function_attribute),
++          repeat($.function_attribute),
+           choice(
+             $.semi_colon,
+             field('body', $.block),

@@ -1,0 +1,31 @@
+{
+  "type": "module",
+  "name": "technology_migration_engine",
+  "version": "0.1.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "npm install && electron-builder",
+    "postinstall": "patch-package"
+  },
+  "build": {
+    "appId": "com.yourcompany.yourapp",
+    "win": {
+      "target": "portable"
+    }
+  },
+  "keywords": [],
+  "author": "Dragos-Stefan Necula",
+  "license": "ISC",
+  "description": "A final year student project attempting to transpile Perl Catalyst into Java Spring MVC using transpiler and LLM methods.",
+  "devDependencies": {
+    "electron": "^39.2.0",
+    "electron-builder": "^26.0.12",
+    "patch-package": "^8.0.1",
+    "prebuild": "^13.0.1"
+  },
+  "dependencies": {
+    "@ganezdragon/tree-sitter-perl": "^1.1.1",
+    "tree-sitter": "^0.21.0"
+  }
+}
