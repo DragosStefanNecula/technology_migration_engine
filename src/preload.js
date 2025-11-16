@@ -1,5 +1,6 @@
 import { contextBridge, ipcRenderer } from 'electron';
 
 contextBridge.exposeInMainWorld('electronAPI', {
-  onSetValue: (callback) => ipcRenderer.on('set-value', callback)
+    sendReady: () => ipcRenderer.send('renderer-ready'),
+    onSetValue: (callback) => ipcRenderer.on('set-value', callback),
 });

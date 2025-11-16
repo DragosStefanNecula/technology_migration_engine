@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, ipcMain } from 'electron';
 
 import Parser from "tree-sitter";
 import Perl from "@ganezdragon/tree-sitter-perl";
@@ -44,14 +44,17 @@ function createWindow() {
     }
   });
 
-  win.loadFile(`${__dirname}/index.html`);
+  const isDev = false;
+  const startURL = isDev 
+  ? 'http://localhost:5173' // Vite dev server
+  : `file:/${__dirname}/dist/renderer/index.html`;
 
-      console.log("yes2")
-  win.webContents.on('did-finish-load', () => {
-    console.log("yes")
-      let string = JSON.stringify(main()).slice(0,5000);
-      win.webContents.send('set-value', string);
-    });
+  win.loadURL(startURL);
+  
+  ipcMain.on('renderer-ready', (event) => {
+      let string = JSON.stringify(main()).slice(0, 5000);
+      event.sender.send('set-value', string);
+  });
 }
 
 app.whenReady().then(createWindow);
