@@ -44,9 +44,11 @@ function createWindow() {
     }
   });
 
-  win.loadFile('index.html');
+  win.loadFile(`${__dirname}/index.html`);
 
+      console.log("yes2")
   win.webContents.on('did-finish-load', () => {
+    console.log("yes")
       let string = JSON.stringify(main()).slice(0,5000);
       win.webContents.send('set-value', string);
     });

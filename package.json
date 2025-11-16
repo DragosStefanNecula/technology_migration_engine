@@ -2,7 +2,7 @@
   "type": "module",
   "name": "technology_migration_engine",
   "version": "0.1.0",
-  "main": "main.js",
+  "main": "src/main.js",
   "scripts": {
     "start": "electron .",
     "setup": "npm install && npm run pre-build --prefix node_modules/@ganezdragon/tree-sitter-perl && npm run build --prefix node_modules/@ganezdragon/tree-sitter-perl",
