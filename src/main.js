@@ -9,13 +9,9 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-function main() {
+function main(code) {
   const parser = new Parser();
   parser.setLanguage(Perl);
-
-  const code = `
-    sub hello :Path('hello') :Args(0) 
-  `;
 
   const tree = parser.parse(code);
 
@@ -51,9 +47,10 @@ function createWindow() {
 
   win.loadURL(startURL);
   
-  ipcMain.on('renderer-ready', (event) => {
-      let string = JSON.stringify(main()).slice(0, 5000);
-      event.sender.send('set-value', string);
+  ipcMain.on('file-upload', (event, fileData) => {
+    const { name, content } = fileData;
+
+    event.sender.send('set-value', main(content));
   });
 }
 

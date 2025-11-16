@@ -1,5 +1,6 @@
 import { createRoot } from 'react-dom/client';
 import { useEffect, useState } from 'react';
+import FileUpload from '../components/FileUpload';
 
 const App = () =>{
 
@@ -20,6 +21,7 @@ const App = () =>{
     <div>
       <h1>Value from Electron Main:</h1>
       <p>{value}</p>
+      <FileUpload></FileUpload>
     </div>
   );
 }
