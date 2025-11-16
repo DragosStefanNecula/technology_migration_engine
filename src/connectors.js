@@ -1,12 +1,11 @@
 import { ipcMain } from 'electron';
-import { parse } from './backend/parser.js';
+import { handleFileUpload } from './backend/handlers.js';
 
 export function registerConnectors(){
 
     ipcMain.on('file-upload', (event, fileData) => {
-    const { name, content } = fileData;
-
-    event.sender.send('set-value', parse(content));
+        const { name, content } = fileData;
+        event.sender.send('set-value', handleFileUpload(content));
     });
     
 }
