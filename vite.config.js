@@ -4,10 +4,10 @@ import path from 'path';
 
 export default defineConfig({
   plugins: [react()],
-  root: path.resolve(__dirname, 'src/renderer'), 
+  root: path.resolve(__dirname, 'src/frontend/renderer'), 
   base: './',
   build: {
-    outDir: path.resolve(__dirname, 'src/dist/renderer'),
+    outDir: path.resolve(__dirname, 'src/frontend/dist/renderer'),
     emptyOutDir: true,
   },
   server: {
