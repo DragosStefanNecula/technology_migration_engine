@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "main": "src/main.js",
   "scripts": {
-    "start": "concurrently \"vite\" \"wait-on http://localhost:5173 && electron .\"",
+    "start": "concurrently \"vite\" \"wait-on http://localhost:5173 && cross-env NODE_ENV=development electron .\"",
     "setup": "npm install && npm run pre-build --prefix node_modules/@ganezdragon/tree-sitter-perl && npm run build --prefix node_modules/@ganezdragon/tree-sitter-perl",
     "build": "vite build && electron-builder",
     "postinstall": "patch-package"
@@ -22,6 +22,7 @@
   "devDependencies": {
     "@vitejs/plugin-react": "^5.1.1",
     "concurrently": "^9.2.1",
+    "cross-env": "^10.1.0",
     "electron": "^39.2.0",
     "electron-builder": "^26.0.12",
     "patch-package": "^8.0.1",

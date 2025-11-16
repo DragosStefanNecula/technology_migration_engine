@@ -40,7 +40,7 @@ function createWindow() {
     }
   });
 
-  const isDev = false;
+  const isDev = process.env.NODE_ENV === 'development';
   const startURL = isDev 
   ? 'http://localhost:5173' // Vite dev server
   : `file:/${__dirname}/dist/renderer/index.html`;
