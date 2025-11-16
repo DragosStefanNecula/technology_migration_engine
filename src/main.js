@@ -1,35 +1,14 @@
-import { app, BrowserWindow, ipcMain } from 'electron';
-
-import Parser from "tree-sitter";
-import Perl from "@ganezdragon/tree-sitter-perl";
-
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { app, BrowserWindow } from 'electron';
+import { registerConnectors } from './connectors.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-function main(code) {
-  const parser = new Parser();
-  parser.setLanguage(Perl);
-
-  const tree = parser.parse(code);
-
-  const walk = (node, indent = 0) => {
-    const padding = " ".repeat(indent);
-    let result = `${padding}${node.type}: "${node.text.replace(/\n/g, "\\n")}"\n`;
-    
-    for (const child of node.children) {
-      result += walk(child, indent + 2); // concatenate child strings
-    }
-    
-    return result;
-  };
-
-  return walk(tree.rootNode);
-}
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
 
 function createWindow() {
+  registerConnectors();
 
   const win = new BrowserWindow({
     width: 400,
@@ -46,12 +25,6 @@ function createWindow() {
   : `file:/${__dirname}/frontend/dist/renderer/index.html`;
 
   win.loadURL(startURL);
-  
-  ipcMain.on('file-upload', (event, fileData) => {
-    const { name, content } = fileData;
-
-    event.sender.send('set-value', main(content));
-  });
 }
 
 app.whenReady().then(createWindow);
