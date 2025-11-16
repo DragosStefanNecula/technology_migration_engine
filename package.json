@@ -6,7 +6,7 @@
   "scripts": {
     "start": "concurrently \"vite\" \"wait-on http://localhost:5173 && electron .\"",
     "setup": "npm install && npm run pre-build --prefix node_modules/@ganezdragon/tree-sitter-perl && npm run build --prefix node_modules/@ganezdragon/tree-sitter-perl",
-    "build": "vite-build && electron-builder",
+    "build": "vite build && electron-builder",
     "postinstall": "patch-package"
   },
   "build": {
