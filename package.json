@@ -8,6 +8,7 @@
     "setup": "npm install && npm run pre-build --prefix node_modules/@ganezdragon/tree-sitter-perl && npm run build --prefix node_modules/@ganezdragon/tree-sitter-perl",
     "build": "vite build && electron-builder",
     "test": "node --test",
+    "console": "node --test src/backend/tests/dev.test.js",
     "postinstall": "patch-package"
   },
   "build": {
