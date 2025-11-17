@@ -7,6 +7,7 @@
     "start": "concurrently \"vite\" \"wait-on http://localhost:5173 && cross-env NODE_ENV=development electron .\"",
     "setup": "npm install && npm run pre-build --prefix node_modules/@ganezdragon/tree-sitter-perl && npm run build --prefix node_modules/@ganezdragon/tree-sitter-perl",
     "build": "vite build && electron-builder",
+    "test": "node --test",
     "postinstall": "patch-package"
   },
   "build": {
