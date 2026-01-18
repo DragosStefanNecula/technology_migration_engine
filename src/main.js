@@ -7,6 +7,7 @@ const __dirname = dirname(__filename);
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 
+//[[req1impl| ]] Adhers to [[#req1spec|Requirement 1]]
 function createWindow() {
   registerConnectors();
 
