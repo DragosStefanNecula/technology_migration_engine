@@ -1,4 +1,13 @@
 import { parsePerl } from "../components/perlParser.js";
+import { genJavaAst } from "../components/javaAstGenerator.js";
+
+export function genJavaAstDebug(code){
+    const perlAst = parsePerl(code);
+
+    const javaAst = genJavaAst(perlAst);
+
+    return javaAst;
+}
 
 export function parseDebugOutput(code) {
   const treeRootNode = parsePerl(code);
