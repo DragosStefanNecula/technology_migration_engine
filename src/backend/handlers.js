@@ -1,13 +1,14 @@
 import { parsePerl } from "./components/perlParser.js";
 import { genJavaAst } from "./components/javaAstGenerator.js";
-import { generateJavaCode } from "./components/javaCodeGenerator.js";
+import { JavaCodegen } from "./components/javaCodeGenerator.js";
 
 export function handleFileUpload(code){
     const perlAst = parsePerl(code);
 
     const javaAst = genJavaAst(perlAst);
 
-    const target = generateJavaCode(javaAst);
+    let javaCodegen = new JavaCodegen({indent: 2});
+    const target = javaCodegen.generate(javaAst);
 
     return target;
 }

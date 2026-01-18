@@ -4,8 +4,8 @@ import assert from 'node:assert';
 import { handleFileUpload } from '../handlers.js';
 import { genJavaAstDebug, parseDebugOutput } from './testingFunctions.js';
 test('parse simple JavaScript snippet', () => {
-  const input = "my ($self) = @_; ";
+  const input = "42";
   // console.log(parseDebugOutput(input));
-  console.log(genJavaAstDebug(input));
-  // console.log(handleFileUpload(input));
+  // console.log(genJavaAstDebug(input));
+  console.log(handleFileUpload(input));
 });
