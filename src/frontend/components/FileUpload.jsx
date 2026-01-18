@@ -23,7 +23,8 @@ function FileUpload() {
 
   return (
     <div>
-      <p>{value}</p>
+      <p>Your parsed perl code:</p>
+      <pre style={{ whiteSpace: 'pre-wrap' }}>{value}</pre>
       <input type="file" onChange={handleFileChange} />
     </div>
   );
