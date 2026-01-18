@@ -1,4 +1,4 @@
-import { parseDebugOutput, parsePerl } from "./components/perlParser.js";
+import { parsePerl } from "./components/perlParser.js";
 import { genJavaAst } from "./components/javaAstGenerator.js";
 import { generateJavaCode } from "./components/javaCodeGenerator.js";
 
