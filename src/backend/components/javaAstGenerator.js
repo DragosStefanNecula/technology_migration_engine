@@ -12,14 +12,14 @@ function gen(node){
         });
 
         return {
-            type: 'SourceFile',
+            type: 'ordinaryCompilationUnit',
             body: body
         }
     }
 
     if(node.type === "integer"){
         return {
-            type: "NumericLiteral",
+            type: "integerLiteral",
             value: node.text
         }
     }

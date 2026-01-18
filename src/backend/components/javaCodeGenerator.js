@@ -5,10 +5,10 @@ export class JavaCodegen{
     }
 
     generate(exp){
-        return this.SourceFile(exp);
+        return this.ordinaryCompilationUnit(exp);
     }
 
-    SourceFile(exp){
+    ordinaryCompilationUnit(exp){
         return exp.body.map(exp => this.gen(exp)).join('\n');
     }
 
@@ -19,7 +19,7 @@ export class JavaCodegen{
         return this[exp.type](exp);
     }
 
-    NumericLiteral(exp){
+    integerLiteral(exp){
         return `${exp.value}`;
     }
 }
