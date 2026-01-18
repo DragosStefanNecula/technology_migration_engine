@@ -6,6 +6,7 @@ function gen(node){
 
     if(node.type === "source_file"){
         let body = [];
+        
         node.children.forEach(child => {
             body.push(gen(child));
         });
