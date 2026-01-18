@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert';
 
-import { parse } from '../components/parser.js';
+import { parsePerl } from '../components/perlParser.js';
 test('parse simple JavaScript snippet', () => {
-  console.log(parse("sub greet :Path('greet') :Args(1)"))
+  console.log(parsePerl("sub greet :Path('greet') :Args(1)"))
 });
