@@ -24,5 +24,12 @@ function gen(node){
         }
     }
 
+    if(node.type === "string_single_quoted" || node.type === "string_double_quoted"){
+        return {
+            type: "stringLiteral",
+            value: node.text
+        }
+    }
+
     return node;
 }

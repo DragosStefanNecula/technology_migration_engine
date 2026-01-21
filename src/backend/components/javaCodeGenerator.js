@@ -22,4 +22,8 @@ export class JavaCodegen{
     integerLiteral(exp){
         return `${exp.value}`;
     }
+
+    stringLiteral(exp){
+        return `${exp.value}`
+    }
 }
