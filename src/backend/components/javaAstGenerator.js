@@ -46,7 +46,7 @@ function gen(node){
                 let attrName = child.children[1].text.toLowerCase();
                 let functionSignature = child.children[2];
                 let attrValue = _removeQuotes(functionSignature.children.find(n => n.text !== "(" && n.text !== ")" && n.text !== `"` && n.text !== `'`)?.text);
-                processedNode[attrName] = attrValue ? attrValue : null;
+                processedNode[attrName] = attrValue || null;
             }
 
             if(child.type === "block"){
