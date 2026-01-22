@@ -33,6 +33,29 @@ function gen(node){
         }
     }
 
+    if(node.type === "function_definition")
+    {
+        let processedNode = {
+            definition: _removeQuotes(node.children[1].text)
+        }
+
+        for (const child of node.children)
+        {
+            if(child.type === "function_attribute")
+            {
+                let attrName = child.children[1].text.toLowerCase();
+                let functionSignature = child.children[2];
+                let attrValue = _removeQuotes(functionSignature.children.find(n => n.text !== "(" && n.text !== ")" && n.text !== `"` && n.text !== `'`)?.text);
+                processedNode[attrName] = attrValue ? attrValue : null;
+            }
+
+            if(child.type === "block"){
+                processedNode["block"] = gen(child);
+            }
+        }
+        return processedNode;
+    }
+
     if(node.type === "block" || node.type === "standalone_block"){
 
         const body = node.children.reduce((acc, child) => {
@@ -64,4 +87,10 @@ function _toStatement(node){
         default:
             return node;
     }
+}
+
+function _removeQuotes(text) {
+  if (typeof text !== "string") return text;
+
+  return text.replace(/^(['"])(.*)\1$/, "$2");
 }
