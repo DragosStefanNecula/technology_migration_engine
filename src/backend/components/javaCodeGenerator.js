@@ -46,14 +46,16 @@ export class JavaCodegen{
         const params = node.params.filter(n => n !== "self" && n !== "c");
         let javaParams = '';
         if(node.path){
-            functionDef += this._ind() + `@GetMapping("${node.path}")\n`
+            let pathParams = "";
             if(node.args === -1)
             {
                 javaParams = `@RequestParam Map<String, String> ${params[0]}`
             } else if (node.args > 0)
             {
+                pathParams += `/${params.map(p => `{${p}}`).join("/")}`;
                 javaParams = params.map(p => `@PathVariable String ${p}`).join(', ');
             }
+            functionDef += this._ind() + `@GetMapping("${node.path}${pathParams}")\n`
         } else {
             javaParams = params.map(p => `String ${p}`).join(', ');
         } 
