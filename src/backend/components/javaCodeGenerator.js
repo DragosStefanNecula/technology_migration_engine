@@ -4,34 +4,34 @@ export class JavaCodegen{
         this._currentIndent = 0;
     }
 
-    generate(exp){
-        return this.ordinaryCompilationUnit(exp);
+    generate(node){
+        return this.ordinaryCompilationUnit(node);
     }
 
-    ordinaryCompilationUnit(exp){
-        return exp.body.map(exp => this.gen(exp)).join('\n');
+    ordinaryCompilationUnit(node){
+        return node.body.map(child => this.gen(child)).join('\n');
     }
 
-    gen(exp){
-        if(this[exp.type] == null){
-            throw `Unexpected expression "${exp.type}".`
+    gen(node){
+        if(this[node.type] == null){
+            throw `Unexpected expression "${node.type}".`
         }
-        return this[exp.type](exp);
+        return this[node.type](node);
     }
 
-    integerLiteral(exp){
-        return `${exp.value}`;
+    integerLiteral(node){
+        return `${node.value}`;
     }
 
-    stringLiteral(exp){
-        return `${exp.value}`
+    stringLiteral(node){
+        return `${node.value}`
     }
 
-    blockStatement(exp){
-        return `{${exp.body.map(exp => this.gen(exp))}.join('\n')}`;
+    blockStatement(node){
+        return `{${node.body.map(exp => this.gen(exp))}.join('\n')}`;
     }
 
-    expressionStatement(exp){
-        return `${this.gen(exp.exp)};`
+    expressionStatement(node){
+        return `${this.gen(node.exp)};`
     }
 }

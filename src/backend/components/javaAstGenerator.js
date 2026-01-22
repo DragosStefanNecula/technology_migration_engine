@@ -56,13 +56,12 @@ function gen(node){
     return node;
 }
 
-function _toStatement(exp){
-    console.log(exp)
-    switch(exp.type){
+function _toStatement(node){
+    switch(node.type){
         case 'integerLiteral':
         case 'stringLiteral':
-            return {type: 'expressionStatement', exp};
+            return {type: 'expressionStatement', exp: node};
         default:
-            return exp;
+            return node;
     }
 }
