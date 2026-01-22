@@ -28,7 +28,7 @@ export class JavaCodegen{
     }
 
     blockStatement(node){
-        return `{${node.body.map(exp => this.gen(exp))}.join('\n')}`;
+        return `{${node.body.map(exp => this.gen(exp)).join('\n')}}`;
     }
 
     expressionStatement(node){
