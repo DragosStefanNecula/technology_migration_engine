@@ -28,10 +28,23 @@ export class JavaCodegen{
     }
 
     blockStatement(node){
-        return `{${node.body.map(exp => this.gen(exp)).join('\n')}}`;
+        let result = `${this._ind()}{\n`;
+        this._currentIndent += this._indent;
+
+        result += `${node.body.map(exp => this._ind() + this.gen(exp)).join('\n')}`;
+
+        this._currentIndent -= this._indent;
+
+        result += `\n${this._ind()}}`;
+
+        return result;
     }
 
     expressionStatement(node){
         return `${this.gen(node.exp)};`
+    }
+
+    _ind(){
+        return ' '.repeat(this._currentIndent);
     }
 }
