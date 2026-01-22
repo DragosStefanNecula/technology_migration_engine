@@ -5,17 +5,9 @@ export function genJavaAst(astRoot){
 function gen(node){
 
     if(node.type === "source_file"){
-        const body = node.children.reduce((acc, child) => {
-            const generated = gen(child);
-            if (generated !== undefined) {
-                acc.push(_toStatement(generated));
-            }
-            return acc;
-        }, []);
-
         return {
-            type: 'ordinaryCompilationUnit',
-            body: body
+            type: "blockStatement",
+            body: _generateBody(node)
         }
     }
 
@@ -36,6 +28,7 @@ function gen(node){
     if(node.type === "function_definition")
     {
         let processedNode = {
+            type: "functionDefinition",
             definition: _removeQuotes(node.children[1].text)
         }
 
@@ -46,29 +39,31 @@ function gen(node){
                 let attrName = child.children[1].text.toLowerCase();
                 let functionSignature = child.children[2];
                 let attrValue = _removeQuotes(functionSignature.children.find(n => n.text !== "(" && n.text !== ")" && n.text !== `"` && n.text !== `'`)?.text);
-                processedNode[attrName] = attrValue || null;
+                processedNode[attrName] = attrValue || -1;
             }
 
             if(child.type === "block"){
-                processedNode["block"] = gen(child);
+                const paramAssignment = child.children.find(n => n.type === "binary_expression" && n.children.some(c => c.type === "array_variable" && c.text === "@_"));
+                processedNode["block"] = {
+                    type: "blockStatement",
+                    body: _generateBody(child, paramAssignment)
+                };
+                if (paramAssignment) {
+                processedNode["params"] = paramAssignment.children
+                    .find(c => c.type === "variable_declaration")?.children
+                    .find(c => c.type === "multi_var_declaration")?.children
+                    .filter(c => c.type === "scalar_variable" || c.type === "array_variable")
+                    .map(c => c.text.slice(1)) || [];
+                }
             }
         }
         return processedNode;
     }
 
     if(node.type === "block" || node.type === "standalone_block"){
-
-        const body = node.children.reduce((acc, child) => {
-            const generated = gen(child);
-            if (generated !== undefined) {
-                acc.push(_toStatement(generated));
-            }
-            return acc;
-        }, []);
-        
         return {
             type: "blockStatement",
-            body
+            body: _generateBody(node)
         }
     }
 
@@ -93,4 +88,15 @@ function _removeQuotes(text) {
   if (typeof text !== "string") return text;
 
   return text.replace(/^(['"])(.*)\1$/, "$2");
+}
+
+function _generateBody(node, paramsNode){
+    const body = node.children.reduce((acc, child) => {
+        const generated = gen(child);
+        if (generated !== undefined && !(paramsNode && child == paramsNode)) {
+            acc.push(_toStatement(generated));
+        }
+        return acc;
+    }, []);
+    return body;
 }

@@ -40,6 +40,31 @@ export class JavaCodegen{
         return result;
     }
 
+    functionDefinition(node){
+        let functionDef = "";
+
+        const params = node.params.filter(n => n !== "self" && n !== "c");
+        let javaParams = '';
+        if(node.path){
+            functionDef += this._ind() + `@GetMapping("${node.path}")\n`
+            if(node.args === -1)
+            {
+                javaParams = `@RequestParam Map<String, String> ${params[0]}`
+            } else if (node.args > 0)
+            {
+                javaParams = params.map(p => `@PathVariable String ${p}`).join(', ');
+            }
+        } else {
+            javaParams = params.map(p => `String ${p}`).join(', ');
+        } 
+
+        functionDef += this._ind() + `public String ${node.definition}(${javaParams})\n`;
+
+        functionDef += this.gen(node.block);
+        
+        return functionDef;
+    }
+
     expressionStatement(node){
         return `${this.gen(node.exp)};`
     }
