@@ -5,11 +5,13 @@ export function genJavaAst(astRoot){
 function gen(node){
 
     if(node.type === "source_file"){
-        let body = [];
-        
-        node.children.forEach(child => {
-            body.push(gen(child));
-        });
+        const body = node.children.reduce((acc, child) => {
+            const generated = gen(child);
+            if (generated !== undefined) {
+                acc.push(_toStatement(generated));
+            }
+            return acc;
+        }, []);
 
         return {
             type: 'ordinaryCompilationUnit',
@@ -31,5 +33,36 @@ function gen(node){
         }
     }
 
+    if(node.type === "block" || node.type === "standalone_block"){
+
+        const body = node.children.reduce((acc, child) => {
+            const generated = gen(child);
+            if (generated !== undefined) {
+                acc.push(_toStatement(generated));
+            }
+            return acc;
+        }, []);
+        
+        return {
+            type: "blockStatement",
+            body
+        }
+    }
+
+    if(node.type === ";" || node.type === "{" || node.type === "}"){
+        return;
+    }
+
     return node;
+}
+
+function _toStatement(exp){
+    console.log(exp)
+    switch(exp.type){
+        case 'integerLiteral':
+        case 'stringLiteral':
+            return {type: 'expressionStatement', exp};
+        default:
+            return exp;
+    }
 }

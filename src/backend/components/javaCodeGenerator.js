@@ -26,4 +26,12 @@ export class JavaCodegen{
     stringLiteral(exp){
         return `${exp.value}`
     }
+
+    blockStatement(exp){
+        return `{${exp.body.map(exp => this.gen(exp))}.join('\n')}`;
+    }
+
+    expressionStatement(exp){
+        return `${this.gen(exp.exp)};`
+    }
 }
