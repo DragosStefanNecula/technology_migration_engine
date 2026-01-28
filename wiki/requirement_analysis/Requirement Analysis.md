@@ -17,6 +17,8 @@ The application must allow for the manually adjusting or refining of migrated co
 
 Users have declared this feature is important, with 50% of user rating a 4 out of 5, and 50% rating it a 5.
 
+![Q8](images/Q8.png)
+
 
 
 
@@ -33,6 +35,8 @@ The application must operate within a standalone window, but be very easy to ope
 ### Justification
 
 2 thirds of users have expressed desire to have the tool integrated into their existing development environment. However, requirement 1 is impossible to implement within the VSCode extension environment because of limitations with the API provided. Therefore, due to the fact that users report requirement 1 is more important than requirement 2, the compromise is to instead have the application as a standalone application that is easy to use within the standard workflow of a developer.
+
+![Q7](images/Q7.png)
 
 
 
