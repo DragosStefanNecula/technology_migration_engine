@@ -49,7 +49,7 @@ export class JavaCodegen{
             let pathParams = "";
             if(node.args === -1)
             {
-                javaParams = `@RequestParam Map<String, String> ${params[0]}`
+                javaParams = `@RequestParam Map<String, String> ${params[0]}`;
             } else if (node.args > 0)
             {
                 pathParams += `/${params.map(p => `{${p}}`).join("/")}`;
