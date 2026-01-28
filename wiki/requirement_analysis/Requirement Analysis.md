@@ -53,7 +53,7 @@ The application must handle at minimum entire functions.
 
 50% of users would be okay with basic logic, however 50% would only consider using the software if it handled entire functions.
 
-
+![Q11](images/Q11.png)
 
 
 ## Requirement 4 
@@ -70,6 +70,8 @@ The application must have a good balance between automation and human oversight.
 
 50% of users reported that the balance on the "Automation (1) - Human oversight (5)" scale should be 3 out of 5, with the rest of users choosing either 2 or 4.
 
+![Q10](images/Q10.png)
+
 
 
 
@@ -85,7 +87,7 @@ The application must not be overly reliant on large language models.
 
 Three fourths of users have voted 2 out of 5 on the "Minimise LLM Usage (1) - Maximise LLM Usage (5)" scale
 
-
+![Q12](images/Q12.png)
 
 
 ## Requirement 6
@@ -100,7 +102,7 @@ There should be an option for the software to use a local LLM, and the data to n
 
 Users have reported this as a security concern
 
-
+![Q13](images/Q13.png)
 
 
 ## Requirement 7
@@ -119,7 +121,7 @@ The software must be tested and well-maintained.
 
 Users have reported this as a factor that would make them trust the software.
 
-
+![Q13](images/Q13.png)
 
 
 ## Requirement 8
@@ -136,6 +138,7 @@ The software must be cost & time efficient
 
 Users have reported this as an important aspect for migration success.
 
+![Q2](images/Q2.png)
 
 
 
