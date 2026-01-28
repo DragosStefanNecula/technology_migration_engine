@@ -16,9 +16,7 @@ Users have declared this feature is important, with 50% of user rating a 4 out o
 
 
 
-## Requirement 2
-<!--[[req1spec| ]]  Implemented in [[#req1impl|main.js]]  -->
-<!--[[req2| ]]  -->
+## Requirement 2 <!--[[req1spec| ]]  Implemented in [[#req1impl|main.js]]  -->
 
 The application must operate within a standalone window, but be very easy to open and keep open.
 
