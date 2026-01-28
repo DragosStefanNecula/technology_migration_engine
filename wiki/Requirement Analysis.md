@@ -2,6 +2,9 @@
 
 Unless otherwise specified, the term “users” refers to the developer questionnaire that was administered.
 
+
+
+
 ## Requirement 1
 
 The application must allow for the manually adjusting or refining of migrated cope (For example, similar to how it's done in the diffchecker inside TortoiseSVN).
@@ -9,6 +12,9 @@ The application must allow for the manually adjusting or refining of migrated co
 ### Justification
 
 Users have declared this feature is important, with 50% of user rating a 4 out of 5, and 50% rating it a 5.
+
+
+
 
 ## Requirement 2
 <!--[[req1spec| ]]  Implemented in [[#req1impl|main.js]]  -->
