@@ -67,6 +67,14 @@ export class JavaCodegen{
         return functionDef;
     }
 
+    whileStatement(node){
+        console.log(node)
+    }
+
+    forStatement1(node){
+        console.log(node)
+    }
+
     expressionStatement(node){
         return `${this.gen(node.exp)};`
     }

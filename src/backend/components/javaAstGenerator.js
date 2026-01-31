@@ -60,6 +60,25 @@ function gen(node){
         return processedNode;
     }
 
+    if(node.type === "while_statement"){
+        return {
+            type: "whileStatement",
+            arguments: node.children[1],
+            body: _generateBody(node.children[2])
+        }
+    }
+
+    if(node.type === "for_statement_1"){
+        const separatedElements = _separateExpressions(node.children);
+        return {
+            type: "forStatement1",
+            declaration: separatedElements.expressions[0],
+            condition: separatedElements.expressions[1],
+            increment: separatedElements.expressions[2],
+            body: _generateBody(separatedElements.body)
+        }
+    }
+
     if(node.type === "block" || node.type === "standalone_block"){
         return {
             type: "blockStatement",
@@ -99,4 +118,22 @@ function _generateBody(node, paramsNode){
         return acc;
     }, []);
     return body;
+}
+
+function _separateExpressions(nodes) {
+    const expressions = [];
+    let body;
+
+    for (const node of nodes) {
+        if (
+        node.type === "unary_expression" ||
+        node.type === "binary_expression"
+        ) {
+            expressions.push(node);
+        } else if (node.type === "block") {
+            body = node;
+        }
+    }
+
+    return { expressions, body };
 }
