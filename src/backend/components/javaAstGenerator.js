@@ -4,24 +4,12 @@ export function genJavaAst(astRoot){
 
 function gen(node){
 
+    // STRUCTURAL ELEMENTS
+
     if(node.type === "source_file"){
         return {
             type: "blockStatement",
             body: _generateBody(node)
-        }
-    }
-
-    if(node.type === "integer"){
-        return {
-            type: "integerLiteral",
-            value: node.text
-        }
-    }
-
-    if(node.type === "string_single_quoted" || node.type === "string_double_quoted"){
-        return {
-            type: "stringLiteral",
-            value: node.text
         }
     }
 
@@ -79,10 +67,31 @@ function gen(node){
         }
     }
 
+    if(node.type === "for_statement_2")
+    {
+        const separatedElements = _separateExpressions(node)
+    }
+
     if(node.type === "block" || node.type === "standalone_block"){
         return {
             type: "blockStatement",
             body: _generateBody(node)
+        }
+    }
+
+    // STATEMENT ELEMENTS
+
+    if(node.type === "integer"){
+        return {
+            type: "integerLiteral",
+            value: node.text
+        }
+    }
+
+    if(node.type === "string_single_quoted" || node.type === "string_double_quoted"){
+        return {
+            type: "stringLiteral",
+            value: node.text
         }
     }
 

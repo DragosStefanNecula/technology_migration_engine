@@ -1,4 +1,7 @@
 export class JavaCodegen{
+
+    // ALGORITHM
+
     constructor({indent = 2}){
         this._indent = indent;
         this._currentIndent = 0;
@@ -8,10 +11,6 @@ export class JavaCodegen{
         return this.ordinaryCompilationUnit(node);
     }
 
-    ordinaryCompilationUnit(node){
-        return node.body.map(child => this.gen(child)).join('\n');
-    }
-
     gen(node){
         if(this[node.type] == null){
             throw `Unexpected expression "${node.type}".`
@@ -19,12 +18,10 @@ export class JavaCodegen{
         return this[node.type](node);
     }
 
-    integerLiteral(node){
-        return `${node.value}`;
-    }
+    // STRUCTURAL ELEMENTS
 
-    stringLiteral(node){
-        return `${node.value}`
+    ordinaryCompilationUnit(node){
+        return node.body.map(child => this.gen(child)).join('\n');
     }
 
     blockStatement(node){
@@ -73,6 +70,16 @@ export class JavaCodegen{
 
     forStatement1(node){
         console.log(node)
+    }
+
+    // STATEMENT ELEMENTS
+
+    integerLiteral(node){
+        return `${node.value}`;
+    }
+
+    stringLiteral(node){
+        return `${node.value}`
     }
 
     expressionStatement(node){
