@@ -1,3 +1,4 @@
+
 export function genJavaAst(astRoot){
     return gen(astRoot);
 }
@@ -9,7 +10,7 @@ function gen(node){
     if(node.type === "source_file"){
         return {
             type: "blockStatement",
-            body: _generateBody(node)
+            body: _generateBody(node.children)
         }
     }
 
@@ -34,7 +35,7 @@ function gen(node){
                 const paramAssignment = child.children.find(n => n.type === "binary_expression" && n.children.some(c => c.type === "array_variable" && c.text === "@_"));
                 processedNode["block"] = {
                     type: "blockStatement",
-                    body: _generateBody(child, paramAssignment)
+                    body: _generateBody(child.children, paramAssignment)
                 };
                 if (paramAssignment) {
                 processedNode["params"] = paramAssignment.children
@@ -52,7 +53,7 @@ function gen(node){
         return {
             type: "whileStatement",
             arguments: node.children[1],
-            body: _generateBody(node.children[2])
+            body: _generateBody(node.children[2].children)
         }
     }
 
@@ -63,7 +64,7 @@ function gen(node){
             declaration: separatedElements.expressions[0],
             condition: separatedElements.expressions[1],
             increment: separatedElements.expressions[2],
-            body: _generateBody(separatedElements.body)
+            body: _generateBody(separatedElements.body.children)
         }
     }
 
@@ -75,7 +76,7 @@ function gen(node){
     if(node.type === "block" || node.type === "standalone_block"){
         return {
             type: "blockStatement",
-            body: _generateBody(node)
+            body: _generateBody(node.children)
         }
     }
 
@@ -95,17 +96,88 @@ function gen(node){
         }
     }
 
-    if(node.type === ";" || node.type === "{" || node.type === "}"){
+    if (node.type === "binary_expression") {
+        try {
+            return {
+                type: "binaryExpression",
+                left: gen(node.children[0]),
+                operator: gen(node.children[1]),
+                right: gen(node.children[2])
+            };
+        } catch (error) {
+
+        }
+    }
+
+    if (node.type in BINARY_OPERATOR_MAP) {
+        const mapped = BINARY_OPERATOR_MAP[node.text];
+
+        if (!mapped) {
+            throw new Error(`Unsupported operator: ${node.text}`);
+        }
+
+        return {
+            type: "operator",
+            value: mapped
+        };
+    }
+
+    if(node.type === "variable_declaration"){
+        return {
+            type: "variableDeclaration",
+            value: gen(node.children[1])
+        }
+    }
+
+    if (node.type === "scalar_variable") {
+        return {
+            type: "identifier",
+            name: node.text.slice(1)
+        };
+    }
+    
+    if (node.type === 'identifier')
+        return {
+            type: "identifier",
+            name: node.text
+        }
+
+    if (node.type === "call_expression"){
+        return {
+            type: "callExpression",
+            identifier: gen(node.children[0]),
+            arguments: gen(node.children[1])
+        }
+    }
+
+    if(node.type === "parenthesized_argument"){
+        let parameters = node.children[1];
+        return {
+            type: "arguments",
+            body: _generateBody(_extractExpressions(parameters.children, ["normal_comma", ")", "("]))
+        }
+    }
+
+    if(node.type === "single_line_statement")
+    {
+        return {
+            type: "codeGen",
+            content: node.text
+        }
+    }
+
+    if(node.type === ";" || node.type === "{" || node.type === "}" || node.type === "comments"){
         return;
     }
 
-    return node;
+    throw new Error("UseCodeGen");
 }
 
 function _toStatement(node){
     switch(node.type){
         case 'integerLiteral':
         case 'stringLiteral':
+        case 'binaryExpression':
             return {type: 'expressionStatement', exp: node};
         default:
             return node;
@@ -118,8 +190,10 @@ function _removeQuotes(text) {
   return text.replace(/^(['"])(.*)\1$/, "$2");
 }
 
-function _generateBody(node, paramsNode){
-    const body = node.children.reduce((acc, child) => {
+function _generateBody(nodes, paramsNode){
+    console.log(nodes)
+    if(!nodes) return;
+    const body = nodes.reduce((acc, child) => {
         const generated = gen(child);
         if (generated !== undefined && !(paramsNode && child == paramsNode)) {
             acc.push(_toStatement(generated));
@@ -146,3 +220,35 @@ function _separateExpressions(nodes) {
 
     return { expressions, body };
 }
+
+function _extractExpressions(nodes, excludedTypes = [], includedTypes = []){
+    let extractedNodes = []
+    for (const node of nodes)
+    {
+        if((excludedTypes.length > 0 && !excludedTypes.includes(node.type)) || (includedTypes.length > 0 && includedTypes.includes(node.type)))
+        {
+            extractedNodes.push(node);
+        }
+    }
+    return extractedNodes;
+}
+
+const BINARY_OPERATOR_MAP = {
+    "+": "+",
+    "-": "-",
+    "*": "*",
+    "/": "/",
+    "%": "%",
+    "**": "POW",
+    "==": "==",
+    "!=": "!=",
+    "<": "<",
+    "<=": "<=",
+    ">": ">",
+    ">=": ">=",
+    "eq": "STRING_EQ",
+    "ne": "STRING_NE",
+    "&&": "&&",
+    "||": "||",
+    "=": "=",
+};

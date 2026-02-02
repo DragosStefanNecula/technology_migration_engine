@@ -8,6 +8,7 @@ export class JavaCodegen{
     }
 
     generate(node){
+        console.log(node)
         return this.ordinaryCompilationUnit(node);
     }
 
@@ -84,6 +85,35 @@ export class JavaCodegen{
 
     expressionStatement(node){
         return `${this.gen(node.exp)};`
+    }
+
+    binaryExpression(node) {
+        return `${this.gen(node.left)} ${this.gen(node.operator)} ${this.gen(node.right)}`;
+    }
+
+    operator(node){
+        return `${node.value}`;
+    }
+
+    variableDeclaration(node){
+        return `var ${this.gen(node.value)}`;
+    }
+
+    identifier(node)
+    {
+        return `${node.name}`;
+    }
+
+    callExpression(node){
+        return `${this.gen(node.identifier)}(${this.gen(node.arguments)})`
+    }
+
+    codeGen(node){
+        return `${node.content}`
+    }
+
+    arguments(node){
+        return `${node.body.map(exp => this.gen(exp)).join(',')}`
     }
 
     _ind(){
