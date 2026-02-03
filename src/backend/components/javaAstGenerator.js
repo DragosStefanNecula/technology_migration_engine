@@ -61,6 +61,13 @@ function gen(node){
             name: Helper.stripVariable(node)
         };
     }
+
+    if(node.type === "array") {
+        return {
+            type: "ParanthesizedArray",
+            value: gen(node.children[1])
+        }
+    }
 }
 
 class JavaAstHelper{
@@ -123,6 +130,39 @@ class JavaAstHelper{
 
     stripVariable(node){
         return node.text.slice(1);
+    }
+
+    findChildrenOfTypes(node, allowedTypes, excludedTypes) {
+        const results = [];
+
+        // Sets for constant time look-up
+        const allowedTypesSet = new Set(allowedTypes);
+        const excludedTypesSet = new Set(excludedTypes);
+
+        // Only check immediate children
+        if (node.children?.length) { 
+            for (const child of node.children) {
+                const type = child.type;
+                if ((allowedTypesSet.size === 0 || allowedTypesSet.has(type)) &&
+                    (excludedTypesSet.size === 0 || !excludedTypesSet.has(type))) {
+                    results.push(child);
+                }
+            }
+        }
+
+        return results;
+    }
+
+    isAssignmentOperator(op) {
+        return [
+            "=", "+=", "-=", "*=", "/=", "%=",
+            "||=", "&&=", "|=", "&=", "^=",
+            "<<=", ">>="
+        ].includes(op);
+    }
+
+    isOfType(node, type){
+        return node.type === type;
     }
 }
 
