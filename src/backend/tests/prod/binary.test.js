@@ -37,3 +37,16 @@ assert(handlePerl(input) ===
 4 = 2;
 4 || 2;`);
 });
+
+test('Multi Layered Binary', () => {
+
+const input = 
+`$a == $b || $c == $d && $e != $f;
+($x + $y) * $z;
+($x + $y) > $z ? $x * $z : $y * $z
+`;
+assert(handlePerl(input) === 
+`a == b || c == d && e != f;
+(x + y) * z;
+(x + y) > z ? x * z : y * z;`);
+});

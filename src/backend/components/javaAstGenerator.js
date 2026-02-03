@@ -42,6 +42,15 @@ function gen(node){
         }
     }
 
+    if(node.type === "ternary_expression"){
+        return {
+            type:"TernaryExpression",
+            left: gen(node.children[0]),
+            middle: gen(node.children[2]),
+            right: gen(node.children[4])
+        }
+    }
+
     if (node.type in Helper.BINARY_OPERATOR_MAP) {
         const mapped = Helper.BINARY_OPERATOR_MAP[node.text];
 
@@ -118,6 +127,7 @@ class JavaAstHelper{
             case 'IntegerLiteral':
             case 'StringLiteral':
             case 'BinaryExpression':
+            case 'TernaryExpression':
                 return {type: 'ExpressionStatement', exp: node};
             default:
                 return node;

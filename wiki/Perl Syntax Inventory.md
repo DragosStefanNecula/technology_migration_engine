@@ -36,9 +36,9 @@ This aims to be a inventory of all relevant syntax that will be transpiled using
 ### Binary Expression Examples
 
     [X] 4 + 2
-    [ ] ($x + $y) * $z
-    [ ] $a == $b || $c == $d && $e != $f
-    [ ] ($x + $y) > $z ? $x * $z : $y * $z
+    [X] ($x + $y) * $z
+    [X] $a == $b || $c == $d && $e != $f
+    [X] ($x + $y) > $z ? $x * $z : $y * $z
     [ ] $first . " " . $last
     [ ] $a eq $b || $x == $y
     [ ] $a ** 2

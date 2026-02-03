@@ -57,6 +57,10 @@ export class JavaCodegen{
         return `${this.gen(node.left)} ${this.gen(node.operator)} ${this.gen(node.right)}`;
     }
 
+    TernaryExpression(node) {
+        return `${this.gen(node.left)} ? ${this.gen(node.middle)} : ${this.gen(node.right)}`
+    }
+
     Operator(node) {
         return `${node.value}`;
     }
