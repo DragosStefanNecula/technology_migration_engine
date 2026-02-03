@@ -99,7 +99,7 @@ export class JavaCodegen{
         return `${node.name}`;
     }
 
-    ParanthesizedArray(node){
+    ParanthesizedExpression(node){
         return `(${this.gen(node.value)})`;
     }
 }

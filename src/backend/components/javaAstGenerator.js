@@ -95,7 +95,7 @@ function gen(node){
 
     if(node.type === "array") {
         return {
-            type: "ParanthesizedArray",
+            type: "ParanthesizedExpression",
             value: gen(node.children[1])
         }
     }
