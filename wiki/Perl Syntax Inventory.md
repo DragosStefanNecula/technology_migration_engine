@@ -40,37 +40,37 @@ This aims to be a inventory of all relevant syntax that will be transpiled using
     [X] $a == $b || $c == $d && $e != $f
     [X] ($x + $y) > $z ? $x * $z : $y * $z
     [X] $first . " " . $last
-    [ ] $a eq $b || $x == $y
+    [X] $a eq $b || $x ne $y
     [ ] $a ** 2
 
 ### Operators
 
-    [ ] +
-    [ ] -
-    [ ] *
-    [ ] /
-    [ ] %
+    [X] +
+    [X] -
+    [X] *
+    [X] /
+    [X] %
     [ ] **
-    [ ] ==
-    [ ] !=
-    [ ] <
-    [ ] <=
-    [ ] >
-    [ ] >=
-    [ ] eq
-    [ ] ne
-    [ ] &&
-    [ ] ||
-    [ ] =
-    [ ] .
+    [X] ==
+    [X] !=
+    [X] <
+    [X] <=
+    [X] >
+    [X] >=
+    [X] eq
+    [X] ne
+    [X] &&
+    [X] ||
+    [X] =
+    [X] .
     [ ] ++
     [ ] --
-    [ ] ?:
+    [X] ?:
 
-    [ ] +=
-    [ ] -=
-    [ ] *=
-    [ ] /=
+    [X] +=
+    [X] -=
+    [X] *=
+    [X] /=
 
 ## Control Flow
 
