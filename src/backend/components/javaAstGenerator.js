@@ -34,7 +34,7 @@ function gen(node){
     }
 
     if(node.type === "unary_expression"){
-        if(node.children[0].type === "!"){
+        if(node.children[0].type === "!" || node.children[0].type === "not"){
             return {
                 type: "NegativeExpression",
                 right: gen(node.children[1]),
@@ -123,7 +123,10 @@ class JavaAstHelper{
             "/=": "/=",
             "++": "++",
             "--": "--",
-            "!": "!"
+            "!": "!",
+            "not": "!",
+            "and": "&&",
+            "or": "||"
         };
     }
 
