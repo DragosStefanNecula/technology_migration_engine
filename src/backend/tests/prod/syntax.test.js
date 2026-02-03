@@ -12,3 +12,22 @@ test('IntegerLiteral', () => {
 
   assert(handlePerl(input) === "42;");
 });
+
+test('StringLiteral', () => {
+
+  const input = `
+    "42";
+  `;
+
+  assert(handlePerl(input) === '"42";');
+});
+
+test('ScalarVariable/Identifier', () => {
+
+  const input = `
+    $42;
+  `;
+
+  assert(handlePerl(input) === "42");
+});
+
