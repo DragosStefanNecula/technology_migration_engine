@@ -13,7 +13,7 @@ export class JavaCodegen{
 
     gen(node){
         if(this[node.type] == null){
-            throw `Unexpected expression "${node.type}".`
+            throw Error(`Unexpected expression "${node.type}".`)
         }
         return this[node.type](node);
     }
