@@ -22,7 +22,8 @@ $b--;
 4 >= 2;
 4 && 2;
 4 = 2;
-4 || 2;`;
+4 || 2;
+$a ** $b;`;
 assert(handlePerl(input) === 
 `a++;
 b--;
@@ -39,7 +40,8 @@ b--;
 4 >= 2;
 4 && 2;
 4 = 2;
-4 || 2;`);
+4 || 2;
+Math.pow(a, b);`);
 });
 
 test('Multi Layered Binary + Ternary', () => {
