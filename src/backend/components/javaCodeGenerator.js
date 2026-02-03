@@ -1,15 +1,12 @@
 export class JavaCodegen{
 
-    // ALGORITHM
-
     constructor({indent = 2}){
         this._indent = indent;
         this._currentIndent = 0;
     }
 
     generate(node){
-        console.log(node)
-        return this.ordinaryCompilationUnit(node);
+        return gen(node);
     }
 
     gen(node){
@@ -17,103 +14,6 @@ export class JavaCodegen{
             throw `Unexpected expression "${node.type}".`
         }
         return this[node.type](node);
-    }
-
-    // STRUCTURAL ELEMENTS
-
-    ordinaryCompilationUnit(node){
-        return node.body.map(child => this.gen(child)).join('\n');
-    }
-
-    blockStatement(node){
-        let result = `${this._ind()}{\n`;
-        this._currentIndent += this._indent;
-
-        result += `${node.body.map(exp => this._ind() + this.gen(exp)).join('\n')}`;
-
-        this._currentIndent -= this._indent;
-
-        result += `\n${this._ind()}}`;
-
-        return result;
-    }
-
-    functionDefinition(node){
-        let functionDef = "";
-
-        const params = node.params.filter(n => n !== "self" && n !== "c");
-        let javaParams = '';
-        if(node.path){
-            let pathParams = "";
-            if(node.args === -1)
-            {
-                javaParams = `@RequestParam Map<String, String> ${params[0]}`;
-            } else if (node.args > 0)
-            {
-                pathParams += `/${params.map(p => `{${p}}`).join("/")}`;
-                javaParams = params.map(p => `@PathVariable String ${p}`).join(', ');
-            }
-            functionDef += this._ind() + `@GetMapping("${node.path}${pathParams}")\n`
-        } else {
-            javaParams = params.map(p => `String ${p}`).join(', ');
-        } 
-
-        functionDef += this._ind() + `public String ${node.definition}(${javaParams})\n`;
-
-        functionDef += this.gen(node.block);
-        
-        return functionDef;
-    }
-
-    whileStatement(node){
-        console.log(node)
-    }
-
-    forStatement1(node){
-        console.log(node)
-    }
-
-    // STATEMENT ELEMENTS
-
-    integerLiteral(node){
-        return `${node.value}`;
-    }
-
-    stringLiteral(node){
-        return `${node.value}`
-    }
-
-    expressionStatement(node){
-        return `${this.gen(node.exp)};`
-    }
-
-    binaryExpression(node) {
-        return `${this.gen(node.left)} ${this.gen(node.operator)} ${this.gen(node.right)}`;
-    }
-
-    operator(node){
-        return `${node.value}`;
-    }
-
-    variableDeclaration(node){
-        return `var ${this.gen(node.value)}`;
-    }
-
-    identifier(node)
-    {
-        return `${node.name}`;
-    }
-
-    callExpression(node){
-        return `${this.gen(node.identifier)}(${this.gen(node.arguments)})`
-    }
-
-    codeGen(node){
-        return `${node.content}`
-    }
-
-    arguments(node){
-        return `${node.body.map(exp => this.gen(exp)).join(',')}`
     }
 
     _ind(){
