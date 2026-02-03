@@ -4,6 +4,11 @@ This aims to be a inventory of all relevant syntax that will be transpiled using
 
 ## Variables
 
+## Types
+
+    [X] Integer Literal
+    [X] String Literal
+
 ### Scalars
 
     [ ] my $x = 10;
