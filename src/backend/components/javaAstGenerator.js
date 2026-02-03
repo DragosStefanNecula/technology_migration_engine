@@ -54,6 +54,13 @@ function gen(node){
             value: mapped
         };
     }
+
+    if (node.type === "scalar_variable") {
+        return {
+            type: "Identifier",
+            name: Helper.stripVariable(node)
+        };
+    }
 }
 
 class JavaAstHelper{
@@ -112,6 +119,10 @@ class JavaAstHelper{
 
     isIgnored(node){
         return this.IGNORED_NODE_TYPES.has(node.type);
+    }
+
+    stripVariable(node){
+        return node.text.slice(1);
     }
 }
 

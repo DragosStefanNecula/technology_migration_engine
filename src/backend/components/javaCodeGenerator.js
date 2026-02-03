@@ -61,4 +61,8 @@ export class JavaCodegen{
         return `${node.value}`;
     }
 
+    Identifier(node)
+    {
+        return `${node.name}`;
+    }
 }
