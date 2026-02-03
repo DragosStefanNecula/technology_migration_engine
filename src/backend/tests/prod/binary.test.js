@@ -50,3 +50,15 @@ assert(handlePerl(input) ===
 (x + y) * z;
 (x + y) > z ? x * z : y * z;`);
 });
+
+test('String Binary', () => {
+
+const input = 
+`$a eq $b;
+$a ne $b
+`;
+assert(handlePerl(input) === 
+`a.equals(b);
+!a.equals(b);`);
+});
+

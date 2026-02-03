@@ -54,6 +54,12 @@ export class JavaCodegen{
     }
 
     BinaryExpression(node) {
+        if(node.operator.value == "STRING_EQ"){
+            return `${this.gen(node.left)}.equals(${this.gen(node.right)})`
+        }
+        if(node.operator.value == "STRING_NE"){
+            return `!${this.gen(node.left)}.equals(${this.gen(node.right)})`
+        }
         return `${this.gen(node.left)} ${this.gen(node.operator)} ${this.gen(node.right)}`;
     }
 
