@@ -33,6 +33,14 @@ function gen(node){
         }
     }
 
+    if(node.type === "unary_expression"){
+        return {
+            type: "UnaryExpression",
+            left: gen(node.children[0]),
+            operator: gen(node.children[1])
+        }
+    }
+
     if(node.type === "binary_expression"){
         return {
             type: "BinaryExpression",
@@ -106,6 +114,8 @@ class JavaAstHelper{
             "-=": "-=",
             "*=": "*=",
             "/=": "/=",
+            "++": "++",
+            "--": "--",
         };
     }
 
@@ -133,6 +143,7 @@ class JavaAstHelper{
             case 'StringLiteral':
             case 'BinaryExpression':
             case 'TernaryExpression':
+            case 'UnaryExpression':
                 return {type: 'ExpressionStatement', exp: node};
             default:
                 return node;

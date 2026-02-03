@@ -4,9 +4,11 @@ import assert from 'node:assert';
 import { parsePerl } from '../../components/perlParser.js';
 import { handlePerl } from '../../components/migrationLogic.js';
 
-test('Simple Binary Operators', () => {
+test('Simple Binary Operators + Urnary', () => {
 
 const input = `
+$a++;
+$b--;
 4 + 2;
 4 - 2;
 4 * 2;
@@ -22,7 +24,9 @@ const input = `
 4 = 2;
 4 || 2;`;
 assert(handlePerl(input) === 
-`4 + 2;
+`a++;
+b--;
+4 + 2;
 4 - 2;
 4 * 2;
 4 / 2;
@@ -38,7 +42,7 @@ assert(handlePerl(input) ===
 4 || 2;`);
 });
 
-test('Multi Layered Binary', () => {
+test('Multi Layered Binary + Ternary', () => {
 
 const input = 
 `$a == $b || $c == $d && $e != $f;

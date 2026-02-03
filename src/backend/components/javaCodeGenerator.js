@@ -53,6 +53,10 @@ export class JavaCodegen{
         return `${node.value}`
     }
 
+    UnaryExpression(node){
+        return `${this.gen(node.left)}${this.gen(node.operator)}`
+    }
+
     BinaryExpression(node) {
         if(node.operator.value == "STRING_EQ"){
             return `${this.gen(node.left)}.equals(${this.gen(node.right)})`
