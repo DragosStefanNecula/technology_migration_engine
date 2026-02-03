@@ -48,4 +48,8 @@ export class JavaCodegen{
     IntegerLiteral(node){
         return `${node.value}`;
     }
+
+    StringLiteral(node){
+        return `${node.value}`
+    }
 }

@@ -25,6 +25,13 @@ function gen(node){
             value: node.text
         }
     }
+
+    if(node.type === "string_single_quoted" || node.type === "string_double_quoted"){
+        return {
+            type: "StringLiteral",
+            value: node.text
+        }
+    }
 }
 
 class JavaAstHelper{
