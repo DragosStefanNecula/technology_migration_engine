@@ -5,8 +5,9 @@ import { handlePerl } from '../components/migrationLogic.js';
 
 test('Dev', () => {
   const input = `
-    ($x + $y) * $z
-  `;
+    {
+      $c->stash(template => 'user.tt');
+    }`;
     
   console.log(parseDebugOutput(input));
   console.log(JSON.stringify(genJavaAstDebug(input), null, 2));
