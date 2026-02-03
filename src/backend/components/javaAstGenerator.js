@@ -102,6 +102,10 @@ class JavaAstHelper{
             "**": "POW",
             "eq": "STRING_EQ",
             "ne": "STRING_NE",
+            "+=": "+=",
+            "-=": "-=",
+            "*=": "*=",
+            "/=": "/=",
         };
     }
 
