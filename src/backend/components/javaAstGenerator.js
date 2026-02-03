@@ -13,7 +13,7 @@ function gen(node){
         }
     }
 
-    if(node.type === ";" || node.type === "{" || node.type === "}"){
+    if(Helper.isIgnored(node)){
         return;
     }
 
@@ -28,6 +28,10 @@ function gen(node){
 }
 
 class JavaAstHelper{
+    constructor() {
+        this.IGNORED_NODE_TYPES = new Set([";", "{", "}"]);
+    }
+
     genMultiple(nodes) {
         if(!nodes) return;
         const body = nodes.reduce((acc, child) => {
@@ -55,6 +59,10 @@ class JavaAstHelper{
             default:
                 return node;
         }
+    }
+
+    isIgnored(node){
+        return this.IGNORED_NODE_TYPES.has(node.type);
     }
 }
 
