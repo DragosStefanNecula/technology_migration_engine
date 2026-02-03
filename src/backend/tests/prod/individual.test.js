@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert';
 
 import { parsePerl } from '../../components/perlParser.js';
-import { handlePerl } from '../../migrationLogic.js';
+import { handlePerl } from '../../components/migrationLogic.js';
 
 test('IntegerLiteral', () => {
 
