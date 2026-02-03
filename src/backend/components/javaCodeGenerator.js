@@ -52,4 +52,13 @@ export class JavaCodegen{
     StringLiteral(node){
         return `${node.value}`
     }
+
+    BinaryExpression(node) {
+        return `${this.gen(node.left)} ${this.gen(node.operator)} ${this.gen(node.right)}`;
+    }
+
+    Operator(node) {
+        return `${node.value}`;
+    }
+
 }

@@ -32,11 +32,53 @@ function gen(node){
             value: node.text
         }
     }
+
+    if(node.type === "binary_expression"){
+        return {
+            type: "BinaryExpression",
+            left: gen(node.children[0]),
+            operator: gen(node.children[1]),
+            right: gen(node.children[2])
+        }
+    }
+
+    if (node.type in Helper.BINARY_OPERATOR_MAP) {
+        const mapped = Helper.BINARY_OPERATOR_MAP[node.text];
+
+        if (!mapped) {
+            throw new Error(`Unsupported operator: ${node.text}`);
+        }
+
+        return {
+            type: "Operator",
+            value: mapped
+        };
+    }
 }
 
 class JavaAstHelper{
     constructor() {
         this.IGNORED_NODE_TYPES = new Set([";", "{", "}"]);
+
+        this.BINARY_OPERATOR_MAP = {
+            "+": "+",
+            "-": "-",
+            "*": "*",
+            "/": "/",
+            "%": "%",
+            "**": "POW",
+            "==": "==",
+            "!=": "!=",
+            "<": "<",
+            "<=": "<=",
+            ">": ">",
+            ">=": ">=",
+            "eq": "STRING_EQ",
+            "ne": "STRING_NE",
+            "&&": "&&",
+            "||": "||",
+            "=": "=",
+        };
     }
 
     genMultiple(nodes) {

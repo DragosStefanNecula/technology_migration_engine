@@ -35,6 +35,7 @@ This aims to be a inventory of all relevant syntax that will be transpiled using
 
 ### Binary Expression Examples
 
+    [X] 4 + 2
     [ ] ($x + $y) * $z
     [ ] $a == $b || $c == $d && $e != $f
     [ ] ($x + $y) > $z ? $x * $z : $y * $z
