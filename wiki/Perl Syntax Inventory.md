@@ -66,7 +66,7 @@ This aims to be a inventory of all relevant syntax that will be transpiled using
     [X] ++
     [X] --
     [X] ?:
-
+    [X] !
     [X] +=
     [X] -=
     [X] *=
