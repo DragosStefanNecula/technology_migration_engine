@@ -39,7 +39,7 @@ This aims to be a inventory of all relevant syntax that will be transpiled using
     [X] ($x + $y) * $z
     [X] $a == $b || $c == $d && $e != $f
     [X] ($x + $y) > $z ? $x * $z : $y * $z
-    [ ] $first . " " . $last
+    [X] $first . " " . $last
     [ ] $a eq $b || $x == $y
     [ ] $a ** 2
 
