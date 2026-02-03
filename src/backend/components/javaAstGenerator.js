@@ -125,6 +125,17 @@ function gen(node){
             value: node.children[1] ? gen(node.children[1]) : undefined
         }
     }
+
+    if(node.type === "call_expression"){
+        let identifier = node.children[0].text;
+        if(identifier === "die"){
+            let methodArguments = node.children[1];
+            return {
+                type: "ErrorExpression",
+                value: gen(methodArguments.children[0])
+            }
+        }
+    }
 }
 
 class JavaAstHelper{
@@ -191,6 +202,7 @@ class JavaAstHelper{
             case 'NegativeExpression':
             case 'ControlFlowExpression':
             case 'ReturnExpression':
+            case 'ErrorExpression':
                 return {type: 'ExpressionStatement', exp: node};
             default:
                 return node;

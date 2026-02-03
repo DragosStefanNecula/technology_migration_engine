@@ -61,3 +61,16 @@ test('Return', () => {
   return a;
 }`);
 });
+
+test('Error', () => {
+
+  const input = `
+    {
+      die "Something went wrong";
+    }
+  `;
+
+  assert(handlePerl(input) === `{
+  throw new RuntimeException("Something went wrong");
+}`);
+});

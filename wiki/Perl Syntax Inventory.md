@@ -90,6 +90,7 @@ This aims to be a inventory of all relevant syntax that will be transpiled using
     [ ] elsif ($x == 0) { ... }
     [ ] else { ... }
     [ ] unless { ... }
+    [ ] try/catch
 
 ### Loops
 
@@ -104,7 +105,7 @@ This aims to be a inventory of all relevant syntax that will be transpiled using
     [X] last;     -> break
     [ ] redo;     -> restart loop iteration
     [X] return; 
-    [ ] die;
+    [X] die;
 
 ## Catalyst / MVC Specific
 

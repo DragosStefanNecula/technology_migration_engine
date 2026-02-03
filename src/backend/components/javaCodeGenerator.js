@@ -43,6 +43,10 @@ export class JavaCodegen{
         return `return${node.value ? " " + this.gen(node.value) : ""}`
     }
 
+    ErrorExpression(node){
+        return `throw new RuntimeException(${this.gen(node.value)})`;
+    }
+
     _ind(){
         return ' '.repeat(this._currentIndent);
     }
