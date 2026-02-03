@@ -89,7 +89,7 @@ function gen(node){
     if (node.type === "scalar_variable") {
         return {
             type: "Identifier",
-            name: Helper.stripVariable(node)
+            name: Helper.stripVariableName(node)
         };
     }
 
@@ -120,9 +120,10 @@ function gen(node){
     }
 
     if(node.type === "return_expression"){
+        let returnedNode = node.children[1];
         return{
             type: "ReturnExpression",
-            value: node.children[1] ? gen(node.children[1]) : undefined
+            value: returnedNode ? gen(returnedNode) : undefined
         }
     }
 
@@ -213,7 +214,7 @@ class JavaAstHelper{
         return this.IGNORED_NODE_TYPES.has(node.type);
     }
 
-    stripVariable(node){
+    stripVariableName(node){
         return node.text.slice(1);
     }
 
