@@ -31,3 +31,33 @@ test('ScalarVariable/Identifier', () => {
   assert(handlePerl(input) === "42");
 });
 
+
+test('ControlFlowCommand', () => {
+
+  const input = `
+    {
+      last;
+      next;
+      return;
+    }
+  `;
+
+  assert(handlePerl(input) === `{
+  break;
+  continue;
+  return;
+}`);
+});
+
+test('Return', () => {
+
+  const input = `
+    {
+      return $a
+    }
+  `;
+
+  assert(handlePerl(input) === `{
+  return a;
+}`);
+});

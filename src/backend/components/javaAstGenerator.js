@@ -13,6 +13,13 @@ function gen(node){
         }
     }
 
+    if(node.type === "block" || node.type === "standalone_block"){
+        return {
+            type: "BlockStatement",
+            body: Helper.genBody(node.children)
+        }
+    }
+
     if(Helper.isIgnored(node)){
         return;
     }
@@ -92,6 +99,32 @@ function gen(node){
             value: gen(node.children[1])
         }
     }
+
+    if(node.type === "loop_control_statement"){
+        return gen(node.children[0])
+    }
+
+    if(node.type === "loop_control_keyword"){
+        if(node.text === "last"){
+            return {
+                type: "ControlFlowExpression",
+                value: "break"
+            }
+        }
+        if(node.text === "next"){
+            return {
+                type: "ControlFlowExpression",
+                value: "continue"
+            }
+        }
+    }
+
+    if(node.type === "return_expression"){
+        return{
+            type: "ReturnExpression",
+            value: node.children[1] ? gen(node.children[1]) : undefined
+        }
+    }
 }
 
 class JavaAstHelper{
@@ -156,6 +189,8 @@ class JavaAstHelper{
             case 'TernaryExpression':
             case 'UnaryExpression':
             case 'NegativeExpression':
+            case 'ControlFlowExpression':
+            case 'ReturnExpression':
                 return {type: 'ExpressionStatement', exp: node};
             default:
                 return node;

@@ -35,6 +35,14 @@ export class JavaCodegen{
         return result;
     }
 
+    ControlFlowExpression(node){
+        return `${node.value}`;
+    }
+
+    ReturnExpression(node){
+        return `return${node.value ? " " + this.gen(node.value) : ""}`
+    }
+
     _ind(){
         return ' '.repeat(this._currentIndent);
     }

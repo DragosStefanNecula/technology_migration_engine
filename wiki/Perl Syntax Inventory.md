@@ -100,12 +100,11 @@ This aims to be a inventory of all relevant syntax that will be transpiled using
 
 ### Flow Keywords
 
-    [ ] next;     -> continue
-    [ ] last;     -> break
+    [X] next;     -> continue
+    [X] last;     -> break
     [ ] redo;     -> restart loop iteration
-    [ ] return; 
+    [X] return; 
     [ ] die;
-    [ ] exit;
 
 ## Catalyst / MVC Specific
 
