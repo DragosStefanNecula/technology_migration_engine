@@ -160,3 +160,52 @@ assert(handlePerl(input) ===
 });
 
 
+test('HashBlankDeclaration', () => {
+
+const input = `
+  {
+    my %h;
+  }
+`;
+
+assert(handlePerl(input) === 
+`{
+  HashMap h = new HashMap();
+}`
+);
+
+});
+
+test('HashAssignmentDeclaration', () => {
+
+const input = `
+  {
+    my %h = (name => "Alice", age => 30);
+  }
+`;
+
+assert(handlePerl(input) === 
+`{
+  HashMap h = new HashMap();
+  h.put('name', "Alice"); h.put('age', 30);
+}`
+);
+
+});
+
+test('HashAssignment', () => {
+
+const input = `
+  {
+    %h = (name => "Alice", age => 30);
+  }
+`;
+
+assert(handlePerl(input) === 
+`{
+  h.clear();
+  h.put('name', "Alice"); h.put('age', 30);
+}`
+);
+
+});

@@ -72,16 +72,17 @@ function gen(node){
                 }
 
                 if(declaredVariable.type === "hash_variable"){
-                    return {
-                        type: "HashDeclarationand"
-                    }
+                    return [
+                        Helper.variable_HashDeclaration(declaredVariable),
+                        Helper.variable_HashAssignment(declaredVariable, right)
+                    ]
                 }
             }
             if(left.type === "array_variable"){
                 return Helper.variable_ArrayAssignment(left, right, true)
             }
             if(left.type === "hash_variable"){
-
+                return Helper.variable_HashAssignment(left, right, true)
             }
         }
 
@@ -201,17 +202,7 @@ function gen(node){
         }
 
         if(declaredVariable.type === "hash_variable"){
-            /*
-                HashMap h = new HashMap();  // raw, completely unchecked
-
-                h.put("name", "Alice");
-                h.put(42, true);
-                h.put(3.14, new int[]{1, 2, 3});
-            */
-            return{
-                type: "HashVariableDeclaration",
-                declared: gen(node.children[1])
-            }
+            return Helper.variable_HashDeclaration(declaredVariable);
         }
 
         if(declaredVariable.type === "array_variable"){
@@ -297,6 +288,11 @@ class JavaAstHelper{
         return node.text.slice(1);
     }
 
+    stripQuotes(input) {
+        if (typeof input !== "string") return input; // Return as-is if not a string
+        return input.replace(/^["']|["']$/g, '');
+    }
+
     findChildrenOfTypes(node, allowedTypes, excludedTypes) {
         const results = [];
 
@@ -350,6 +346,43 @@ class JavaAstHelper{
 
     variable_unpackArrayAssignment(node){
         return this.findChildrenOfTypes(node, [], ["(", ",", ")"]);
+    }
+
+    variable_HashDeclaration(node){
+        return{
+            type: "HashDeclaration",
+            identifier: this.stripVariableName(node)
+        }
+    }
+
+    variable_HashAssignment(node, assignment, clear){
+        return{
+            type: "HashAssignment",
+            identifier: this.stripVariableName(node),
+            assignment: this.variable_unpackHashAssignment(assignment),
+            clear: clear ? true : false
+        }
+    }
+
+    variable_unpackHashAssignment(node){
+        const filteredNodes = this.findChildrenOfTypes(node, [], ["(", ",", "fat_comma", "normal_comma", ")"]);
+
+        const result = {};
+        
+        for (let i = 0; i < filteredNodes.length; i += 2) {
+            const keyNode = filteredNodes[i];
+            const valueNode = filteredNodes[i + 1];
+
+            if (!keyNode || !valueNode) continue;
+
+            const key = this.stripQuotes(keyNode.text);
+
+            let value = gen(valueNode);
+
+            result[key] = value;
+        }
+
+        return result;
     }
 }
 

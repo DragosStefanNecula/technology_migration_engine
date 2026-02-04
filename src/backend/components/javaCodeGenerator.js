@@ -125,4 +125,22 @@ export class JavaCodegen{
 
         return syntax;
     }
+
+    HashDeclaration(node){
+        return `HashMap ${node.identifier} = new HashMap();`
+    }
+    
+    HashAssignment(node){
+        let syntax = "";
+
+        if(node.clear == true){
+            syntax += `${node.identifier}.clear();\n` + this._ind();
+        }
+
+        syntax += Object.entries(node.assignment)
+        .map(([key, exp]) => node.identifier + ".put('" + key + "', " + this.gen(exp) + ");")
+        .join(' ');
+
+        return syntax;
+    }
 }
