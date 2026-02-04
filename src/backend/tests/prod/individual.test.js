@@ -106,3 +106,57 @@ assert(handlePerl(input) ===
 );
 
 });
+
+// Arrays & Hashes
+
+test('ArrayBlankDeclaration', () => {
+
+const input = `
+  {
+    my @a;
+  }
+`;
+
+assert(handlePerl(input) === 
+`{
+  ArrayList a = new ArrayList();
+}`
+);
+
+});
+
+test('ArrayAssignmentDeclaration', () => {
+
+const input = `
+  {
+    my @a = (1, 2, 3);
+  }
+`;
+
+assert(handlePerl(input) === 
+`{
+  ArrayList a = new ArrayList();
+  a.add(1); a.add(2); a.add(3);
+}`
+);
+
+});
+
+test('ArrayAssignment', () => {
+
+const input = `
+  {
+    @a = (1, 2, 3);
+  }
+`;
+
+assert(handlePerl(input) === 
+`{
+  a.clear();
+  a.add(1); a.add(2); a.add(3);
+}`
+);
+
+});
+
+

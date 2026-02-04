@@ -107,4 +107,22 @@ export class JavaCodegen{
     ParanthesizedExpression(node){
         return `(${this.gen(node.value)})`;
     }
+
+    // Arrays & Hashes
+
+    ArrayDeclaration(node){
+        return `ArrayList ${node.identifier} = new ArrayList();`
+    }
+
+    ArrayAssignment(node){
+        let syntax = "";
+
+        if(node.clear == true){
+            syntax += `${node.identifier}.clear();\n` + this._ind();
+        }
+
+        syntax += `${node.assignment.map(exp => node.identifier + ".add(" + this.gen(exp) + ");").join(' ')}`;
+
+        return syntax;
+    }
 }

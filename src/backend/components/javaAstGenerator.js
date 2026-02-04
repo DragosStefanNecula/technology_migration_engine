@@ -56,11 +56,40 @@ function gen(node){
     }
 
     if(node.type === "binary_expression"){
+        const left = node.children[0];
+        const operator = node.children[1]; 
+        const right = node.children[2];
+
+        if(operator.type === "="){
+            if(left.type === "variable_declaration"){
+                const declaredVariable = left.children[1];
+
+                if(declaredVariable.type === "array_variable"){
+                    return [
+                        Helper.variable_ArrayDeclaration(declaredVariable),
+                        Helper.variable_ArrayAssignment(declaredVariable, right)
+                    ]
+                }
+
+                if(declaredVariable.type === "hash_variable"){
+                    return {
+                        type: "HashDeclarationand"
+                    }
+                }
+            }
+            if(left.type === "array_variable"){
+                return Helper.variable_ArrayAssignment(left, right, true)
+            }
+            if(left.type === "hash_variable"){
+
+            }
+        }
+
         return {
             type: "BinaryExpression",
-            left: gen(node.children[0]),
-            operator: gen(node.children[1]),
-            right: gen(node.children[2])
+            left: gen(left),
+            operator: gen(operator),
+            right: gen(right)
         }
     }
 
@@ -157,6 +186,38 @@ function gen(node){
             body: Helper.genMultiple(node.children)
         }
     }
+
+    // Variable Declaration
+
+    if(node.type === "variable_declaration"){
+        const declaredVariable = node.children[1];
+
+        if(declaredVariable.type === "scalar_variable")
+        {
+            return{ 
+                type: "ScalarVariableDeclaration",
+                declared: gen(node.children[1])
+            }
+        }
+
+        if(declaredVariable.type === "hash_variable"){
+            /*
+                HashMap h = new HashMap();  // raw, completely unchecked
+
+                h.put("name", "Alice");
+                h.put(42, true);
+                h.put(3.14, new int[]{1, 2, 3});
+            */
+            return{
+                type: "HashVariableDeclaration",
+                declared: gen(node.children[1])
+            }
+        }
+
+        if(declaredVariable.type === "array_variable"){
+            return Helper.variable_ArrayDeclaration(declaredVariable);
+        }
+    }
 }
 
 class JavaAstHelper{
@@ -196,15 +257,12 @@ class JavaAstHelper{
     }
 
     genMultiple(nodes) {
-        if(!nodes) return;
-        const body = nodes.reduce((acc, child) => {
+        if (!nodes) return [];
+
+        return nodes.flatMap(child => {
             const generated = gen(child);
-            if (generated !== undefined) {
-                acc.push(generated);
-            }
-            return acc;
-        }, []);
-        return body;
+            return generated === undefined ? [] : generated;
+        });
     }
 
     genBody(nodes) {
@@ -270,6 +328,28 @@ class JavaAstHelper{
 
     isOfType(node, type){
         return node.type === type;
+    }
+
+    // Arrays & Hashes
+
+    variable_ArrayDeclaration(node){
+        return{
+            type: "ArrayDeclaration",
+            identifier: this.stripVariableName(node)
+        }
+    }
+
+    variable_ArrayAssignment(node, assignment, clear){
+        return{
+            type: "ArrayAssignment",
+            identifier: this.stripVariableName(node),
+            assignment: this.genMultiple(this.variable_unpackArrayAssignment(assignment)),
+            clear: clear ? true : false
+        }
+    }
+
+    variable_unpackArrayAssignment(node){
+        return this.findChildrenOfTypes(node, [], ["(", ",", ")"]);
     }
 }
 
