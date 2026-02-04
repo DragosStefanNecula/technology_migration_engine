@@ -12,22 +12,37 @@ This aims to be a inventory of all relevant syntax that will be transpiled using
 ### Scalars
 
     [ ] my $x = 10;
+    [ ] my $x;
 
 ### Arrays
 
-    [ ] my @items = (1,2,3);
+    [X] my @items;
+    [X] my @items = (1,2,3);
+    [X] @items = (1,2,3);
     [ ] push @items, 4; 
+    [ ] unshift @fruits, 'kiwi';
+    [ ] my $first = shift @fruits;
+    [ ] my @rev = reverse @fruits;
+    [ ] my @sorted = sort @fruits;
+    [ ] pop @array;
     [ ] my $list = [1,2,3];
+    [ ] my $first = $array[0]; 
 
 ### Hashes
 
-    [ ] my %user = (name => "Alice", age => 30);
-    [ ] $user{name};
+    [X] my %user;
+    [X] my %user = (name => "Alice", age => 30);
+    [X] my %h = ("a", 1, "b", 2);
+    [X] %user = (name => "Alice", age => 30);
+    [ ] my $name = $user{name};
     [ ] my $data = { name => "Alice", roles => ["admin","user"] };
+    [ ] delete $hash{banana};
+    [ ] exists $hash{key}
 
 ### Misc
 
     [ ] $data->{roles}[0];
+    [ ] $obj->method($arg);
 
 ## Expressions
 
