@@ -148,8 +148,7 @@ const input = `
 
 assert(handlePerl(input) === 
 `{
-  ArrayList a = new ArrayList();
-  a.add(1); a.add(2); a.add(3);
+  ArrayList a = new ArrayList(List.of(1, 2, 3));
 }`
 );
 
@@ -165,8 +164,7 @@ const input = `
 
 assert(handlePerl(input) === 
 `{
-  a.clear();
-  a.add(1); a.add(2); a.add(3);
+  a = new ArrayList(List.of(1, 2, 3));
 }`
 );
 
@@ -199,8 +197,7 @@ const input = `
 
 assert(handlePerl(input) === 
 `{
-  HashMap h = new HashMap();
-  h.put('name', "Alice"); h.put('age', 30);
+  HashMap h = new HashMap(Map.of('name', "Alice", 'age', 30));
 }`
 );
 
@@ -216,8 +213,7 @@ const input = `
 
 assert(handlePerl(input) === 
 `{
-  h.clear();
-  h.put('name', "Alice"); h.put('age', 30);
+  h = new HashMap(Map.of('name', "Alice", 'age', 30));
 }`
 );
 
@@ -227,14 +223,13 @@ test('AlternativeHashAssignment', () => {
 
 const input = `
   {
-    my %h = ("a", 1, "b", 2);
+    my %h = ("name", "Alice", "age", 30);
   }
 `;
 
 assert(handlePerl(input) === 
 `{
-  HashMap h = new HashMap();
-  h.put('a', 1); h.put('b', 2);
+  HashMap h = new HashMap(Map.of('name', "Alice", 'age', 30));
 }`
 );
 

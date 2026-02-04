@@ -65,24 +65,24 @@ function gen(node){
                 const declaredVariable = left.children[1];
 
                 if(declaredVariable.type === "array_variable"){
-                    return [
-                        Helper.variable_ArrayDeclaration(declaredVariable),
-                        Helper.variable_ArrayAssignment(declaredVariable, right)
-                    ]
+                    return{
+                        type: "ArrayAssignmentDeclaration",
+                        arrayAssignment: Helper.variable_ArrayAssignment(declaredVariable, right)
+                    }
                 }
 
                 if(declaredVariable.type === "hash_variable"){
-                    return [
-                        Helper.variable_HashDeclaration(declaredVariable),
-                        Helper.variable_HashAssignment(declaredVariable, right)
-                    ]
+                    return{
+                        type: "HashAssignmentDeclaration",
+                        hashAssignment: Helper.variable_HashAssignment(declaredVariable, right)
+                    }
                 }
             }
             if(left.type === "array_variable"){
                 return Helper.variable_ArrayAssignment(left, right, true)
             }
             if(left.type === "hash_variable"){
-                return Helper.variable_HashAssignment(left, right, true)
+                return Helper.variable_HashAssignment(left, right)
             }
         }
 
@@ -215,6 +215,10 @@ function gen(node){
             key: Helper.stripQuotes(node.children[2].text)
         }
     }
+
+    if(node.type === "array_ref"){
+        return 
+    }
 }
 
 class JavaAstHelper{
@@ -281,7 +285,13 @@ class JavaAstHelper{
             case 'ErrorExpression':
             case 'CallExpression':
             case 'ScalarVariableDeclaration':
+            case 'ArrayAssignmentDeclaration':
+            case 'HashAssignmentDeclaration':
+            case 'ArrayAssignment':
+            case 'HashAssignment':
             case 'HashAccess':
+            case 'HashDeclaration':
+            case 'ArrayDeclaration':
                 return {type: 'ExpressionStatement', exp: node};
             default:
                 return node;
@@ -343,12 +353,11 @@ class JavaAstHelper{
         }
     }
 
-    variable_ArrayAssignment(node, assignment, clear){
+    variable_ArrayAssignment(node, assignment){
         return{
             type: "ArrayAssignment",
             identifier: this.stripVariableName(node),
             assignment: this.genMultiple(this.variable_unpackArrayAssignment(assignment)),
-            clear: clear ? true : false
         }
     }
 
@@ -363,12 +372,11 @@ class JavaAstHelper{
         }
     }
 
-    variable_HashAssignment(node, assignment, clear){
+    variable_HashAssignment(node, assignment){
         return{
             type: "HashAssignment",
             identifier: this.stripVariableName(node),
-            assignment: this.variable_unpackHashAssignment(assignment),
-            clear: clear ? true : false
+            assignment: this.variable_unpackHashAssignment(assignment)
         }
     }
 

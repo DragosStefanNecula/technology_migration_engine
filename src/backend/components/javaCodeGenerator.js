@@ -115,37 +115,34 @@ export class JavaCodegen{
     // Arrays & Hashes
 
     ArrayDeclaration(node){
-        return `ArrayList ${node.identifier} = new ArrayList();`
+        return `ArrayList ${node.identifier} = new ArrayList()`
     }
 
     ArrayAssignment(node){
-        let syntax = "";
+        const listElem = `${node.assignment.map(exp => this.gen(exp)).join(', ')}`;
 
-        if(node.clear == true){
-            syntax += `${node.identifier}.clear();\n` + this._ind();
-        }
+        return `${node.identifier} = new ArrayList(List.of(${listElem}))`;
+       ;
+    }
 
-        syntax += `${node.assignment.map(exp => node.identifier + ".add(" + this.gen(exp) + ");").join(' ')}`;
-
-        return syntax;
+    ArrayAssignmentDeclaration(node){
+        return `ArrayList ${this.gen(node.arrayAssignment)}`;
     }
 
     HashDeclaration(node){
-        return `HashMap ${node.identifier} = new HashMap();`
+        return `HashMap ${node.identifier} = new HashMap()`
     }
     
     HashAssignment(node){
-        let syntax = "";
+        const kvPairs = Object.entries(node.assignment)
+        .map(([key, exp]) => "'" + key + "', " + this.gen(exp))
+        .join(', ');
 
-        if(node.clear == true){
-            syntax += `${node.identifier}.clear();\n` + this._ind();
-        }
+        return `${node.identifier} = new HashMap(Map.of(${kvPairs}))`
+    }
 
-        syntax += Object.entries(node.assignment)
-        .map(([key, exp]) => node.identifier + ".put('" + key + "', " + this.gen(exp) + ");")
-        .join(' ');
-
-        return syntax;
+    HashAssignmentDeclaration(node){
+        return `HashMap ${this.gen(node.hashAssignment)}`;
     }
 
     HashAccess(node){
