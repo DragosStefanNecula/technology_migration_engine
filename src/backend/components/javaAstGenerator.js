@@ -207,6 +207,14 @@ function gen(node){
             return Helper.variable_ArrayDeclaration(declaredVariable);
         }
     }
+
+    if(node.type === "hash_access_variable"){
+        return{
+            type: "HashAccess",
+            identifier: Helper.stripVariableName(node.children[0]),
+            key: Helper.stripQuotes(node.children[2].text)
+        }
+    }
 }
 
 class JavaAstHelper{
@@ -273,6 +281,7 @@ class JavaAstHelper{
             case 'ErrorExpression':
             case 'CallExpression':
             case 'ScalarVariableDeclaration':
+            case 'HashAccess':
                 return {type: 'ExpressionStatement', exp: node};
             default:
                 return node;

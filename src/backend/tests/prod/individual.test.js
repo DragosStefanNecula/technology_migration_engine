@@ -239,3 +239,14 @@ assert(handlePerl(input) ===
 );
 
 });
+
+test('HashAccess', () => {
+  const input = `
+    {
+      $user{name};
+    }
+  `;
+  assert(handlePerl(input) === 
+`{
+  user.get('name');
+}`);});

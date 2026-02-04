@@ -147,4 +147,8 @@ export class JavaCodegen{
 
         return syntax;
     }
+
+    HashAccess(node){
+        return `${node.identifier}.get('${node.key}')`
+    }
 }

@@ -34,7 +34,7 @@ This aims to be a inventory of all relevant syntax that will be transpiled using
     [X] my %user = (name => "Alice", age => 30);
     [X] my %h = ("a", 1, "b", 2);
     [X] %user = (name => "Alice", age => 30);
-    [ ] my $name = $user{name};
+    [X] my $name = $user{name};
     [ ] my $data = { name => "Alice", roles => ["admin","user"] };
     [ ] delete $hash{banana};
     [ ] exists $hash{key}
