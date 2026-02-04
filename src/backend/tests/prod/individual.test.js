@@ -4,6 +4,19 @@ import assert from 'node:assert';
 import { parsePerl } from '../../components/perlParser.js';
 import { handlePerl } from '../../components/migrationLogic.js';
 
+test('ScalarVariableDeclaration', () => {
+  const input = `
+    {
+      my $a;
+      my $a = 2;
+    }
+  `;
+  assert(handlePerl(input) === 
+`{
+  Object a;
+  Object a = 2;
+}`);});
+
 test('IntegerLiteral', () => {
 
   const input = `

@@ -108,6 +108,10 @@ export class JavaCodegen{
         return `(${this.gen(node.value)})`;
     }
 
+    ScalarVariableDeclaration(node){
+        return `Object ${this.gen(node.declared)}`;
+    }
+
     // Arrays & Hashes
 
     ArrayDeclaration(node){

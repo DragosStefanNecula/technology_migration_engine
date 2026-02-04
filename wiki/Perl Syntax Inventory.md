@@ -11,8 +11,8 @@ This aims to be a inventory of all relevant syntax that will be transpiled using
 
 ### Scalars
 
-    [ ] my $x = 10;
-    [ ] my $x;
+    [X] my $x = 10;
+    [X] my $x;
 
 ### Arrays
 

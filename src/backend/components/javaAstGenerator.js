@@ -274,6 +274,7 @@ class JavaAstHelper{
             case 'ReturnExpression':
             case 'ErrorExpression':
             case 'CallExpression':
+            case 'ScalarVariableDeclaration':
                 return {type: 'ExpressionStatement', exp: node};
             default:
                 return node;
