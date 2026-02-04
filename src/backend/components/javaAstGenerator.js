@@ -188,8 +188,6 @@ function gen(node){
         }
     }
 
-    // Variable Declaration
-
     if(node.type === "variable_declaration"){
         const declaredVariable = node.children[1];
 
