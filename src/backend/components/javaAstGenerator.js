@@ -136,12 +136,32 @@ function gen(node){
                 value: gen(methodArguments.children[0])
             }
         }
+
+        return {
+            type: "CallExpression",
+            identifier: node.children[0].text,
+            arg: gen(node.children[1])
+        }
+    }
+
+    if(node.type === "parenthesized_argument"){
+        return {
+            type: "ParanthesizedArgument",
+            body: Helper.genMultiple(node.children[1].children)
+        }
+    }
+
+    if(node.type === "arguments"){
+        return {
+            type: "ParanthesizedArgument",
+            body: Helper.genMultiple(node.children)
+        }
     }
 }
 
 class JavaAstHelper{
     constructor() {
-        this.IGNORED_NODE_TYPES = new Set([";", "{", "}"]);
+        this.IGNORED_NODE_TYPES = new Set([";", "{", "}", ","]);
 
         this.BINARY_OPERATOR_MAP = {
             "+": "+",
@@ -204,6 +224,7 @@ class JavaAstHelper{
             case 'ControlFlowExpression':
             case 'ReturnExpression':
             case 'ErrorExpression':
+            case 'CallExpression':
                 return {type: 'ExpressionStatement', exp: node};
             default:
                 return node;

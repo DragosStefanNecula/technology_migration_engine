@@ -99,6 +99,11 @@ export class JavaCodegen{
         return `${node.name}`;
     }
 
+    CallExpression(node){
+        JSON.stringify(node)
+        return `${node.identifier}(${node.arg.body.map(exp => this.gen(exp)).join(',')})`
+    }
+
     ParanthesizedExpression(node){
         return `(${this.gen(node.value)})`;
     }

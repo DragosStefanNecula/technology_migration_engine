@@ -74,3 +74,35 @@ test('Error', () => {
   throw new RuntimeException("Something went wrong");
 }`);
 });
+
+test('CallExpression', () => {
+
+const input = `
+  {
+    methodCall($a, $b);
+  }
+`;
+
+assert(handlePerl(input) === 
+`{
+  methodCall(a,b);
+}`
+);
+
+});
+
+test('BarewordCallExpression', () => {
+
+const input = `
+  {
+    methodCall $a, $b;
+  }
+`;
+
+assert(handlePerl(input) === 
+`{
+  methodCall(a,b);
+}`
+);
+
+});
