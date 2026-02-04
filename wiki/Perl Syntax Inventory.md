@@ -41,7 +41,7 @@ This aims to be a inventory of all relevant syntax that will be transpiled using
     [X] ($x + $y) > $z ? $x * $z : $y * $z
     [X] $first . " " . $last
     [X] $a eq $b || $x ne $y
-    [ ] $a ** 2
+    [X] $a ** 2
 
 ### Operators
 
