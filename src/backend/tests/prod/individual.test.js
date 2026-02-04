@@ -209,3 +209,20 @@ assert(handlePerl(input) ===
 );
 
 });
+
+test('AlternativeHashAssignment', () => {
+
+const input = `
+  {
+    my %h = ("a", 1, "b", 2);
+  }
+`;
+
+assert(handlePerl(input) === 
+`{
+  HashMap h = new HashMap();
+  h.put('a', 1); h.put('b', 2);
+}`
+);
+
+});
