@@ -43,6 +43,7 @@ This aims to be a inventory of all relevant syntax that will be transpiled using
 
     [ ] $data->{roles}[0];
     [ ] $obj->method($arg);
+    [ ] Comments
 
 ## Expressions
 
