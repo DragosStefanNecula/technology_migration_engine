@@ -149,6 +149,10 @@ export class JavaCodegen{
         return `${node.identifier}.get('${node.key}')`
     }
 
+    ArrayAccessVariable(node){
+        return `${node.identifier}.get(${node.index})`
+    }
+
     ArrayFunctionPush(node){
         return `${node.arrayElements.map(child => node.arrayIdentifier + ".add(" + this.gen(child) + ")").join("; ")};`
     }

@@ -170,6 +170,17 @@ assert(handlePerl(input) ===
 
 });
 
+test('ArrayGet', () => {
+  const input = `
+    {
+      $array[0];
+    }
+  `;
+  assert(handlePerl(input) === 
+`{
+  array.get(0);
+}`);});
+
 test('ArrayPush', () => {
   const input = `
     {

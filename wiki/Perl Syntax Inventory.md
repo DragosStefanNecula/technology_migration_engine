@@ -21,13 +21,14 @@ This aims to be a inventory of all relevant syntax that will be transpiled using
     [X] @items = (1,2,3);
     [X] push @items, 4; 
     [X] push @fruits, 'kiwi', 42, @otherArray;
+    [ ] push @numbers, (1, 2, 3)
     [ ] unshift @fruits, 'kiwi';
     [ ] my $first = shift @fruits;
     [ ] my @rev = reverse @fruits;
     [ ] my @sorted = sort @fruits;
     [ ] pop @array;
     [ ] my $list = [1,2,3];
-    [ ] my $first = $array[0]; 
+    [X] $array[0]; 
 
 ### Hashes
 

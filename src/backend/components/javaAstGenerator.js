@@ -216,7 +216,12 @@ function gen(node){
         }
     }
 
-    if(node.type === "array_ref"){
+    if(node.type === "array_access_variable"){
+        return {
+            type:"ArrayAccessVariable",
+            identifier: Helper.stripVariableName(node.children[0]),
+            index: node.children[2].text
+        }
 
     }
 
@@ -306,6 +311,7 @@ class JavaAstHelper{
             case 'HashAccess':
             case 'HashDeclaration':
             case 'ArrayDeclaration':
+            case 'ArrayAccessVariable':
                 return {type: 'ExpressionStatement', exp: node};
             default:
                 return node;
