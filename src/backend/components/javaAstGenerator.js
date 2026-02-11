@@ -222,7 +222,6 @@ function gen(node){
             identifier: Helper.stripVariableName(node.children[0]),
             index: node.children[2].text
         }
-
     }
 
     if(node.type === "array_function_add"){
