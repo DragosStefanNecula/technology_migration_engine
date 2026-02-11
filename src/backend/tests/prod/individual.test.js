@@ -206,12 +206,12 @@ test('ArrayShift', () => {
 test('ArrayPush', () => {
   const input = `
     {
-      push @fruits, 'kiwi', 42, @otherArray;
+      push @fruits, 'kiwi', 42;
     }
   `;
   assert(handlePerl(input) === 
 `{
-  fruits.add('kiwi'); fruits.add(42); fruits.add(otherArray);
+  fruits.add('kiwi'); fruits.add(42); 
 }`);});
 
 test('ArrayReverse', () => {
