@@ -26,7 +26,7 @@ This aims to be a inventory of all relevant syntax that will be transpiled using
     [ ] my $first = shift @fruits;
     [ ] my @rev = reverse @fruits;
     [ ] my @sorted = sort @fruits;
-    [ ] pop @array;
+    [X] pop @array;
     [ ] my $list = [1,2,3];
     [X] $array[0]; 
 

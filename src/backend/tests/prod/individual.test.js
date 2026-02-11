@@ -181,6 +181,17 @@ test('ArrayGet', () => {
   array.get(0);
 }`);});
 
+test('ArrayPop', () => {
+  const input = `
+    {
+      pop @array;
+    }
+  `;
+  assert(handlePerl(input) === 
+`{
+  array.remove(list.size() - 1);
+}`);});
+
 test('ArrayPush', () => {
   const input = `
     {

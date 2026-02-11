@@ -238,6 +238,17 @@ function gen(node){
         }
     }
 
+    if(node.type === "array_function_remove"){
+        const type = node.children[0].type;
+
+        if(type === "pop"){
+            return {
+                type: "ArrayFunctionPop",
+                arrayIdentifier: Helper.stripVariableName(node.children[1])
+            }
+        }
+    }
+
     if(node.type === "array_function_add"){
         const type = node.children[0].type;
         const array = node.children.splice(2);
@@ -327,6 +338,7 @@ class JavaAstHelper{
             case 'ContainsHash':
             case 'ArrayDeclaration':
             case 'ArrayAccessVariable':
+            case 'ArrayFunctionPop':
                 return {type: 'ExpressionStatement', exp: node};
             default:
                 return node;

@@ -163,6 +163,10 @@ export class JavaCodegen{
         return `${node.identifier}.get(${node.index})`
     }
 
+    ArrayFunctionPop(node){
+        return `${node.arrayIdentifier}.remove(list.size() - 1)`
+    }
+
     ArrayFunctionPush(node){
         return `${node.arrayElements.map(child => node.arrayIdentifier + ".add(" + this.gen(child) + ")").join("; ")};`
     }
