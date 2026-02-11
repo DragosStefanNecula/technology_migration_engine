@@ -1,3 +1,5 @@
+diff --git a/node_modules/@ganezdragon/tree-sitter-perl/grammar.js b/node_modules/@ganezdragon/tree-sitter-perl/grammar.js
+index 7bbe5a7..9c2cc32 100644
 --- a/node_modules/@ganezdragon/tree-sitter-perl/grammar.js
 +++ b/node_modules/@ganezdragon/tree-sitter-perl/grammar.js
 @@ -531,7 +531,7 @@ module.exports = grammar({
@@ -20,13 +22,16 @@
        $.variable_declaration,
  
        $.keywords_in_hash_key,
-@@ -727,6 +731,21 @@ module.exports = grammar({
+@@ -727,6 +731,24 @@ module.exports = grammar({
        alias($.identifier, $.scalar_variable),
      ),
  
 +    array_function_add: $ => prec.right(PRECEDENCE.TERM, seq(
 +      choice('push', 'unshift'),
-+      commaSeparated($, $._expression),
++      field('array', $._expression),
++      $._comma_operator,
++      field('values', commaSeparated($, $._expression)),
++      ';' 
 +    )),
 +
 +    array_function_remove: $ => prec.right(PRECEDENCE.TERM, seq(
