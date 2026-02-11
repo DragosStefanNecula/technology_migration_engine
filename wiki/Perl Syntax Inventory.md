@@ -23,7 +23,7 @@ This aims to be a inventory of all relevant syntax that will be transpiled using
     [X] push @fruits, 'kiwi', 42;
     [ ] push @fruits, @otherArray;
     [ ] push @numbers, (1, 2, 3)
-    [ ] unshift @fruits, 'kiwi', 42;
+    [X] unshift @fruits, 'kiwi', 42;
     [ ] unshift @fruits, @otherArray;
     [X] my $first = shift @fruits;
     [X] my @rev = reverse @fruits;

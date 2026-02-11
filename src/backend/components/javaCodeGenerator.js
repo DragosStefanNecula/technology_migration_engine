@@ -175,6 +175,10 @@ export class JavaCodegen{
         return `${node.arrayElements.map(child => node.arrayIdentifier + ".add(" + this.gen(child) + ")").join("; ")};`
     }
 
+    ArrayFunctionUnshift(node){
+        return `${node.arrayElements.map(child => node.arrayIdentifier + ".add(0, " + this.gen(child) + ")").join("; ")};`
+    }
+
     ArrayFunctionReverse(node){
         return `Collections.reverse(${node.arrayIdentifier})`
     }

@@ -214,6 +214,17 @@ test('ArrayPush', () => {
   fruits.add('kiwi'); fruits.add(42); 
 }`);});
 
+test('ArrayUnshift', () => {
+  const input = `
+    {
+      unshift @fruits, 'kiwi', 42;
+    }
+  `;
+  assert(handlePerl(input) === 
+`{
+  fruits.add(0, 'kiwi'); fruits.add(0, 42);
+}`);});
+
 test('ArrayReverse', () => {
   const input = `
     {

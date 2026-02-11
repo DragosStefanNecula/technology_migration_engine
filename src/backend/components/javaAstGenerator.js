@@ -275,6 +275,14 @@ function gen(node){
                 arrayElements: Helper.genMultiple(Helper.variable_unpackArrayAssignment(array))
             }
         }
+
+        if(type === "unshift"){
+            return {
+                type: "ArrayFunctionUnshift",
+                arrayIdentifier: Helper.stripVariableName(node.children[1]),
+                arrayElements: Helper.genMultiple(Helper.variable_unpackArrayAssignment(array))
+            }
+        }
     }
 }
 
