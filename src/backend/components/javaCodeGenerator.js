@@ -167,6 +167,10 @@ export class JavaCodegen{
         return `${node.arrayIdentifier}.remove(list.size() - 1)`
     }
 
+    ArrayFunctionShift(node){
+        return `${node.arrayIdentifier}.remove(0)`
+    }
+
     ArrayFunctionPush(node){
         return `${node.arrayElements.map(child => node.arrayIdentifier + ".add(" + this.gen(child) + ")").join("; ")};`
     }

@@ -192,6 +192,17 @@ test('ArrayPop', () => {
   array.remove(list.size() - 1);
 }`);});
 
+test('ArrayShift', () => {
+  const input = `
+    {
+      shift @array;
+    }
+  `;
+  assert(handlePerl(input) === 
+`{
+  array.remove(0);
+}`);});
+
 test('ArrayPush', () => {
   const input = `
     {

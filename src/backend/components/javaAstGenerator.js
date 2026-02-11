@@ -248,6 +248,13 @@ function gen(node){
             }
         }
 
+        if(type === "shift"){
+            return {
+                type: "ArrayFunctionShift",
+                arrayIdentifier: Helper.stripVariableName(node.children[1])
+            }
+        }
+
         if(type === "reverse"){
             return {
                 type: "ArrayFunctionReverse",
@@ -347,6 +354,7 @@ class JavaAstHelper{
             case 'ArrayAccessVariable':
             case 'ArrayFunctionPop':
             case 'ArrayFunctionReverse':
+            case 'ArrayFunctionShift':
                 return {type: 'ExpressionStatement', exp: node};
             default:
                 return node;
