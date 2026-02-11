@@ -203,6 +203,17 @@ test('ArrayPush', () => {
   fruits.add('kiwi'); fruits.add(42); fruits.add(otherArray);
 }`);});
 
+test('ArrayReverse', () => {
+  const input = `
+    {
+      reverse @fruits;
+    }
+  `;
+  assert(handlePerl(input) === 
+`{
+  Collections.reverse(fruits);
+}`);});
+
 test('HashBlankDeclaration', () => {
 
 const input = `

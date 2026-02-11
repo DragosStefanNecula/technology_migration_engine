@@ -170,4 +170,8 @@ export class JavaCodegen{
     ArrayFunctionPush(node){
         return `${node.arrayElements.map(child => node.arrayIdentifier + ".add(" + this.gen(child) + ")").join("; ")};`
     }
+
+    ArrayFunctionReverse(node){
+        return `Collections.reverse(${node.arrayIdentifier})`
+    }
 }

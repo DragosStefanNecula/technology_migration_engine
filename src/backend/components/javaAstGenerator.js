@@ -238,7 +238,7 @@ function gen(node){
         }
     }
 
-    if(node.type === "array_function_remove"){
+    if(node.type === "array_function_remove" || node.type === "array_function_reverse"){
         const type = node.children[0].type;
 
         if(type === "pop"){
@@ -246,6 +246,13 @@ function gen(node){
                 type: "ArrayFunctionPop",
                 arrayIdentifier: Helper.stripVariableName(node.children[1])
             }
+        }
+
+        if(type === "reverse"){
+            return {
+                type: "ArrayFunctionReverse",
+                arrayIdentifier: Helper.stripVariableName(node.children[1])
+            }        
         }
     }
 
@@ -339,6 +346,7 @@ class JavaAstHelper{
             case 'ArrayDeclaration':
             case 'ArrayAccessVariable':
             case 'ArrayFunctionPop':
+            case 'ArrayFunctionReverse':
                 return {type: 'ExpressionStatement', exp: node};
             default:
                 return node;
