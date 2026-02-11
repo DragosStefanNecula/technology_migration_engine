@@ -170,6 +170,16 @@ assert(handlePerl(input) ===
 
 });
 
+test('ArrayPush', () => {
+  const input = `
+    {
+      push @fruits, 'kiwi', 42, @otherArray;
+    }
+  `;
+  assert(handlePerl(input) === 
+`{
+  fruits.add('kiwi'); fruits.add(42); fruits.add(otherArray);
+}`);});
 
 test('HashBlankDeclaration', () => {
 

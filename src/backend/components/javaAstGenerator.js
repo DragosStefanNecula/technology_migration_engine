@@ -116,7 +116,7 @@ function gen(node){
         };
     }
 
-    if (node.type === "scalar_variable") {
+    if (node.type === "scalar_variable" || node.type === "array_variable" || node.type === "hash_variable") {
         return {
             type: "Identifier",
             name: Helper.stripVariableName(node)
@@ -217,7 +217,21 @@ function gen(node){
     }
 
     if(node.type === "array_ref"){
-        return 
+
+    }
+
+    if(node.type === "array_function_add"){
+        const type = node.children[0].type;
+        const array = node.children.splice(2);
+        
+        if(type === "push")
+        {
+            return {
+                type: "ArrayFunctionPush",
+                arrayIdentifier: Helper.stripVariableName(node.children[1]),
+                arrayElements: Helper.genMultiple(Helper.variable_unpackArrayAssignment(array))
+            }
+        }
     }
 }
 
@@ -311,21 +325,20 @@ class JavaAstHelper{
         return input.replace(/^["']|["']$/g, '');
     }
 
-    findChildrenOfTypes(node, allowedTypes, excludedTypes) {
+    filterNodesByTypes(nodes = [], allowedTypes = [], excludedTypes = []) {
         const results = [];
 
-        // Sets for constant time look-up
         const allowedTypesSet = new Set(allowedTypes);
         const excludedTypesSet = new Set(excludedTypes);
 
-        // Only check immediate children
-        if (node.children?.length) { 
-            for (const child of node.children) {
-                const type = child.type;
-                if ((allowedTypesSet.size === 0 || allowedTypesSet.has(type)) &&
-                    (excludedTypesSet.size === 0 || !excludedTypesSet.has(type))) {
-                    results.push(child);
-                }
+        for (const node of nodes) {
+            const type = node.type;
+
+            if (
+                (allowedTypesSet.size === 0 || allowedTypesSet.has(type)) &&
+                (excludedTypesSet.size === 0 || !excludedTypesSet.has(type))
+            ) {
+                results.push(node);
             }
         }
 
@@ -357,12 +370,12 @@ class JavaAstHelper{
         return{
             type: "ArrayAssignment",
             identifier: this.stripVariableName(node),
-            assignment: this.genMultiple(this.variable_unpackArrayAssignment(assignment)),
+            assignment: this.genMultiple(this.variable_unpackArrayAssignment(assignment.children)),
         }
     }
 
-    variable_unpackArrayAssignment(node){
-        return this.findChildrenOfTypes(node, [], ["(", ",", ")"]);
+    variable_unpackArrayAssignment(array){
+        return this.filterNodesByTypes(array, [], ["(", ",", "normal_comma", ")", ";"]);
     }
 
     variable_HashDeclaration(node){
@@ -376,12 +389,12 @@ class JavaAstHelper{
         return{
             type: "HashAssignment",
             identifier: this.stripVariableName(node),
-            assignment: this.variable_unpackHashAssignment(assignment)
+            assignment: this.variable_unpackHashAssignment(assignment.children)
         }
     }
 
-    variable_unpackHashAssignment(node){
-        const filteredNodes = this.findChildrenOfTypes(node, [], ["(", ",", "fat_comma", "normal_comma", ")"]);
+    variable_unpackHashAssignment(array){
+        const filteredNodes = this.filterNodesByTypes(array, [], ["(", ",", "fat_comma", "normal_comma", ")"]);
 
         const result = {};
         

@@ -19,7 +19,8 @@ This aims to be a inventory of all relevant syntax that will be transpiled using
     [X] my @items;
     [X] my @items = (1,2,3);
     [X] @items = (1,2,3);
-    [ ] push @items, 4; 
+    [X] push @items, 4; 
+    [X] push @fruits, 'kiwi', 42, @otherArray;
     [ ] unshift @fruits, 'kiwi';
     [ ] my $first = shift @fruits;
     [ ] my @rev = reverse @fruits;

@@ -148,4 +148,8 @@ export class JavaCodegen{
     HashAccess(node){
         return `${node.identifier}.get('${node.key}')`
     }
+
+    ArrayFunctionPush(node){
+        return `${node.arrayElements.map(child => node.arrayIdentifier + ".add(" + this.gen(child) + ")").join("; ")};`
+    }
 }
