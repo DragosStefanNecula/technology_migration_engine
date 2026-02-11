@@ -149,6 +149,16 @@ export class JavaCodegen{
         return `${node.identifier}.get('${node.key}')`
     }
 
+    DeleteHash(node){
+        let hashAccess = node.hashAccess.body[0];
+        return `${hashAccess.identifier}.remove("${hashAccess.key}")`
+    }
+
+    ContainsHash(node){
+        let hashAccess = node.hashAccess.body[0];
+        return `${hashAccess.identifier}.containsKey("${hashAccess.key}")`
+    }
+
     ArrayAccessVariable(node){
         return `${node.identifier}.get(${node.index})`
     }

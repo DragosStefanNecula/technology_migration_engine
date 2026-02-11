@@ -167,6 +167,20 @@ function gen(node){
             }
         }
 
+        if(identifier === "delete"){
+            return{
+                type: "DeleteHash",
+                hashAccess: gen(node.children[1])
+            }
+        }
+
+        if(identifier === "exists"){
+            return{
+                type: "ContainsHash",
+                hashAccess: gen(node.children[1])
+            }
+        }
+
         return {
             type: "CallExpression",
             identifier: node.children[0].text,
@@ -309,6 +323,8 @@ class JavaAstHelper{
             case 'HashAssignment':
             case 'HashAccess':
             case 'HashDeclaration':
+            case 'DeleteHash':
+            case 'ContainsHash':
             case 'ArrayDeclaration':
             case 'ArrayAccessVariable':
                 return {type: 'ExpressionStatement', exp: node};

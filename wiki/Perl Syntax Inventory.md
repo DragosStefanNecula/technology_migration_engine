@@ -38,8 +38,8 @@ This aims to be a inventory of all relevant syntax that will be transpiled using
     [X] %user = (name => "Alice", age => 30);
     [X] my $name = $user{name};
     [ ] my $data = { name => "Alice", roles => ["admin","user"] };
-    [ ] delete $hash{banana};
-    [ ] exists $hash{key}
+    [X] delete $hash{banana};
+    [X] exists $hash{key}
 
 ### Misc
 
@@ -48,8 +48,6 @@ This aims to be a inventory of all relevant syntax that will be transpiled using
     [ ] Comments
 
 ## Expressions
-
-    [ ] $a++
 
 ### Binary Expression Examples
 

@@ -266,3 +266,25 @@ test('HashAccess', () => {
 `{
   user.get('name');
 }`);});
+
+test('DeleteHash', () => {
+  const input = `
+    {
+      delete $hash{banana};
+    }
+  `;
+  assert(handlePerl(input) === 
+`{
+  hash.remove("banana");
+}`);});
+
+test('ExistsHash', () => {
+  const input = `
+    {
+      exists $hash{key};
+    }
+  `;
+  assert(handlePerl(input) === 
+`{
+  hash.containsKey("key");
+}`);});
