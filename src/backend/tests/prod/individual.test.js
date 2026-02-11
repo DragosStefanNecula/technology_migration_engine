@@ -211,7 +211,7 @@ test('ArrayPush', () => {
   `;
   assert(handlePerl(input) === 
 `{
-  fruits.add('kiwi'); fruits.add(42); 
+  fruits.add('kiwi'); fruits.add(42);
 }`);});
 
 test('ArrayUnshift', () => {
