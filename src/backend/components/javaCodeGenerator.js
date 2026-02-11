@@ -164,7 +164,7 @@ export class JavaCodegen{
     }
 
     ArrayFunctionPop(node){
-        return `${node.arrayIdentifier}.remove(list.size() - 1)`
+        return `${node.arrayIdentifier}.remove(${node.arrayIdentifier}.size() - 1)`
     }
 
     ArrayFunctionShift(node){

@@ -189,7 +189,7 @@ test('ArrayPop', () => {
   `;
   assert(handlePerl(input) === 
 `{
-  array.remove(list.size() - 1);
+  array.remove(array.size() - 1);
 }`);});
 
 test('ArrayShift', () => {
