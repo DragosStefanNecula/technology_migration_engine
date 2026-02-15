@@ -64,7 +64,9 @@ The application must have a good balance between automation and human oversight.
 
 [ ] The application waits for user input before exporting file
 
-[ ] The application is clear in what is auutmated, and what is left for human verification
+[ ] The application is clear in what is automated, and what is left for human verification
+
+[ ] Consider adding ways for the developer to choose the level of oversight that he wants 
 
 ### Justification
 
