@@ -1,3 +1,5 @@
+import { unknownNodePrompt } from "./promptsLLM.js";
+
 export function genJavaAst(astRoot){
     return gen(astRoot);
 }
@@ -319,6 +321,10 @@ function gen(node){
             }
         }
     }
+
+    const err = new Error(unknownNodePrompt);
+    err.name = "GenNode";
+    throw err;
 }
 
 class JavaAstHelper{
@@ -364,9 +370,18 @@ class JavaAstHelper{
             if (excludeNode && child == excludeNode) {
                 return [];
             }
+            
+            try {
+                const generated = gen(child);
+                return generated === undefined ? [] : generated;
+            } catch (error) {
+                return{
+                    type: error.name,
+                    prompt: error.message,
+                    content: child.text
+                }
 
-            const generated = gen(child);
-            return generated === undefined ? [] : generated;
+            }
         });
     }
 

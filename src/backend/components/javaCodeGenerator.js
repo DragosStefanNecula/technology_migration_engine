@@ -209,4 +209,10 @@ export class JavaCodegen{
     ArrayFunctionReverse(node){
         return `Collections.reverse(${node.arrayIdentifier})`
     }
+
+    // Gen Logic
+
+    GenNode(node){
+        return node.content;
+    }
 }
