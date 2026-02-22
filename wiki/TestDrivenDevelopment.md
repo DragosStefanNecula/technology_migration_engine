@@ -11,3 +11,5 @@ I forgot a extra bracket at the end: HashMap h = new HashMap(Map.of('name', "Ali
 I added an extra semicolon: ArrayList a = new ArrayList();;
 
 I had to modify the grammar.js file and make sure everything still works.
+
+When adding gen code it rebubbled nodes that were ignored by default I wasn't aware of

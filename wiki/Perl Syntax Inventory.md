@@ -100,7 +100,7 @@ This aims to be a inventory of all relevant syntax that will be transpiled using
 
 ### Subroutines
 
-    [ ] sub ...
+    [X] sub ...
     [X] callExpression($arg1, $arg2);
     [X] callExpression $arg1, $arg2;
 

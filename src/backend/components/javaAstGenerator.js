@@ -20,6 +20,41 @@ function gen(node){
         }
     }
 
+    if(node.type === "function_definition")
+    {
+        let processedNode = {
+            type: "FunctionDefinition",
+            definition: Helper.removeQuotes(node.children[1].text)
+        }
+
+        for (const child of node.children)
+        {
+            if(child.type === "function_attribute")
+            {
+                let attrName = child.children[1].text.toLowerCase();
+                let functionSignature = child.children[2];
+                let attrValue = Helper.removeQuotes(functionSignature.children.find(n => n.text !== "(" && n.text !== ")" && n.text !== `"` && n.text !== `'`)?.text);
+                processedNode[attrName] = attrValue || -1;
+            }
+
+            if(child.type === "block"){
+                const paramAssignment = child.children.find(n => n.type === "binary_expression" && n.children.some(c => c.type === "array_variable" && c.text === "@_"));
+                processedNode["block"] = {
+                    type: "BlockStatement",
+                    body: Helper.genBody(child.children, paramAssignment)
+                };
+                if (paramAssignment) {
+                processedNode["params"] = paramAssignment.children
+                    .find(c => c.type === "variable_declaration")?.children
+                    .find(c => c.type === "multi_var_declaration")?.children
+                    .filter(c => c.type === "scalar_variable" || c.type === "array_variable")
+                    .map(c => c.text.slice(1)) || [];
+                }
+            }
+        }
+        return processedNode;
+    }
+
     if(Helper.isIgnored(node)){
         return;
     }
@@ -288,7 +323,7 @@ function gen(node){
 
 class JavaAstHelper{
     constructor() {
-        this.IGNORED_NODE_TYPES = new Set([";", "{", "}", ","]);
+        this.IGNORED_NODE_TYPES = new Set([";", "{", "}", ",", "normal_comma"]);
 
         this.BINARY_OPERATOR_MAP = {
             "+": "+",
@@ -322,19 +357,23 @@ class JavaAstHelper{
         };
     }
 
-    genMultiple(nodes) {
+    genMultiple(nodes, excludeNode = null) {
         if (!nodes) return [];
 
         return nodes.flatMap(child => {
+            if (excludeNode && child == excludeNode) {
+                return [];
+            }
+
             const generated = gen(child);
             return generated === undefined ? [] : generated;
         });
     }
 
-    genBody(nodes) {
-        let genNodes = this.genMultiple(nodes);
-
-        return genNodes.map(node => this.toStatement(node));
+    genBody(nodes, excludeNode = null) {
+        return this
+            .genMultiple(nodes, excludeNode)
+            .map(node => this.toStatement(node));
     }
 
     toStatement(node){
@@ -375,6 +414,12 @@ class JavaAstHelper{
 
     stripVariableName(node){
         return node.text.slice(1);
+    }
+
+    removeQuotes(text) {
+        if (typeof text !== "string") return text;
+
+        return text.replace(/^(['"])(.*)\1$/, "$2");
     }
 
     stripQuotes(input) {
