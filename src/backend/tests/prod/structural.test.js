@@ -107,3 +107,13 @@ test('WhileStatement', () => {
 
 }`
 );});
+
+test('UntilStatement', () => {
+    const input = `until ($count > 5) {
+}`;
+    assert(handlePerl(input) === 
+`while(!(count > 5))
+{
+
+}`
+);});

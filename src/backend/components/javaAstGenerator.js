@@ -98,6 +98,14 @@ function gen(node){
         }
     }
 
+    if(node.type === "until_statement"){
+        return {
+            type: "UntilStatement",
+            condition: gen(node.children[1]),
+            block: gen(node.children[2])
+        }
+    }
+
     if(Helper.isIgnored(node)){
         return;
     }

@@ -116,6 +116,16 @@ export class JavaCodegen{
         return whileDefinition;
     }
 
+    UntilStatement(node){
+        let whileDefinition = "";
+
+        whileDefinition += this._ind() + `while(!${this.gen(node.condition)})\n`;
+
+        whileDefinition += this.gen(node.block);
+
+        return whileDefinition;
+    }
+
     ControlFlowExpression(node){
         return `${node.value}`;
     }
