@@ -81,6 +81,15 @@ function gen(node){
         }
     }
 
+    if(node.type === "unless_statement"){
+        return {
+            type: "UnlessStatement",
+            condition: gen(node.children[1]),
+            block: gen(node.children[2]),
+            alternativeClauses: Helper.genMultiple(node.children.slice(3))
+        }
+    }
+
     if(Helper.isIgnored(node)){
         return;
     }

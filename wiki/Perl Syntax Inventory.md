@@ -109,7 +109,7 @@ This aims to be a inventory of all relevant syntax that will be transpiled using
     [X] if ($x > 0) { ... }
     [X] elsif ($x == 0) { ... }
     [X] else { ... }
-    [ ] unless { ... }
+    [X] unless { ... }
     [ ] try/catch
 
 ### Loops

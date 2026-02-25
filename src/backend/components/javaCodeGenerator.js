@@ -94,6 +94,18 @@ export class JavaCodegen{
         return elseDefinition;
     }
 
+    UnlessStatement(node){
+        let ifDefinition = "";
+
+        ifDefinition += this._ind() + `if(!${this.gen(node.condition)})\n`;
+
+        ifDefinition += this.gen(node.block);
+
+        ifDefinition += node.alternativeClauses.map(exp => '\n' + this.gen(exp)).join(''); 
+
+        return ifDefinition;
+    }
+
     ControlFlowExpression(node){
         return `${node.value}`;
     }
