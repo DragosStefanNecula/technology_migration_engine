@@ -57,6 +57,30 @@ function gen(node){
         return processedNode;
     }
 
+    if(node.type === "if_statement"){
+        return {
+            type: "IfStatement",
+            condition: gen(node.children[1]),
+            block: gen(node.children[2]),
+            alternativeClauses: Helper.genMultiple(node.children.slice(3))
+        }
+    }
+
+    if(node.type === "elsif_clause"){
+        return {
+            type: "ElsifStatement",
+            condition: gen(node.children[1]),
+            block: gen(node.children[2])
+        }
+    }
+
+    if(node.type === "else_clause"){
+        return {
+            type: "ElseStatement",
+            block: gen(node.children[1])
+        }
+    }
+
     if(Helper.isIgnored(node)){
         return;
     }

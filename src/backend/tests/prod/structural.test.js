@@ -16,3 +16,73 @@ public String profile(@PathVariable String user_id)
   33;
 }`
 );});
+
+                                                                                    test('IfStatement', () => {
+    const input = `if ($a == $b || $c == $d && $e != $f) {
+}`;
+    assert(handlePerl(input) === 
+`if(a == b || c == d && e != f)
+{
+
+}`
+);});
+
+test('ElsifStatement', () => {
+    const input = `if ($a == $b || $c == $d && $e != $f) {
+}
+elsif ($number == 5) {
+}`;
+    assert(handlePerl(input) === 
+`if(a == b || c == d && e != f)
+{
+
+}
+else if(number == 5)
+{
+
+}`
+);});
+
+test('ElseStatement', () => {
+    const input = `if ($a == $b || $c == $d && $e != $f) {
+}
+else {
+}`;
+    assert(handlePerl(input) === 
+`if(a == b || c == d && e != f)
+{
+
+}
+else
+{
+
+}`
+);});
+
+test('MultipleAlternativeClauses', () => {
+    const input = `if ($a == $b || $c == $d && $e != $f) {
+}
+elsif ($number == 5) {
+}
+elsif ($number == 6) {
+}
+else {
+}`;
+    assert(handlePerl(input) === 
+`if(a == b || c == d && e != f)
+{
+
+}
+else if(number == 5)
+{
+
+}
+else if(number == 6)
+{
+
+}
+else
+{
+
+}`
+);});

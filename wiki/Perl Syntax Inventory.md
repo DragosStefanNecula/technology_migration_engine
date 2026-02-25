@@ -106,9 +106,9 @@ This aims to be a inventory of all relevant syntax that will be transpiled using
 
 ### If / Esilf / Else
 
-    [ ] if ($x > 0) { ... }
-    [ ] elsif ($x == 0) { ... }
-    [ ] else { ... }
+    [X] if ($x > 0) { ... }
+    [X] elsif ($x == 0) { ... }
+    [X] else { ... }
     [ ] unless { ... }
     [ ] try/catch
 

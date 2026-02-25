@@ -62,6 +62,38 @@ export class JavaCodegen{
         return functionDef;
     }
 
+    IfStatement(node){
+        let ifDefinition = "";
+
+        ifDefinition += this._ind() + `if${this.gen(node.condition)}\n`;
+
+        ifDefinition += this.gen(node.block);
+
+        ifDefinition += node.alternativeClauses.map(exp => '\n' + this.gen(exp)).join(''); 
+
+        return ifDefinition;
+    }
+
+    ElsifStatement(node){
+        let elsifDefinition = "";
+
+        elsifDefinition += this._ind() + `else if${this.gen(node.condition)}\n`;
+
+        elsifDefinition += this.gen(node.block);
+
+        return elsifDefinition;
+    }
+
+    ElseStatement(node){
+        let elseDefinition = "";
+
+        elseDefinition += this._ind() + `else\n`;
+
+        elseDefinition += this.gen(node.block);
+
+        return elseDefinition;
+    }
+
     ControlFlowExpression(node){
         return `${node.value}`;
     }
@@ -133,6 +165,10 @@ export class JavaCodegen{
 
     ParanthesizedExpression(node){
         return `(${this.gen(node.value)})`;
+    }
+
+    ParanthesizedArgument(node){
+        return `(${node.body.map(child => this.gen(child)).join('\n')})`;
     }
 
     ScalarVariableDeclaration(node){
