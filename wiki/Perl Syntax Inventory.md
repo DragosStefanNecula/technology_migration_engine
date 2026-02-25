@@ -118,6 +118,7 @@ This aims to be a inventory of all relevant syntax that will be transpiled using
     [ ] for (my $i=0; $i<10; $i++) { ... }
     [X] while (true) { ... }
     [X] until ($done) { ... }
+    [0] do {...} while() -> Won't do as perl grammar isn't working well on this syntax
 
 ### Flow Keywords
 
