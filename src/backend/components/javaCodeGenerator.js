@@ -126,6 +126,16 @@ export class JavaCodegen{
         return whileDefinition;
     }
 
+    ForStatement(node){
+        let forStatement = "";
+
+        forStatement += this._ind() + `for(int ${node.initialization.name}; ${this.gen(node.condition)}; ${this.gen(node.increment)})\n`;
+        
+        forStatement += this.gen(node.block);
+
+        return forStatement;
+    }
+
     ControlFlowExpression(node){
         return `${node.value}`;
     }

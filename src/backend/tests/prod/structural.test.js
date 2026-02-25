@@ -117,3 +117,13 @@ test('UntilStatement', () => {
 
 }`
 );});
+
+test('ForStatement', () => {
+    const input = `for (my $i=0; $i<10; $i++){
+}`;
+    assert(handlePerl(input) === 
+`for(int i; i < 10; i++)
+{
+
+}`
+);});

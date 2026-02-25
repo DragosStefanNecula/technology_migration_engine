@@ -106,6 +106,16 @@ function gen(node){
         }
     }
 
+    if (node.type === "for_statement_1") {
+        return {
+            type: "ForStatement",
+            initialization: gen(node.children[2].children[0].children[1]),
+            condition: gen(node.children[4]),      
+            increment: gen(node.children[6]),      
+            block: gen(node.children[8])           
+        };
+}
+
     if(Helper.isIgnored(node)){
         return;
     }
