@@ -17,7 +17,7 @@ public String profile(@PathVariable String user_id)
 }`
 );});
 
-                                                                                    test('IfStatement', () => {
+test('IfStatement', () => {
     const input = `if ($a == $b || $c == $d && $e != $f) {
 }`;
     assert(handlePerl(input) === 
