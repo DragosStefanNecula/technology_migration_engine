@@ -96,3 +96,14 @@ test('UnlessStatement', () => {
 
 }`
 );});
+
+test('WhileStatement', () => {
+    const input = `while ($i <= 5) {
+
+}`;
+    assert(handlePerl(input) === 
+`while(i <= 5)
+{
+
+}`
+);});

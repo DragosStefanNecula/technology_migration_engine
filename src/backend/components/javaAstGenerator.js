@@ -90,6 +90,14 @@ function gen(node){
         }
     }
 
+    if(node.type === "while_statement"){
+        return{
+            type: "WhileStatement",
+            condition: gen(node.children[1]),
+            block: gen(node.children[2])
+        }
+    }
+
     if(Helper.isIgnored(node)){
         return;
     }
