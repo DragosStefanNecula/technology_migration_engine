@@ -254,6 +254,15 @@ function gen(node){
         }
     }
 
+    if(node.type === "method_invocation"){
+        return {
+            type: "MethodInvocation",
+            object: gen(node.children[0]),
+            method: node.children[2].text,
+            arguments: gen(node.children[3])
+        }
+    }
+
     if(node.type === "return_expression"){
         let returnedNode = node.children[1];
         return{
@@ -390,9 +399,9 @@ function gen(node){
         }
     }
 
-    const err = new Error(unknownNodePrompt);
-    err.name = "GenNode";
-    throw err;
+    // const err = new Error(unknownNodePrompt);
+    // err.name = "GenNode";
+    // throw err;
 }
 
 class JavaAstHelper{
@@ -483,6 +492,7 @@ class JavaAstHelper{
             case 'ArrayDeclaration':
             case 'ArrayAccessVariable':
             case 'ArrayFunctionPop':
+            case 'MethodInvocation':
             case 'ArrayFunctionReverse':
             case 'ArrayFunctionShift':
                 return {type: 'ExpressionStatement', exp: node};

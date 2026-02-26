@@ -46,7 +46,7 @@ This aims to be a inventory of all relevant syntax that will be transpiled using
 ### Misc
 
     [X] $data->{roles}[0];
-    [ ] $obj->method($arg);
+    [X] $obj->method($arg);
     [ ] Comments
 
 ## Expressions

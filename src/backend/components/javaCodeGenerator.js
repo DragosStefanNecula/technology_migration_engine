@@ -220,7 +220,7 @@ export class JavaCodegen{
     }
 
     ParanthesizedArgument(node){
-        return `(${node.body.map(child => this.gen(child)).join('\n')})`;
+        return `(${node.body.map(child => this.gen(child)).join(',')})`;
     }
 
     ScalarVariableDeclaration(node){
@@ -228,6 +228,11 @@ export class JavaCodegen{
     }
 
     // Arrays & Hashes
+
+    MethodInvocation(node){
+        console.log(node)
+        return `${this.gen(node.object)}.${node.method}${this.gen(node.arguments)}`
+    }
 
     ArrayDeclaration(node){
         return `ArrayList ${node.identifier} = new ArrayList()`
