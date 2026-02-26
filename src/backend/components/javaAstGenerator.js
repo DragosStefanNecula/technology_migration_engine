@@ -330,7 +330,7 @@ function gen(node){
     if(node.type === "hash_access_variable"){
         return{
             type: "HashAccess",
-            identifier: Helper.stripVariableName(node.children[0]),
+            left: gen(node.children[0]),
             key: Helper.stripQuotes(node.children[2].text)
         }
     }
@@ -338,7 +338,7 @@ function gen(node){
     if(node.type === "array_access_variable"){
         return {
             type:"ArrayAccessVariable",
-            identifier: Helper.stripVariableName(node.children[0]),
+            left: gen(node.children[0]),
             index: node.children[2].text
         }
     }

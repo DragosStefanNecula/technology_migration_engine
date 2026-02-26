@@ -4,7 +4,7 @@
 
 This is a list of every time Test Driven Development saved me.
 
-Current Count: 5
+Current Count: 6
 
 I forgot a extra bracket at the end: HashMap h = new HashMap(Map.of('name', "Alice", 'age', 30);
 
@@ -15,3 +15,5 @@ I had to modify the grammar.js file and make sure everything still works.
 When adding gen code it rebubbled nodes that were ignored by default I wasn't aware of
 
 When modifying some less understood types such as paranthesized arguments, ensuring I haven't broken anything
+
+When modifying how hash access and array access works to be more general, broke a couple of unexpected cases

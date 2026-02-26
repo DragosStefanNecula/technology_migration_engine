@@ -261,21 +261,21 @@ export class JavaCodegen{
     }
 
     HashAccess(node){
-        return `${node.identifier}.get('${node.key}')`
+        return `${this.gen(node.left)}.get('${node.key}')`
     }
 
     DeleteHash(node){
         let hashAccess = node.hashAccess.body[0];
-        return `${hashAccess.identifier}.remove("${hashAccess.key}")`
+        return `${hashAccess.left.name}.remove("${hashAccess.key}")`
     }
 
     ContainsHash(node){
         let hashAccess = node.hashAccess.body[0];
-        return `${hashAccess.identifier}.containsKey("${hashAccess.key}")`
+        return `${hashAccess.left.name}.containsKey("${hashAccess.key}")`
     }
 
     ArrayAccessVariable(node){
-        return `${node.identifier}.get(${node.index})`
+        return `${this.gen(node.left)}.get(${node.index})`
     }
 
     ArrayFunctionPop(node){

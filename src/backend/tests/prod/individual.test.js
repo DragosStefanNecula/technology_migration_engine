@@ -332,3 +332,9 @@ test('ExistsHash', () => {
 `{
   hash.containsKey("key");
 }`);});
+
+test('MultipleAccesses', () => {
+    const input = `$data->{roles}[0];`;
+    assert(handlePerl(input) === 
+`data.get('roles').get(0);`
+);});
