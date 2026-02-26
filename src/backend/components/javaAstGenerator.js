@@ -399,9 +399,9 @@ function gen(node){
         }
     }
 
-    // const err = new Error(unknownNodePrompt);
-    // err.name = "GenNode";
-    // throw err;
+    const err = new Error(unknownNodePrompt);
+    err.name = "GenNode";
+    throw err;
 }
 
 class JavaAstHelper{

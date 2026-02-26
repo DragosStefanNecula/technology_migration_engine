@@ -3,23 +3,11 @@ import assert from 'node:assert';
 import { genJavaAstDebug } from '../testingFunctions.js';
 
 test('GenNode', () => {
-    const input = `{
-  $c->forward('method');
-  }`;
-    assert(JSON.stringify(genJavaAstDebug(input), null, 2) === 
-`{
-  "type": "SourceFile",
-  "body": [
-    {
-      "type": "BlockStatement",
-      "body": [
-        {
-          "type": "GenNode",
-          "prompt": "This is a mock system prompt.This is some extra information",
-          "content": "$c->forward('method')"
-        }
-      ]
-    }
-  ]
-}`
-);});
+  const input = `do {} while()`;
+
+let node = genJavaAstDebug(input).body[0];
+
+assert(node.type === 'GenNode');
+assert(node.prompt === 'This is a mock system prompt.This is some extra information');
+assert(node.content === 'do {} while()');
+});
