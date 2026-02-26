@@ -452,6 +452,7 @@ class JavaAstHelper{
                 const generated = gen(child);
                 return generated === undefined ? [] : generated;
             } catch (error) {
+                if(error.name === "TypeError") throw error;
                 return{
                     type: error.name,
                     prompt: error.message,
