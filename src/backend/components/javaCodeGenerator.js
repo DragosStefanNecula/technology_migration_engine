@@ -230,7 +230,6 @@ export class JavaCodegen{
     // Arrays & Hashes
 
     MethodInvocation(node){
-        console.log(node)
         return `${this.gen(node.object)}.${node.method}${this.gen(node.arguments)}`
     }
 
