@@ -114,7 +114,7 @@ function gen(node){
             increment: gen(node.children[6]),      
             block: gen(node.children[8])           
         };
-}
+    }
 
     if(Helper.isIgnored(node)){
         return;
