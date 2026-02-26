@@ -136,6 +136,16 @@ export class JavaCodegen{
         return forStatement;
     }
 
+    ForeachStatement(node){
+        let foreachStatement = "";
+
+        foreachStatement += this._ind() + `for (Object ${this.gen(node.individual)} : ${this.gen(node.array)})\n`;
+
+        foreachStatement += this.gen(node.block);
+
+        return foreachStatement;
+    }
+
     ControlFlowExpression(node){
         return `${node.value}`;
     }

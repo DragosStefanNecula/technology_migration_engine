@@ -127,3 +127,12 @@ test('ForStatement', () => {
 
 }`
 );});
+
+test('ForeachStatement', () => {
+    const input = `foreach my $item (@items) { 42; }`;
+    assert(handlePerl(input) === 
+`for (Object item : items)
+{
+  42;
+}`
+);});

@@ -116,6 +116,15 @@ function gen(node){
         };
     }
 
+    if(node.type === "for_statement_2") {
+        return {
+            type: "ForeachStatement",
+            individual: gen(node.children[2]),
+            array: gen(node.children[3].children[1]),
+            block: gen(node.children[4])
+        }   
+    }
+
     if(Helper.isIgnored(node)){
         return;
     }

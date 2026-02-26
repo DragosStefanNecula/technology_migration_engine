@@ -114,7 +114,7 @@ This aims to be a inventory of all relevant syntax that will be transpiled using
 
 ### Loops
 
-    [ ] foreach my $item (@items) { ... }
+    [X] foreach my $item (@items) { ... }
     [X] for (my $i=0; $i<10; $i++) { ... }
     [X] while (true) { ... }
     [X] until ($done) { ... }
