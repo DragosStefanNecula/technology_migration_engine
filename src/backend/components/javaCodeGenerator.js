@@ -11,11 +11,11 @@ export class JavaCodegen{
         return this.gen(node);
     }
 
-    gen(node){
+    gen(node, result){
         if(this[node.type] == null){
             throw Error(`Unexpected expression "${node.type}".`)
         }
-        return this[node.type](node);
+        return this[node.type](node, result ? result : null);
     }
 
     SourceFile(node){
@@ -26,7 +26,9 @@ export class JavaCodegen{
         let result = `${this._ind()}{\n`;
         this._currentIndent += this._indent;
 
-        result += `${node.body.map(exp => this._ind() + this.gen(exp)).join('\n')}`;
+        for (const exp of node.body) {
+            result += this._ind() + this.gen(exp, result) + '\n';
+        }
 
         this._currentIndent -= this._indent;
 
@@ -59,7 +61,7 @@ export class JavaCodegen{
 
         functionDef += this.gen(node.block);
         
-        return functionDef;
+        return functionDef
     }
 
     IfStatement(node){
@@ -304,7 +306,9 @@ export class JavaCodegen{
 
     // Gen Logic
 
-    GenNode(node){
+    GenNode(node, context){
+
         return node.content;
+
     }
 }
