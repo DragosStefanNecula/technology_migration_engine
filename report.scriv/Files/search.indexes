@@ -1,6 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SearchIndexes Version="1.0">
     <Documents>
-        <Document ID="EA0A64E4-506E-4EAC-A135-3112A51C77F6"/>
+        <Document ID="07A4B78F-8E4B-4180-8C9D-38C06178D9E9">
+            <Title>Traditional Rule-Driven Transcompilation</Title>
+        </Document>
+        <Document ID="24B983DF-513C-48E2-9F77-101FB20B2ED6">
+            <Title> Unsupervised Neural Transcompilation
+</Title>
+        </Document>
+        <Document ID="2DEBB0D5-6C9A-40DB-A241-88E9BDB4F072"/>
+        <Document ID="3AD27A52-97BE-4B37-8680-70D0E14A571E">
+            <Title>Time Management</Title>
+        </Document>
+        <Document ID="3CA1285F-7E2D-4857-B474-3F94352F92E5">
+            <Title>Aims and Objectives</Title>
+        </Document>
+        <Document ID="40CF6936-07A9-4CB4-977D-756F6669D485">
+            <Title>Project Management</Title>
+        </Document>
+        <Document ID="439BB049-4AAE-44EE-843E-47BD5B0FDB77">
+            <Title>Backend</Title>
+        </Document>
+        <Document ID="551C633C-92E4-46DF-AB55-9D53274B3C09">
+            <Title>Innovation</Title>
+        </Document>
+        <Document ID="5551E797-6CEC-4E78-8AB8-1AC914F7900E">
+            <Title>LLM Driven Translation</Title>
+        </Document>
+        <Document ID="71BBE765-7047-4A62-A53F-8D594F751F26">
+            <Title>Introduction</Title>
+        </Document>
+        <Document ID="74F14933-20FB-4E29-891F-4178DE40046D">
+            <Title>Notes</Title>
+            <Synopsis>Maybe look at Base52 or some builder software</Synopsis>
+        </Document>
+        <Document ID="7850E39E-436D-463B-B951-2308E2B64C25">
+            <Title>Motivation</Title>
+        </Document>
+        <Document ID="83D7D4A8-F65E-4CEE-A04D-AD0034ABC130">
+            <Title>Frontend</Title>
+        </Document>
+        <Document ID="88D7330A-DDBE-41BF-BCC8-39AD5EB40324">
+            <Title>LLM Setup</Title>
+            <Text>https://arxiv.org/abs/2311.10054v3
+
+https://arxiv.org/abs/2512.05858v1</Text>
+        </Document>
+        <Document ID="AAB90A7D-90FE-40FE-A577-53C96646E0A3">
+            <Title>Decision Management</Title>
+        </Document>
+        <Document ID="BC6AA33A-129F-4DA8-B7E5-D9F88012A54D">
+            <Title>Industry Collaboration</Title>
+        </Document>
+        <Document ID="C33CD723-1EEB-4EE6-A4CA-3F437534A19A">
+            <Title>Issue-Tracking Software</Title>
+        </Document>
+        <Document ID="C99C6958-33F2-4188-A028-8A2E366E8842"/>
+        <Document ID="D2487173-0845-4FB9-B2D8-1F68796A6BCF">
+            <Title>Technology Migration Engine</Title>
+        </Document>
+        <Document ID="D2BDF672-F730-4565-A840-5CAF0A4C9577">
+            <Title>DevsOps Strategy</Title>
+        </Document>
+        <Document ID="D9C63839-61FE-49A8-83D7-45FB5C6CA30B">
+            <Title>Related Work</Title>
+        </Document>
+        <Document ID="E12103A9-4F53-4627-9335-442976E5003A">
+            <Title>Academic</Title>
+        </Document>
+        <Document ID="EA0A64E4-506E-4EAC-A135-3112A51C77F6">
+            <Title>Editorial Notes</Title>
+            <Text>A lot of good ideas are still available in https://docs.google.com/document/d/1WyLxBrx8Jt18VT7XkuW4r2O_KqjvzCHyeXsBmF9EAGk/edit?tab=t.0</Text>
+        </Document>
+        <Document ID="EFB76D96-8C22-4D2E-905C-F7E66B4E272D">
+            <Title>Market Research</Title>
+        </Document>
+        <Document ID="F8F04C9E-94BC-4E02-BBD5-87CE1DF4226F">
+            <Title>Short Intro</Title>
+        </Document>
     </Documents>
 </SearchIndexes>

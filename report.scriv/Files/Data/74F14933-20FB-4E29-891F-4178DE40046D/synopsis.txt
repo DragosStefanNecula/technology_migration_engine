@@ -1,0 +1,1 @@
+Maybe look at Base52 or some builder software
