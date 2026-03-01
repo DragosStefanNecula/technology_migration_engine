@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ScrivenerProject Template="No" Version="2.0" Identifier="1F60974D-D5F9-4D0A-9F84-1A1426D31B99" Creator="SCRWIN-3.1.6.0" Device="DragosN" Modified="2026-03-01 08:35:14 +0000" ModID="2A20C30B-577B-40B0-B1CA-A9A90BC045A0">
+<ScrivenerProject Template="No" Version="2.0" Identifier="1F60974D-D5F9-4D0A-9F84-1A1426D31B99" Creator="SCRWIN-3.1.6.0" Device="DragosN" Modified="2026-03-01 08:44:52 +0000" ModID="EC2745FB-D1AC-405A-A444-A4DF3C1C001A">
     <Binder>
         <BinderItem UUID="4643EB6B-3D81-4CE8-809F-54EBE2CC359C" Type="DraftFolder" Created="2026-02-28 09:48:19 +0000" Modified="2026-02-28 09:48:19 +0000">
             <Title>Draft</Title>
@@ -402,13 +402,13 @@
                                         <TextSelection>0,0</TextSelection>
                                     </TextSettings>
                                 </BinderItem>
-                                <BinderItem UUID="CAB8FB9A-D1A1-43B7-AC30-4DCDD728CB55" Type="Text" Created="2026-03-01 08:34:20 +0000" Modified="2026-03-01 08:34:35 +0000">
+                                <BinderItem UUID="CAB8FB9A-D1A1-43B7-AC30-4DCDD728CB55" Type="Text" Created="2026-03-01 08:34:20 +0000" Modified="2026-03-01 08:44:25 +0000">
                                     <Title>Documentation writing</Title>
                                     <MetaData>
                                         <IncludeInCompile>Yes</IncludeInCompile>
                                     </MetaData>
                                     <TextSettings>
-                                        <TextSelection>33,0</TextSelection>
+                                        <TextSelection>34,0</TextSelection>
                                     </TextSettings>
                                 </BinderItem>
                             </Children>
@@ -422,7 +422,7 @@
                                 <TextSelection>0,0</TextSelection>
                             </TextSettings>
                             <Children>
-                                <BinderItem UUID="8550B5C8-D0AF-4432-8C9F-A8EC856A3FA2" Type="Text" Created="2026-03-01 08:35:05 +0000" Modified="2026-03-01 08:35:10 +0000">
+                                <BinderItem UUID="8550B5C8-D0AF-4432-8C9F-A8EC856A3FA2" Type="Text" Created="2026-03-01 08:35:05 +0000" Modified="2026-03-01 08:44:03 +0000">
                                     <Title>Backing up procedure</Title>
                                     <MetaData>
                                         <IncludeInCompile>Yes</IncludeInCompile>
@@ -550,11 +550,11 @@
     <ProjectTargets Notify="No">
         <DraftTarget Type="Words" CountIncludedOnly="Yes" CurrentCompileGroupOnly="No" Deadline="2026-02-28 09:48:19 +0000" IgnoreDeadline="Yes">0</DraftTarget>
         <SessionTarget Type="Words" CountDraftOnly="No" AllowNegatives="Yes" ResetType="Time" ResetTime="01:00" DeterminedFromDeadline="No" CanWriteOnDeadlineDate="Yes" WritingDays="">0</SessionTarget>
-        <PreviousSession Words="26" Characters="194" Date="2026-03-01 08:35:14 +0000"/>
+        <PreviousSession Words="26" Characters="195" Date="2026-03-01 08:44:52 +0000"/>
     </ProjectTargets>
     <RecentWritingHistory Date="2026-03-01 00:00:00 +0000">
         <DraftWordCount>24</DraftWordCount>
-        <DraftCharCount>174</DraftCharCount>
+        <DraftCharCount>175</DraftCharCount>
         <OtherWordCount>0</OtherWordCount>
         <OtherCharCount>0</OtherCharCount>
     </RecentWritingHistory>
