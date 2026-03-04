@@ -14,7 +14,9 @@
 
 Adapted from original transpiler architecture as it was first implemented into new way to be able to be handled by the software
 
-Method that does what it did originally provided for testing</Text>
+Method that does what it did originally provided for testing
+
+Emmission VS magic token VS fragments</Text>
         </Document>
         <Document ID="24B983DF-513C-48E2-9F77-101FB20B2ED6">
             <Title> Unsupervised Neural Transcompilation
