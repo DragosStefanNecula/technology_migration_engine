@@ -1,14 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SearchIndexes Version="1.0">
     <Documents>
+        <Document ID="04DBEB7F-5922-4A4B-BCE9-15B42202E1E5">
+            <Title>Github repo</Title>
+            <Text>Talk about conventional commits</Text>
+        </Document>
         <Document ID="07A4B78F-8E4B-4180-8C9D-38C06178D9E9">
             <Title>Traditional Rule-Driven Transcompilation</Title>
+        </Document>
+        <Document ID="1823B818-5DEF-4F6A-9832-C384AAF83052">
+            <Title>Java Code Generator</Title>
+            <Text>Graphic explainer
+
+Adapted from original transpiler architecture as it was first implemented into new way to be able to be handled by the software
+
+Method that does what it did originally provided for testing</Text>
         </Document>
         <Document ID="24B983DF-513C-48E2-9F77-101FB20B2ED6">
             <Title> Unsupervised Neural Transcompilation
 </Title>
         </Document>
         <Document ID="2DEBB0D5-6C9A-40DB-A241-88E9BDB4F072"/>
+        <Document ID="349190A7-843B-48CD-8C77-C3E92217C4CC">
+            <Title>OpenProject</Title>
+        </Document>
+        <Document ID="35BF3EF8-EF70-4F27-A8BD-AE078CADEDBB">
+            <Title>Perl Parser</Title>
+        </Document>
         <Document ID="3AD27A52-97BE-4B37-8680-70D0E14A571E">
             <Title>Time Management</Title>
         </Document>
@@ -21,11 +39,25 @@
         <Document ID="439BB049-4AAE-44EE-843E-47BD5B0FDB77">
             <Title>Backend</Title>
         </Document>
+        <Document ID="4B7D85F8-CB29-43E3-BE1B-9516A6488C8E">
+            <Title>Gantt Charts</Title>
+            <Text>Speak about milestones too</Text>
+        </Document>
         <Document ID="551C633C-92E4-46DF-AB55-9D53274B3C09">
             <Title>Innovation</Title>
         </Document>
         <Document ID="5551E797-6CEC-4E78-8AB8-1AC914F7900E">
             <Title>LLM Driven Translation</Title>
+        </Document>
+        <Document ID="5B76D83C-FAD4-4B32-9120-94AB52084113">
+            <Title>Deploying software</Title>
+        </Document>
+        <Document ID="62C00051-54FE-4E44-9ED2-9F7894284657">
+            <Title>Java AST Generator</Title>
+            <Text>Graphic explainer</Text>
+        </Document>
+        <Document ID="6BF5C642-D145-4189-8A78-04920F2217A6">
+            <Title>PPI</Title>
         </Document>
         <Document ID="71BBE765-7047-4A62-A53F-8D594F751F26">
             <Title>Introduction</Title>
@@ -34,28 +66,67 @@
             <Title>Notes</Title>
             <Synopsis>Maybe look at Base52 or some builder software</Synopsis>
         </Document>
+        <Document ID="76A65B58-D9EE-442C-AD6C-25E5378AFF1C">
+            <Title>Requierement analysis</Title>
+        </Document>
         <Document ID="7850E39E-436D-463B-B951-2308E2B64C25">
             <Title>Motivation</Title>
         </Document>
+        <Document ID="79A25BD4-B51B-49F6-B46A-79C14DC35F5F">
+            <Title>Monaco</Title>
+        </Document>
+        <Document ID="7AB9EA81-E655-4218-8777-2F107FAA2CF2">
+            <Title>Desktop Application</Title>
+        </Document>
         <Document ID="83D7D4A8-F65E-4CEE-A04D-AD0034ABC130">
             <Title>Frontend</Title>
+        </Document>
+        <Document ID="8550B5C8-D0AF-4432-8C9F-A8EC856A3FA2">
+            <Title>Backing up procedure</Title>
         </Document>
         <Document ID="88D7330A-DDBE-41BF-BCC8-39AD5EB40324">
             <Title>LLM Setup</Title>
             <Text>https://arxiv.org/abs/2311.10054v3
 
-https://arxiv.org/abs/2512.05858v1</Text>
+https://arxiv.org/abs/2512.05858v1
+
+“fallback repair pipeline”</Text>
+        </Document>
+        <Document ID="92B1DE47-D45F-4AD2-9199-3CC14A18ED4D">
+            <Title>Tree-Sitter</Title>
+        </Document>
+        <Document ID="9C28E0E3-F406-4ECE-A285-5715071F5CEA">
+            <Title>Reactivity</Title>
+        </Document>
+        <Document ID="A64C7455-E46F-41D0-A8E6-017E04B12AA3">
+            <Title>Jira</Title>
         </Document>
         <Document ID="AAB90A7D-90FE-40FE-A577-53C96646E0A3">
             <Title>Decision Management</Title>
         </Document>
+        <Document ID="ADEB9D92-D793-45C1-B65B-1A491F4FCFE6">
+            <Title>Technology validation procedure</Title>
+        </Document>
+        <Document ID="BA07B1FE-6043-4ED9-8E13-30E13C057848">
+            <Title>Electron Framework</Title>
+        </Document>
         <Document ID="BC6AA33A-129F-4DA8-B7E5-D9F88012A54D">
             <Title>Industry Collaboration</Title>
+        </Document>
+        <Document ID="BECF7EE6-7A24-4C90-A396-C21602FABA8B">
+            <Title>Agile Framework</Title>
+        </Document>
+        <Document ID="C13FBE56-E3D1-4C89-A91A-0816DF0F6003">
+            <Title>Time-tracking</Title>
         </Document>
         <Document ID="C33CD723-1EEB-4EE6-A4CA-3F437534A19A">
             <Title>Issue-Tracking Software</Title>
         </Document>
         <Document ID="C99C6958-33F2-4188-A028-8A2E366E8842"/>
+        <Document ID="CAB8FB9A-D1A1-43B7-AC30-4DCDD728CB55">
+            <Title>Documentation writing</Title>
+            <Text>Do rely on a wikipedia philosophy#</Text>
+        </Document>
         <Document ID="D2487173-0845-4FB9-B2D8-1F68796A6BCF">
             <Title>Technology Migration Engine</Title>
         </Document>
@@ -75,8 +146,18 @@ https://arxiv.org/abs/2512.05858v1</Text>
         <Document ID="EFB76D96-8C22-4D2E-905C-F7E66B4E272D">
             <Title>Market Research</Title>
         </Document>
+        <Document ID="F1B34D9E-72FF-442B-82FA-B4717561DB29">
+            <Title>React</Title>
+        </Document>
+        <Document ID="F4ADA13C-A5FB-4C08-BEAF-4AE31B24971E">
+            <Title>Tauri Framework</Title>
+        </Document>
         <Document ID="F8F04C9E-94BC-4E02-BBD5-87CE1DF4226F">
             <Title>Short Intro</Title>
         </Document>
+        <Document ID="FABC9736-74A1-455D-9F52-8E7A3EE0E5DB">
+            <Title>Intro</Title>
+        </Document>
+        <Document ID="FDC826BC-DB1A-483E-81D7-291B09FD2531"/>
     </Documents>
 </SearchIndexes>

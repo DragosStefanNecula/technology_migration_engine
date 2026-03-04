@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ScrivenerProject Template="No" Version="2.0" Identifier="1F60974D-D5F9-4D0A-9F84-1A1426D31B99" Creator="SCRWIN-3.1.6.0" Device="DragosN" Modified="2026-03-01 08:44:52 +0000" ModID="EC2745FB-D1AC-405A-A444-A4DF3C1C001A">
+<ScrivenerProject Template="No" Version="2.0" Identifier="1F60974D-D5F9-4D0A-9F84-1A1426D31B99" Creator="SCRWIN-3.1.6.0" Device="DragosN" Modified="2026-03-03 10:40:39 +0000" ModID="1936319C-F359-4E4A-AB58-139C5E812FEE">
     <Binder>
         <BinderItem UUID="4643EB6B-3D81-4CE8-809F-54EBE2CC359C" Type="DraftFolder" Created="2026-02-28 09:48:19 +0000" Modified="2026-02-28 09:48:19 +0000">
             <Title>Draft</Title>
@@ -184,6 +184,15 @@
                                         <TextSelection>0,0</TextSelection>
                                     </TextSettings>
                                 </BinderItem>
+                                <BinderItem UUID="9C28E0E3-F406-4ECE-A285-5715071F5CEA" Type="Text" Created="2026-03-01 09:25:47 +0000" Modified="2026-03-01 09:25:51 +0000">
+                                    <Title>Reactivity</Title>
+                                    <MetaData>
+                                        <IncludeInCompile>Yes</IncludeInCompile>
+                                    </MetaData>
+                                    <TextSettings>
+                                        <TextSelection>0,0</TextSelection>
+                                    </TextSettings>
+                                </BinderItem>
                             </Children>
                         </BinderItem>
                         <BinderItem UUID="439BB049-4AAE-44EE-843E-47BD5B0FDB77" Type="Folder" Created="2026-03-01 08:18:17 +0000" Modified="2026-03-01 08:18:18 +0000">
@@ -195,13 +204,13 @@
                                 <TextSelection>0,0</TextSelection>
                             </TextSettings>
                             <Children>
-                                <BinderItem UUID="88D7330A-DDBE-41BF-BCC8-39AD5EB40324" Type="Text" Created="2026-03-01 08:21:09 +0000" Modified="2026-03-01 08:21:23 +0000">
+                                <BinderItem UUID="88D7330A-DDBE-41BF-BCC8-39AD5EB40324" Type="Text" Created="2026-03-01 08:21:09 +0000" Modified="2026-03-02 13:45:06 +0000">
                                     <Title>LLM Setup</Title>
                                     <MetaData>
                                         <IncludeInCompile>Yes</IncludeInCompile>
                                     </MetaData>
                                     <TextSettings>
-                                        <TextSelection>70,0</TextSelection>
+                                        <TextSelection>98,0</TextSelection>
                                     </TextSettings>
                                 </BinderItem>
                                 <BinderItem UUID="35BF3EF8-EF70-4F27-A8BD-AE078CADEDBB" Type="Folder" Created="2026-03-01 08:30:56 +0000" Modified="2026-03-01 08:30:58 +0000">
@@ -251,13 +260,13 @@
                                         <TextSelection>17,0</TextSelection>
                                     </TextSettings>
                                 </BinderItem>
-                                <BinderItem UUID="1823B818-5DEF-4F6A-9832-C384AAF83052" Type="Text" Created="2026-03-01 08:31:46 +0000" Modified="2026-03-01 08:32:04 +0000">
+                                <BinderItem UUID="1823B818-5DEF-4F6A-9832-C384AAF83052" Type="Text" Created="2026-03-01 08:31:46 +0000" Modified="2026-03-03 10:40:36 +0000">
                                     <Title>Java Code Generator</Title>
                                     <MetaData>
                                         <IncludeInCompile>Yes</IncludeInCompile>
                                     </MetaData>
                                     <TextSettings>
-                                        <TextSelection>17,0</TextSelection>
+                                        <TextSelection>208,0</TextSelection>
                                     </TextSettings>
                                 </BinderItem>
                             </Children>
@@ -550,11 +559,11 @@
     <ProjectTargets Notify="No">
         <DraftTarget Type="Words" CountIncludedOnly="Yes" CurrentCompileGroupOnly="No" Deadline="2026-02-28 09:48:19 +0000" IgnoreDeadline="Yes">0</DraftTarget>
         <SessionTarget Type="Words" CountDraftOnly="No" AllowNegatives="Yes" ResetType="Time" ResetTime="01:00" DeterminedFromDeadline="No" CanWriteOnDeadlineDate="Yes" WritingDays="">0</SessionTarget>
-        <PreviousSession Words="26" Characters="195" Date="2026-03-01 08:44:52 +0000"/>
+        <PreviousSession Words="32" Characters="191" Date="2026-03-03 10:40:39 +0000"/>
     </ProjectTargets>
-    <RecentWritingHistory Date="2026-03-01 00:00:00 +0000">
-        <DraftWordCount>24</DraftWordCount>
-        <DraftCharCount>175</DraftCharCount>
+    <RecentWritingHistory Date="2026-03-03 00:00:00 +0000">
+        <DraftWordCount>32</DraftWordCount>
+        <DraftCharCount>191</DraftCharCount>
         <OtherWordCount>0</OtherWordCount>
         <OtherCharCount>0</OtherCharCount>
     </RecentWritingHistory>
