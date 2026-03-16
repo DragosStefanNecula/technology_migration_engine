@@ -1,5 +1,3 @@
-import { genAI } from "./genAI.js";
-
 export class JavaCodegen{
 
     constructor({indent = 2}){
