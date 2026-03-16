@@ -231,7 +231,6 @@ export class JavaCodegen{
             return;
         }
         if(node.operator.value == "POW"){
-            console.log(node)
             this._emit('Math.pow(');
             this.gen(node.left);
             this._emit(', ');
