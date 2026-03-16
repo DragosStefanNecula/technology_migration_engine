@@ -1,4 +1,4 @@
-import { unknownNodePrompt } from "./promptsLLM.js";
+import { unknownNodePrompt } from "./genAI.js";
 
 export function genJavaAst(astRoot){
     return gen(astRoot);

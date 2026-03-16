@@ -1,163 +1,190 @@
+import { genAI } from "./genAI.js";
+
 export class JavaCodegen{
 
     constructor({indent = 2}){
         this._indent = indent;
         this._currentIndent = 0;
+        this._buffer = [];
+    }
+
+    generate(node) {
+        this._buffer = [];
+        this._currentIndent = 0;
+        this.gen(node);
+        return this._output();
+    }
+
+    gen(node) {
+        if (!this[node.type]) {
+            throw Error(`Unexpected expression "${node.type}".`);
+        }
+        this[node.type](node);
+    }
+
+    _emit(value) {
+        this._buffer.push(value);
+    }
+
+    _withIndent(fn) {
+        this._currentIndent += this._indent;
+        fn();
+        this._currentIndent -= this._indent;
+    }
+
+    _ind() {
+        return ' '.repeat(this._currentIndent);
+    }
+
+    _output() {
+        return this._buffer.join('');
     }
 
     // Strucutral
 
-    generate(node){
-        return this.gen(node);
-    }
-
-    gen(node, result){
-        if(this[node.type] == null){
-            throw Error(`Unexpected expression "${node.type}".`)
-        }
-        return this[node.type](node, result ? result : null);
-    }
-
-    SourceFile(node){
-       return node.body.map(child => this.gen(child)).join('\n');
+    SourceFile(node) {
+        node.body.forEach((child, i) => { 
+            this.gen(child);
+            if (i < node.body.length - 1) this._emit('\n');
+        });
     }
 
     BlockStatement(node){
-        let result = `${this._ind()}{\n`;
+        this._emit(`${this._ind()}{\n`);
+
         this._currentIndent += this._indent;
 
-        for (const exp of node.body) {
-            result += this._ind() + this.gen(exp, result) + '\n';
-        }
+        node.body.forEach((child, i) => { 
+            this._emit(this._ind());
+            this.gen(child);
+            if (i < node.body.length - 1) this._emit('\n');
+        });
 
         this._currentIndent -= this._indent;
 
-        result += `\n${this._ind()}}`;
-
-        return result;
+        this._emit(`\n${this._ind()}}`);
     }
 
-    FunctionDefinition(node){
-        let functionDef = "";
-
+    FunctionDefinition(node) {
         const params = node.params.filter(n => n !== "self" && n !== "c");
+
         let javaParams = '';
-        if(node.path){
+
+        if (node.path) {
             let pathParams = "";
-            if(node.args === -1)
-            {
+
+            if (node.args === -1) {
                 javaParams = `@RequestParam Map<String, String> ${params[0]}`;
-            } else if (node.args > 0)
-            {
+            } else if (node.args > 0) {
                 pathParams += `/${params.map(p => `{${p}}`).join("/")}`;
                 javaParams = params.map(p => `@PathVariable String ${p}`).join(', ');
             }
-            functionDef += this._ind() + `@GetMapping("${node.path}${pathParams}")\n`
+
+            this._emit(this._ind());
+            this._emit(`@GetMapping("${node.path}${pathParams}")`);
+            this._emit("\n");
         } else {
             javaParams = params.map(p => `String ${p}`).join(', ');
-        } 
+        }
 
-        functionDef += this._ind() + `public String ${node.definition}(${javaParams})\n`;
+        this._emit(this._ind());
+        this._emit(`public String ${node.definition}(${javaParams})`);
+        this._emit("\n");
 
-        functionDef += this.gen(node.block);
-        
-        return functionDef
+        this.gen(node.block);
     }
 
     IfStatement(node){
-        let ifDefinition = "";
+        this._emit(`${this._ind()}if`); 
+        this.gen(node.condition); 
+        this._emit(`\n`); 
 
-        ifDefinition += this._ind() + `if${this.gen(node.condition)}\n`;
+        this.gen(node.block); 
 
-        ifDefinition += this.gen(node.block);
-
-        ifDefinition += node.alternativeClauses.map(exp => '\n' + this.gen(exp)).join(''); 
-
-        return ifDefinition;
+        node.alternativeClauses.forEach(exp => {
+            this._emit("\n");
+            this.gen(exp);
+        });
     }
 
     ElsifStatement(node){
-        let elsifDefinition = "";
+        this._emit(`${this._ind()}else if`); 
+        this.gen(node.condition); 
+        this._emit(`\n`); 
 
-        elsifDefinition += this._ind() + `else if${this.gen(node.condition)}\n`;
-
-        elsifDefinition += this.gen(node.block);
-
-        return elsifDefinition;
+        this.gen(node.block); 
     }
 
     ElseStatement(node){
-        let elseDefinition = "";
-
-        elseDefinition += this._ind() + `else\n`;
-
-        elseDefinition += this.gen(node.block);
-
-        return elseDefinition;
+        this._emit(`${this._ind()}else\n`); 
+        this.gen(node.block); 
     }
 
     UnlessStatement(node){
-        let ifDefinition = "";
+        this._emit(`${this._ind()}if(!`); 
+        this.gen(node.condition); 
+        this._emit(`)\n`); 
 
-        ifDefinition += this._ind() + `if(!${this.gen(node.condition)})\n`;
+        this.gen(node.block); 
 
-        ifDefinition += this.gen(node.block);
-
-        ifDefinition += node.alternativeClauses.map(exp => '\n' + this.gen(exp)).join(''); 
-
-        return ifDefinition;
+        node.alternativeClauses.forEach(exp => {
+            this._emit("\n");
+            this.gen(exp);
+        });
     }
 
     WhileStatement(node){
-        let whileDefinition = "";
+        this._emit(`${this._ind()}while`); 
+        this.gen(node.condition); 
+        this._emit(`\n`); 
 
-        whileDefinition += this._ind() + `while${this.gen(node.condition)}\n`;
-
-        whileDefinition += this.gen(node.block);
-
-        return whileDefinition;
+        this.gen(node.block); 
     }
 
     UntilStatement(node){
-        let whileDefinition = "";
+        this._emit(`${this._ind()}while(!`); 
+        this.gen(node.condition); 
+        this._emit(`)\n`); 
 
-        whileDefinition += this._ind() + `while(!${this.gen(node.condition)})\n`;
-
-        whileDefinition += this.gen(node.block);
-
-        return whileDefinition;
+        this.gen(node.block); 
     }
 
     ForStatement(node){
-        let forStatement = "";
+        this._emit(`${this._ind()}for(int ${node.initialization.name}; `); 
+        this.gen(node.condition); 
+        this._emit(`; `); 
+        this.gen(node.increment); 
+        this._emit(`)\n`); 
 
-        forStatement += this._ind() + `for(int ${node.initialization.name}; ${this.gen(node.condition)}; ${this.gen(node.increment)})\n`;
-        
-        forStatement += this.gen(node.block);
-
-        return forStatement;
+        this.gen(node.block); 
     }
 
     ForeachStatement(node){
-        let foreachStatement = "";
+        this._emit(`${this._ind()}for (Object `); 
+        this.gen(node.individual); 
+        this._emit(` : `); 
+        this.gen(node.array); 
+        this._emit(`)\n`); 
 
-        foreachStatement += this._ind() + `for (Object ${this.gen(node.individual)} : ${this.gen(node.array)})\n`;
-
-        foreachStatement += this.gen(node.block);
-
-        return foreachStatement;
+        this.gen(node.block); 
     }
 
     ControlFlowExpression(node){
-        return `${node.value}`;
+        this._emit(`${node.value}`); 
     }
 
     ReturnExpression(node){
-        return `return${node.value ? " " + this.gen(node.value) : ""}`
+        this._emit("return");
+        if (node.value) {
+            this._emit(" ");
+            this.gen(node.value);
+        }
     }
 
     ErrorExpression(node){
-        return `throw new RuntimeException(${this.gen(node.value)})`;
+        this._emit(`throw new RuntimeException(`); 
+        this.gen(node.value);
+        this._emit(`)`); 
     }
 
     _ind(){
@@ -167,148 +194,206 @@ export class JavaCodegen{
     // Statements
 
     ExpressionStatement(node){
-        return `${this.gen(node.exp)};`
+        this.gen(node.exp);
+        this._emit(`;`);
     }
 
     IntegerLiteral(node){
-        return `${node.value}`;
+        this._emit(`${node.value}`);
     }
 
     StringLiteral(node){
-        return `${node.value}`
+        this._emit(`${node.value}`);
     }
 
     UnaryExpression(node){
-        return `${this.gen(node.left)}${this.gen(node.operator)}`
+        this.gen(node.left);
+        this.gen(node.operator);
     }
     
     NegativeExpression(node){
-        return `${this.gen(node.operator)}${this.gen(node.right)}`
+        this.gen(node.operator);
+        this.gen(node.right);
     }
 
     BinaryExpression(node) {
         if(node.operator.value == "STRING_EQ"){
-            return `${this.gen(node.left)}.equals(${this.gen(node.right)})`
+            this.gen(node.left); 
+            this._emit(`.equals(`); 
+            this.gen(node.right);
+            this._emit(`)`);
+            return;
         }
         if(node.operator.value == "STRING_NE"){
-            return `!${this.gen(node.left)}.equals(${this.gen(node.right)})`
+            this._emit('!');
+            this.gen(node.left);
+            this._emit('.equals(');
+            this.gen(node.right);
+            this._emit(')');
+            return;
         }
         if(node.operator.value == "POW"){
-            return `Math.pow(${this.gen(node.left)}, ${this.gen(node.right)})`
+            console.log(node)
+            this._emit('Math.pow(');
+            this.gen(node.left);
+            this._emit(', ');
+            this.gen(node.right);
+            this._emit(')');
+            return;
         }
-        return `${this.gen(node.left)} ${this.gen(node.operator)} ${this.gen(node.right)}`;
+        this.gen(node.left);
+        this._emit(' ');
+        this.gen(node.operator); 
+        this._emit(' '); 
+        this.gen(node.right); 
     }
 
     TernaryExpression(node) {
-        return `${this.gen(node.left)} ? ${this.gen(node.middle)} : ${this.gen(node.right)}`
+        this.gen(node.left); 
+        this._emit(' ? '); 
+        this.gen(node.middle);
+        this._emit(' : '); 
+        this.gen(node.right); 
     }
 
     Operator(node) {
-        return `${node.value}`;
+        this._emit(`${node.value}`); 
     }
 
     Identifier(node)
     {
-        return `${node.name}`;
+        this._emit(`${node.name}`); 
     }
 
     CallExpression(node){
-        JSON.stringify(node)
-        return `${node.identifier}(${node.arg.body.map(exp => this.gen(exp)).join(',')})`
+        this._emit(`${node.identifier}(`); 
+        node.arg.body.forEach((child, i) => { 
+            this.gen(child);
+            if (i < node.arg.body.length - 1) this._emit(',');
+        });
+        this._emit(`)`); 
     }
 
     ParanthesizedExpression(node){
-        return `(${this.gen(node.value)})`;
+        this._emit(`(`); 
+        this.gen(node.value); 
+        this._emit(`)`); 
     }
 
     ParanthesizedArgument(node){
-        return `(${node.body.map(child => this.gen(child)).join(',')})`;
+        this._emit(`(`); 
+        node.body.forEach((child, i) => { 
+            this.gen(child);
+            if (i < node.body.length - 1) this._emit(',');
+        });
+        this._emit(`)`); 
     }
 
     ScalarVariableDeclaration(node){
-        return `Object ${this.gen(node.declared)}`;
+        this._emit(`Object `); 
+        this.gen(node.declared); 
     }
 
     // Arrays & Hashes
 
     MethodInvocation(node){
-        return `${this.gen(node.object)}.${node.method}${this.gen(node.arguments)}`
+        this.gen(node.object); 
+        this._emit(`.${node.method}`); 
+        this.gen(node.arguments); 
     }
 
     ArrayDeclaration(node){
-        return `ArrayList ${node.identifier} = new ArrayList()`
+        this._emit(`ArrayList ${node.identifier} = new ArrayList()`); 
     }
 
     ArrayAssignment(node){
-        const listElem = `${node.assignment.map(exp => this.gen(exp)).join(', ')}`;
-
-        return `${node.identifier} = new ArrayList(List.of(${listElem}))`;
-       ;
+        this._emit(`${node.identifier} = new ArrayList(List.of(`); 
+        node.assignment.forEach((child, i) => { 
+            this.gen(child);
+            if (i < node.assignment.length - 1) this._emit(', ');
+        });
+        this._emit(`))`); 
     }
 
     ArrayAssignmentDeclaration(node){
-        return `ArrayList ${this.gen(node.arrayAssignment)}`;
+        this._emit(`ArrayList `); 
+        this.gen(node.arrayAssignment); 
     }
 
     HashDeclaration(node){
-        return `HashMap ${node.identifier} = new HashMap()`
+        this._emit(`HashMap ${node.identifier} = new HashMap()`); 
     }
     
     HashAssignment(node){
-        const kvPairs = Object.entries(node.assignment)
-        .map(([key, exp]) => "'" + key + "', " + this.gen(exp))
-        .join(', ');
-
-        return `${node.identifier} = new HashMap(Map.of(${kvPairs}))`
+        this._emit(`${node.identifier} = new HashMap(Map.of(`); 
+        Object.entries(node.assignment).forEach(([key, exp], i, arr) => {
+            this._emit("'" + key + "', ");
+            this.gen(exp);
+            if (i < arr.length - 1) this._emit(', ');
+        });
+        this._emit(`))`); 
     }
 
     HashAssignmentDeclaration(node){
-        return `HashMap ${this.gen(node.hashAssignment)}`;
+        this._emit(`HashMap `); 
+        this.gen(node.hashAssignment); 
     }
 
     HashAccess(node){
-        return `${this.gen(node.left)}.get('${node.key}')`
+        this.gen(node.left); 
+        this._emit(`.get('${node.key}')`); 
     }
 
     DeleteHash(node){
         let hashAccess = node.hashAccess.body[0];
-        return `${hashAccess.left.name}.remove("${hashAccess.key}")`
+        this._emit(`${hashAccess.left.name}.remove("${hashAccess.key}")`);
     }
 
     ContainsHash(node){
         let hashAccess = node.hashAccess.body[0];
-        return `${hashAccess.left.name}.containsKey("${hashAccess.key}")`
+        this._emit(`${hashAccess.left.name}.containsKey("${hashAccess.key}")`);
     }
 
     ArrayAccessVariable(node){
-        return `${this.gen(node.left)}.get(${node.index})`
+        this.gen(node.left); 
+        this._emit(`.get(${node.index})`); 
     }
 
     ArrayFunctionPop(node){
-        return `${node.arrayIdentifier}.remove(${node.arrayIdentifier}.size() - 1)`
+        this._emit(`${node.arrayIdentifier}.remove(${node.arrayIdentifier}.size() - 1)`); 
     }
 
     ArrayFunctionShift(node){
-        return `${node.arrayIdentifier}.remove(0)`
+        this._emit(`${node.arrayIdentifier}.remove(0)`); 
     }
 
     ArrayFunctionPush(node){
-        return `${node.arrayElements.map(child => node.arrayIdentifier + ".add(" + this.gen(child) + ")").join("; ")};`
+        node.arrayElements.forEach((child, i) => {
+            this._emit(node.arrayIdentifier + ".add(");
+            this.gen(child);
+            this._emit(")");
+            if (i < node.arrayElements.length - 1) this._emit("; ");
+        });
+        this._emit(";");
     }
 
     ArrayFunctionUnshift(node){
-        return `${node.arrayElements.map(child => node.arrayIdentifier + ".add(0, " + this.gen(child) + ")").join("; ")};`
+        node.arrayElements.forEach((child, i) => {
+            this._emit(node.arrayIdentifier + ".add(0, ");
+            this.gen(child);
+            this._emit(")");
+            if (i < node.arrayElements.length - 1) this._emit("; ");
+        });
+        this._emit(";");
     }
 
     ArrayFunctionReverse(node){
-        return `Collections.reverse(${node.arrayIdentifier})`
+        this._emit(`Collections.reverse(${node.arrayIdentifier})`); 
     }
 
     // Gen Logic
 
-    GenNode(node, context){
-
-        return node.content;
-
+    GenNode(node){
+        return ``
     }
 }
