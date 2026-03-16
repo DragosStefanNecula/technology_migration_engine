@@ -4,13 +4,14 @@ export class JavaCodegen{
         this._indent = indent;
         this._currentIndent = 0;
         this._buffer = [];
+        this._function = "source";
     }
 
     generate(node) {
         this._buffer = [];
         this._currentIndent = 0;
         this.gen(node);
-        return this._output();
+        return this._buffer;
     }
 
     gen(node) {
@@ -20,8 +21,12 @@ export class JavaCodegen{
         this[node.type](node);
     }
 
-    _emit(value) {
-        this._buffer.push(value);
+    _emitBase(value, type) {
+        this._buffer.push({type: type, value: value, function: this._function});
+    }
+
+    _emit(value){
+        this._emitBase(value, "text");
     }
 
     _withIndent(fn) {
@@ -35,7 +40,7 @@ export class JavaCodegen{
     }
 
     _output() {
-        return this._buffer.join('');
+        
     }
 
     // Strucutral
@@ -68,6 +73,8 @@ export class JavaCodegen{
 
         let javaParams = '';
 
+        this._function = node.context;
+
         if (node.path) {
             let pathParams = "";
 
@@ -90,6 +97,8 @@ export class JavaCodegen{
         this._emit("\n");
 
         this.gen(node.block);
+
+        this._function = "source"
     }
 
     IfStatement(node){

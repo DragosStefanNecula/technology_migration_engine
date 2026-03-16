@@ -1,8 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert';
 
-import { parsePerl } from '../../components/perlParser.js';
-import { handlePerl } from '../../components/migrationLogic.js';
+import { handlePerlDebug } from '../testingFunctions.js';
 
 test('ScalarVariableDeclaration', () => {
   const input = `
@@ -11,7 +10,7 @@ test('ScalarVariableDeclaration', () => {
       my $a = 2;
     }
   `;
-  assert(handlePerl(input) === 
+  assert(handlePerlDebug(input) === 
 `{
   Object a;
   Object a = 2;
@@ -23,7 +22,7 @@ test('IntegerLiteral', () => {
     42;
   `;
 
-  assert(handlePerl(input) === "42;");
+  assert(handlePerlDebug(input) === "42;");
 });
 
 test('StringLiteral', () => {
@@ -32,7 +31,7 @@ test('StringLiteral', () => {
     "42";
   `;
 
-  assert(handlePerl(input) === '"42";');
+  assert(handlePerlDebug(input) === '"42";');
 });
 
 test('ScalarVariable/Identifier', () => {
@@ -41,7 +40,7 @@ test('ScalarVariable/Identifier', () => {
     $42;
   `;
 
-  assert(handlePerl(input) === "42");
+  assert(handlePerlDebug(input) === "42");
 });
 
 
@@ -55,7 +54,7 @@ test('ControlFlowCommand', () => {
     }
   `;
 
-  assert(handlePerl(input) === `{
+  assert(handlePerlDebug(input) === `{
   break;
   continue;
   return;
@@ -70,7 +69,7 @@ test('Return', () => {
     }
   `;
 
-  assert(handlePerl(input) === `{
+  assert(handlePerlDebug(input) === `{
   return a;
 }`);
 });
@@ -83,7 +82,7 @@ test('Error', () => {
     }
   `;
 
-  assert(handlePerl(input) === `{
+  assert(handlePerlDebug(input) === `{
   throw new RuntimeException("Something went wrong");
 }`);
 });
@@ -96,7 +95,7 @@ const input = `
   }
 `;
 
-assert(handlePerl(input) === 
+assert(handlePerlDebug(input) === 
 `{
   methodCall(a,b);
 }`
@@ -112,7 +111,7 @@ const input = `
   }
 `;
 
-assert(handlePerl(input) === 
+assert(handlePerlDebug(input) === 
 `{
   methodCall(a,b);
 }`
@@ -130,7 +129,7 @@ const input = `
   }
 `;
 
-assert(handlePerl(input) === 
+assert(handlePerlDebug(input) === 
 `{
   ArrayList a = new ArrayList();
 }`
@@ -146,7 +145,7 @@ const input = `
   }
 `;
 
-assert(handlePerl(input) === 
+assert(handlePerlDebug(input) === 
 `{
   ArrayList a = new ArrayList(List.of(1, 2, 3));
 }`
@@ -162,7 +161,7 @@ const input = `
   }
 `;
 
-assert(handlePerl(input) === 
+assert(handlePerlDebug(input) === 
 `{
   a = new ArrayList(List.of(1, 2, 3));
 }`
@@ -176,7 +175,7 @@ test('ArrayGet', () => {
       $array[0];
     }
   `;
-  assert(handlePerl(input) === 
+  assert(handlePerlDebug(input) === 
 `{
   array.get(0);
 }`);});
@@ -187,7 +186,7 @@ test('ArrayPop', () => {
       pop @array;
     }
   `;
-  assert(handlePerl(input) === 
+  assert(handlePerlDebug(input) === 
 `{
   array.remove(array.size() - 1);
 }`);});
@@ -198,7 +197,7 @@ test('ArrayShift', () => {
       shift @array;
     }
   `;
-  assert(handlePerl(input) === 
+  assert(handlePerlDebug(input) === 
 `{
   array.remove(0);
 }`);});
@@ -209,7 +208,7 @@ test('ArrayPush', () => {
       push @fruits, 'kiwi', 42;
     }
   `;
-  assert(handlePerl(input) === 
+  assert(handlePerlDebug(input) === 
 `{
   fruits.add('kiwi'); fruits.add(42);
 }`);});
@@ -220,7 +219,7 @@ test('ArrayUnshift', () => {
       unshift @fruits, 'kiwi', 42;
     }
   `;
-  assert(handlePerl(input) === 
+  assert(handlePerlDebug(input) === 
 `{
   fruits.add(0, 'kiwi'); fruits.add(0, 42);
 }`);});
@@ -231,7 +230,7 @@ test('ArrayReverse', () => {
       reverse @fruits;
     }
   `;
-  assert(handlePerl(input) === 
+  assert(handlePerlDebug(input) === 
 `{
   Collections.reverse(fruits);
 }`);});
@@ -244,7 +243,7 @@ const input = `
   }
 `;
 
-assert(handlePerl(input) === 
+assert(handlePerlDebug(input) === 
 `{
   HashMap h = new HashMap();
 }`
@@ -260,7 +259,7 @@ const input = `
   }
 `;
 
-assert(handlePerl(input) === 
+assert(handlePerlDebug(input) === 
 `{
   HashMap h = new HashMap(Map.of('name', "Alice", 'age', 30));
 }`
@@ -276,7 +275,7 @@ const input = `
   }
 `;
 
-assert(handlePerl(input) === 
+assert(handlePerlDebug(input) === 
 `{
   h = new HashMap(Map.of('name', "Alice", 'age', 30));
 }`
@@ -292,7 +291,7 @@ const input = `
   }
 `;
 
-assert(handlePerl(input) === 
+assert(handlePerlDebug(input) === 
 `{
   HashMap h = new HashMap(Map.of('name', "Alice", 'age', 30));
 }`
@@ -306,7 +305,7 @@ test('HashAccess', () => {
       $user{name};
     }
   `;
-  assert(handlePerl(input) === 
+  assert(handlePerlDebug(input) === 
 `{
   user.get('name');
 }`);});
@@ -317,7 +316,7 @@ test('DeleteHash', () => {
       delete $hash{banana};
     }
   `;
-  assert(handlePerl(input) === 
+  assert(handlePerlDebug(input) === 
 `{
   hash.remove("banana");
 }`);});
@@ -328,19 +327,19 @@ test('ExistsHash', () => {
       exists $hash{key};
     }
   `;
-  assert(handlePerl(input) === 
+  assert(handlePerlDebug(input) === 
 `{
   hash.containsKey("key");
 }`);});
 
 test('MultipleAccesses', () => {
     const input = `$data->{roles}[0];`;
-    assert(handlePerl(input) === 
+    assert(handlePerlDebug(input) === 
 `data.get('roles').get(0);`
 );});
 
 test('MethodInvocation', () => {
     const input = `$obj->method($arg, $arg2);`;
-    assert(handlePerl(input) === 
+    assert(handlePerlDebug(input) === 
 `obj.method(arg,arg2);`
 );});

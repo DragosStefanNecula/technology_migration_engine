@@ -1,8 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert';
 
-import { parsePerl } from '../../components/perlParser.js';
-import { handlePerl } from '../../components/migrationLogic.js';
+import { handlePerlDebug } from '../testingFunctions.js';
 
 test('Simple Binary Operators + Urnary', () => {
 
@@ -25,7 +24,7 @@ $b--;
 4 || 2;
 $a ** $b;
 !$a;`;
-assert(handlePerl(input) === 
+assert(handlePerlDebug(input) === 
 `a++;
 b--;
 4 + 2;
@@ -53,7 +52,7 @@ const input =
 ($x + $y) * $z;
 ($x + $y) > $z ? $x * $z : $y * $z
 `;
-assert(handlePerl(input) === 
+assert(handlePerlDebug(input) === 
 `a == b || c == d && e != f;
 (x + y) * z;
 (x + y) > z ? x * z : y * z;`);
@@ -65,7 +64,7 @@ const input =
 `$a eq $b;
 $a ne $b
 `;
-assert(handlePerl(input) === 
+assert(handlePerlDebug(input) === 
 `a.equals(b);
 !a.equals(b);`);
 });

@@ -1,5 +1,6 @@
 import { parsePerl } from "../components/perlParser.js";
 import { genJavaAst } from "../components/javaAstGenerator.js";
+import { handlePerl } from "../components/migrationLogic.js";
 
 export function genJavaAstDebug(code){
     const perlAst = parsePerl(code);
@@ -12,6 +13,10 @@ export function genJavaAstDebug(code){
 export function parseDebugOutput(code) {
     const treeRootNode = parsePerl(code);
     return walk(treeRootNode) + "\n";
+}
+
+export function handlePerlDebug(code){
+    return handlePerl(code).map(item => item.value).join('');
 }
 
 const walk = (node, indent = 0) => {

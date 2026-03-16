@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert';
-import { handlePerl } from '../../components/migrationLogic.js';
+
+import { handlePerlDebug } from '../testingFunctions.js';
 
 test('FunctionDefinition', () => {
     const input = `sub profile :Path('/user/profile') :Args(1) {
@@ -8,7 +9,7 @@ test('FunctionDefinition', () => {
     42;
     33;
 }`;
-    assert(handlePerl(input) === 
+    assert(handlePerlDebug(input) === 
 `@GetMapping("/user/profile/{user_id}")
 public String profile(@PathVariable String user_id)
 {
@@ -20,7 +21,7 @@ public String profile(@PathVariable String user_id)
 test('IfStatement', () => {
     const input = `if ($a == $b || $c == $d && $e != $f) {
 }`;
-    assert(handlePerl(input) === 
+    assert(handlePerlDebug(input) === 
 `if(a == b || c == d && e != f)
 {
 
@@ -32,7 +33,7 @@ test('ElsifStatement', () => {
 }
 elsif ($number == 5) {
 }`;
-    assert(handlePerl(input) === 
+    assert(handlePerlDebug(input) === 
 `if(a == b || c == d && e != f)
 {
 
@@ -48,7 +49,7 @@ test('ElseStatement', () => {
 }
 else {
 }`;
-    assert(handlePerl(input) === 
+    assert(handlePerlDebug(input) === 
 `if(a == b || c == d && e != f)
 {
 
@@ -68,7 +69,7 @@ elsif ($number == 6) {
 }
 else {
 }`;
-    assert(handlePerl(input) === 
+    assert(handlePerlDebug(input) === 
 `if(a == b || c == d && e != f)
 {
 
@@ -90,7 +91,7 @@ else
 test('UnlessStatement', () => {
     const input = `unless ($x > 10) {
 }`;
-    assert(handlePerl(input) === 
+    assert(handlePerlDebug(input) === 
 `if(!(x > 10))
 {
 
@@ -101,7 +102,7 @@ test('WhileStatement', () => {
     const input = `while ($i <= 5) {
 
 }`;
-    assert(handlePerl(input) === 
+    assert(handlePerlDebug(input) === 
 `while(i <= 5)
 {
 
@@ -111,7 +112,7 @@ test('WhileStatement', () => {
 test('UntilStatement', () => {
     const input = `until ($count > 5) {
 }`;
-    assert(handlePerl(input) === 
+    assert(handlePerlDebug(input) === 
 `while(!(count > 5))
 {
 
@@ -121,7 +122,7 @@ test('UntilStatement', () => {
 test('ForStatement', () => {
     const input = `for (my $i=0; $i<10; $i++){
 }`;
-    assert(handlePerl(input) === 
+    assert(handlePerlDebug(input) === 
 `for(int i; i < 10; i++)
 {
 
@@ -130,7 +131,7 @@ test('ForStatement', () => {
 
 test('ForeachStatement', () => {
     const input = `foreach my $item (@items) { 42; }`;
-    assert(handlePerl(input) === 
+    assert(handlePerlDebug(input) === 
 `for (Object item : items)
 {
   42;

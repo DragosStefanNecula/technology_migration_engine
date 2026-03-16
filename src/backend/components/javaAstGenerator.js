@@ -26,7 +26,8 @@ function gen(node){
     {
         let processedNode = {
             type: "FunctionDefinition",
-            definition: Helper.removeQuotes(node.children[1].text)
+            definition: Helper.removeQuotes(node.children[1].text),
+            context: node.text
         }
 
         for (const child of node.children)

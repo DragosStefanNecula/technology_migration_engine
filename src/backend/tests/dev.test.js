@@ -1,7 +1,7 @@
 import test from 'node:test';
 
 import { genJavaAstDebug, parseDebugOutput } from './testingFunctions.js';
-import { handlePerl } from '../components/migrationLogic.js';
+import { handlePerlDebug } from '../testingFunctions.js';
 
 test('Dev', () => {
   const input = `
@@ -11,5 +11,5 @@ test('Dev', () => {
     
   console.log(parseDebugOutput(input));
   console.log(JSON.stringify(genJavaAstDebug(input), null, 2));
-  console.log(handlePerl(input));
+  console.log(handlePerlDebug(input));
 });
