@@ -1,13 +1,12 @@
 import test from 'node:test';
 
 import { genJavaAstDebug, parseDebugOutput } from './testingFunctions.js';
-import { handlePerlDebug } from '../testingFunctions.js';
+import { handlePerlDebug } from './testingFunctions.js';
 
 test('Dev', () => {
   const input = `
     {
-      $c->stash(template => 'user.tt');
-    }`;
+do {} while()}`;
     
   console.log(parseDebugOutput(input));
   console.log(JSON.stringify(genJavaAstDebug(input), null, 2));
