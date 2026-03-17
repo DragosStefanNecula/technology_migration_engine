@@ -21,12 +21,16 @@ export class JavaCodegen{
         this[node.type](node);
     }
 
-    _emitBase(value, type) {
-        this._buffer.push({type: type, value: value, function: this._function});
+    _emitBase(object) {
+        this._buffer.push(object);
     }
 
     _emit(value){
-        this._emitBase(value, "text");
+        this._emitBase({type: "text", value: value});
+    }
+
+    _emitCodeGen(value, prompt){
+        this._emitBase({type: "codeGen", value: value, prompt: prompt})
     }
 
     _withIndent(fn) {
@@ -400,6 +404,6 @@ export class JavaCodegen{
     // Gen Logic
 
     GenNode(node){
-        return ``
+        this._emitCodeGen(node.content, node.prompt);
     }
 }
