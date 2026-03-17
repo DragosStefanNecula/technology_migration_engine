@@ -35,21 +35,11 @@ export class JavaCodegen{
         this._emitBase({type: "codeGen", value: value, prompt: prompt, function: this._function})
     }
 
-    _withIndent(fn) {
-        this._currentIndent += this._indent;
-        fn();
-        this._currentIndent -= this._indent;
-    }
-
     _ind() {
         return ' '.repeat(this._currentIndent);
     }
 
-    _output() {
-        
-    }
-
-    // Strucutral
+    // Structural
 
     SourceFile(node) {
         node.body.forEach((child, i) => { 
