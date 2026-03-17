@@ -5,11 +5,13 @@ export class JavaCodegen{
         this._currentIndent = 0;
         this._buffer = [];
         this._function = "source";
+        this._functionContext = {};
     }
 
     generate(node) {
         this._buffer = [];
         this._currentIndent = 0;
+        this._functionContext = {};
         this.gen(node);
         return this._buffer;
     }
@@ -26,11 +28,11 @@ export class JavaCodegen{
     }
 
     _emit(value){
-        this._emitBase({type: "text", value: value});
+        this._emitBase({type: "text", value: value, function: this._function});
     }
 
     _emitCodeGen(value, prompt){
-        this._emitBase({type: "codeGen", value: value, prompt: prompt})
+        this._emitBase({type: "codeGen", value: value, prompt: prompt, function: this._function})
     }
 
     _withIndent(fn) {
@@ -77,7 +79,8 @@ export class JavaCodegen{
 
         let javaParams = '';
 
-        this._function = node.context;
+        this._function = node.definition;
+        this._functionContext[node.definition] = node.context;
 
         if (node.path) {
             let pathParams = "";
