@@ -26,6 +26,7 @@ function createWindow() {
   : `file:/${__dirname}/frontend/dist/renderer/index.html`;
 
   win.loadURL(startURL);
+  win.maximize();
 }
 
 app.whenReady().then(createWindow);
