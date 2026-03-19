@@ -17,12 +17,6 @@ export default function Select({
       onChange={onChange}
       disabled={disabled}
       className="button-base"
-      onMouseEnter={e => {
-        if (!disabled) e.currentTarget.style.transform = "translateY(-1px)";
-      }}
-      onMouseLeave={e => {
-        e.currentTarget.style.transform = "translateY(0)";
-      }}
     >
       {showPlaceholder && (
         <option
