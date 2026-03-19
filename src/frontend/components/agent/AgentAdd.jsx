@@ -6,6 +6,7 @@ import { useState } from 'react';
 import AgentConfiguration from './AgentConfiguration';
 import { agentTemplates } from "./AgentTemplates";
 import Select from '../base/Select';
+import Divider from '../base/Divider';
 
 const AgentAdd = ({ triggerReloadAgents }) => {
     const [open, setOpen] = useState(false);
@@ -66,6 +67,7 @@ const AgentAdd = ({ triggerReloadAgents }) => {
                         variant="yellow"
                         style={{ display: "inline-block", width: "auto", minWidth: "150px" }}
                     />
+                    <Divider/>
                     <AgentConfiguration config={config} setConfig={setConfig} />
                 </FloatingWindow.Body>
                 <FloatingWindow.Footer>

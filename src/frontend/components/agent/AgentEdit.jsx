@@ -6,6 +6,7 @@ import AgentConfiguration from './AgentConfiguration';
 import Select from '../base/Select';
 import { useEffect } from 'react';
 import DeleteModal from '../base/DeleteModal';
+import Divider from '../base/Divider';
 
 const AgentEdit = ({ options, selectedAgent, setSelectedAgent, triggerReloadAgents }) => {
     const [open, setOpen] = useState(false);
@@ -95,6 +96,7 @@ const AgentEdit = ({ options, selectedAgent, setSelectedAgent, triggerReloadAgen
                         variant="yellow"
                         style={{ display: "inline-block", width: "auto", minWidth: "150px" }}
                     />
+                    <Divider/>
                     {config != null && (<>
                         <AgentConfiguration config={config} setConfig={setConfig} />
                     </>)}
