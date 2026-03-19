@@ -96,6 +96,7 @@ https://arxiv.org/abs/2512.05858v1
         </Document>
         <Document ID="92B1DE47-D45F-4AD2-9199-3CC14A18ED4D">
             <Title>Tree-Sitter</Title>
+            <Text>Massive changes to grammar</Text>
         </Document>
         <Document ID="9C28E0E3-F406-4ECE-A285-5715071F5CEA">
             <Title>Reactivity</Title>
@@ -159,6 +160,10 @@ https://arxiv.org/abs/2512.05858v1
         </Document>
         <Document ID="FABC9736-74A1-455D-9F52-8E7A3EE0E5DB">
             <Title>Intro</Title>
+        </Document>
+        <Document ID="FC72B19D-16EB-4C9B-A010-550C6C9923DD">
+            <Title>Postman-like Config</Title>
+            <Text>Have the UX considerations especially in terms of the software being made for developers, therefore, slightly technical interface is valid (although, the interface must keep smart)</Text>
         </Document>
         <Document ID="FDC826BC-DB1A-483E-81D7-291B09FD2531"/>
     </Documents>
