@@ -2,7 +2,7 @@ import { parsePerl } from "../components/perlParser.js";
 import { genJavaAst } from "../components/javaAstGenerator.js";
 import { handlePerl } from "../components/migrationLogic.js";
 
-export function genJavaAstDebug(code){
+export function genJavaAstDebug(code) {
     const perlAst = parsePerl(code);
 
     const javaAst = genJavaAst(perlAst);
@@ -15,7 +15,7 @@ export function parseDebugOutput(code) {
     return walk(treeRootNode) + "\n";
 }
 
-export function handlePerlDebug(code){
+export function handlePerlDebug(code) {
     return handlePerl(code).map(item => item.value).join('');
 }
 
@@ -33,7 +33,7 @@ const walk = (node, indent = 0) => {
         result += `${pad}  "children": [\n`;
 
         for (const child of node.children) {
-        result += walk(child, indent + 4) + ",\n";
+            result += walk(child, indent + 4) + ",\n";
         }
 
         // drop trailing comma

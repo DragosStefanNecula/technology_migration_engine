@@ -5,13 +5,13 @@ import Content from './Content';
 import Footer from './Footer';
 
 const Main = () => {
-  return (
-    <div className="app-container">
-      <Navbar/>
-      <Content/>
-      <Footer/>
-    </div>
-  )
+    return (
+        <div className="app-container">
+            <Navbar />
+            <Content />
+            <Footer />
+        </div>
+    )
 }
 
 export default Main

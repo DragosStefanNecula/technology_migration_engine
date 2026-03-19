@@ -10,7 +10,7 @@ import Select from '../base/Select';
 const AgentAdd = ({ triggerReloadAgents }) => {
     const [open, setOpen] = useState(false);
 
-    function cloneConfig(object){
+    function cloneConfig(object) {
         return { ...object, headers: object.headers.map(h => ({ ...h })) };
     }
 
@@ -66,7 +66,7 @@ const AgentAdd = ({ triggerReloadAgents }) => {
                         variant="yellow"
                         style={{ display: "inline-block", width: "auto", minWidth: "150px" }}
                     />
-                    <AgentConfiguration config={config} setConfig={setConfig}/>
+                    <AgentConfiguration config={config} setConfig={setConfig} />
                 </FloatingWindow.Body>
                 <FloatingWindow.Footer>
                     <Button onClick={handleSubmit}>Save</Button>

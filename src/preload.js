@@ -26,29 +26,29 @@ contextBridge.exposeInMainWorld("apiStore", {
     },
     getApiConfig: (name) => {
         return new Promise((resolve, reject) => {
-        ipcRenderer.once('get-api-config-response', (event, config) => {
-            if (config) resolve(config);
-            else reject(new Error(`No config found for ${name}`));
-        });
-        ipcRenderer.send('get-api-config', name);
+            ipcRenderer.once('get-api-config-response', (event, config) => {
+                if (config) resolve(config);
+                else reject(new Error(`No config found for ${name}`));
+            });
+            ipcRenderer.send('get-api-config', name);
         });
     },
     editApiConfig: (oldName, apiConfigObject) => {
         return new Promise((resolve, reject) => {
-        ipcRenderer.once('edit-api-config-response', (event, res) => {
-            if (res.success) resolve(res);
-            else reject(new Error(res.error));
-        });
-        ipcRenderer.send('edit-api-config', { oldName, apiConfigObject });
+            ipcRenderer.once('edit-api-config-response', (event, res) => {
+                if (res.success) resolve(res);
+                else reject(new Error(res.error));
+            });
+            ipcRenderer.send('edit-api-config', { oldName, apiConfigObject });
         });
     },
     deleteApiConfig: (name) => {
         return new Promise((resolve, reject) => {
-        ipcRenderer.once('delete-api-config-response', (event, res) => {
-            if (res.success) resolve(res);
-            else reject(new Error(res.error));
-        });
-        ipcRenderer.send('delete-api-config', name);
+            ipcRenderer.once('delete-api-config-response', (event, res) => {
+                if (res.success) resolve(res);
+                else reject(new Error(res.error));
+            });
+            ipcRenderer.send('delete-api-config', name);
         });
     }
 });
