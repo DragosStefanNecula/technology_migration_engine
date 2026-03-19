@@ -1,10 +1,10 @@
 import React from "react";
-import FileUpload from "../components/interface/FileUpload";
+import InterfaceBase from "../components/interface/InterfaceBase";
 
 export default function Content() {
     return (
         <main className="main-content">
-            <FileUpload/>
+            <InterfaceBase/>
         </main>
     );
 }
