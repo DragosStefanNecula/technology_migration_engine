@@ -1,0 +1,75 @@
+import React, { useRef, useEffect, useState } from "react";
+
+export default function FileUpload() {
+    const fileInputRef = useRef(null);
+    const [isDragging, setIsDragging] = useState(false);
+
+    const [value, setValue] = useState('');
+
+    globalThis.electronAPI.sendReady();
+
+    const handleDrop = (e) => {
+        e.preventDefault();
+        setIsDragging(false);
+        handleFileChange(e.dataTransfer.files);
+    };
+
+    const handleDragOver = (e) => {
+        e.preventDefault();
+        setIsDragging(true);
+    };
+
+    const handleDragLeave = (e) => {
+        // prevents flicker when dragging over children
+        if (!e.currentTarget.contains(e.relatedTarget)) {
+            setIsDragging(false);
+        }
+    };
+
+    const handleClick = () => {
+        fileInputRef.current.click();
+    };
+
+    useEffect(() => {
+        if (globalThis.electronAPI) {
+            globalThis.electronAPI.onSetValue((_, value) => {
+                setValue(value);
+                console.log(value)
+            });
+        }
+    }, []);
+
+    const handleFileChange = async (file) => {
+        if (!file) return;
+        const content = await file.text();
+        globalThis.electronAPI.uploadFile({ name: file.name, content: content });
+    };
+
+    const handleChange = async (e) => {
+        await handleFileChange(e.target.files[0]);
+    };
+
+    return (
+        <div
+            className={`upload-wrapper ${isDragging ? "dragging" : ""}`}
+            onClick={handleClick}
+            onDrop={handleDrop}
+            onDragOver={handleDragOver}
+            onDragLeave={handleDragLeave}
+        >
+            <input
+                type="file"
+                multiple
+                ref={fileInputRef}
+                onChange={handleChange}
+                hidden
+            />
+
+            <div className="content">
+                <p className="upload-text">
+                    Drag & drop files anywhere or <span>click to upload</span>
+                </p>
+            </div>
+        </div>
+    );
+}
