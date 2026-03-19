@@ -8,7 +8,7 @@
     "setup": "npm install && npx patch-package && npm run pre-build --prefix node_modules/@ganezdragon/tree-sitter-perl && npm run build --prefix node_modules/@ganezdragon/tree-sitter-perl",
     "build": "vite build && electron-builder",
     "console": "node --test src/backend/tests/dev.test.js",
-    "test": "node --test src/backend/tests/prod" ,
+    "test": "node --test src/backend/tests/prod",
     "postinstall": "patch-package"
   },
   "build": {
@@ -34,6 +34,7 @@
   },
   "dependencies": {
     "@ganezdragon/tree-sitter-perl": "^1.1.1",
+    "electron-store": "^11.0.2",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "tree-sitter": "^0.21.0"

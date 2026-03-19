@@ -100,6 +100,12 @@ There should be an option for the software to use a local LLM, and the data to n
 
 [ ] The specified functionality is provided in some arrangement
 
+[ ] The user can configure their own API call
+
+[ ] The user has access to templates to help him complete the most common AI apis
+
+[ ] The user can edit or remove APIs they have set up previously
+
 ### Justification
 
 Users have reported this as a security concern
