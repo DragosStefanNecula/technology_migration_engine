@@ -3,9 +3,11 @@ import AgentPicker from "./AgentPicker";
 import AgentAdd from "./AgentAdd";
 import AgentEdit from "./AgentEdit";
 import { useState, useEffect } from 'react';
+import { useAppContext } from '../../renderer/renderer';
 
 const AgentBar = () => {
-    const [selectedAgent, setSelectedAgent] = useState("");
+    const { selectedAgent, setSelectedAgent } = useAppContext();
+
     const [options, setOptions] = useState([]);
     const [reloadAgentsFlag, setReloadAgentsFlag] = useState(false);
 
