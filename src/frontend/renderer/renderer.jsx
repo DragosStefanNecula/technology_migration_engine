@@ -6,7 +6,7 @@ const AppContext = createContext();
 
 const AppProvider = ({ children }) => {
     const [selectedAgent, setSelectedAgent] = useState(null);
-    const [mode, setMode] = useState("");
+    const [mode, setMode] = useState("1stPass");
 
     return (
         <AppContext.Provider

@@ -32,6 +32,7 @@ export default function Button({
         <button
             onClick={onClick}
             disabled={disabled}
+            style={variants[variant]}
             className="button-base"
             onMouseEnter={e => {
                 if (!disabled) e.currentTarget.style.transform = "translateY(-1px)";
