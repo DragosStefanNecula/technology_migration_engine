@@ -5,8 +5,6 @@ import { createRoot } from "react-dom/client";
 import { AutoUpdatingWidget } from "./AutoUpdatingWidget";
 
 class Widget {
-    id = null;
-
     container = document.createElement("div");
 
     constructor(codeBlock, accessor, lineHeight) {
