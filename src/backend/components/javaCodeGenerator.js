@@ -13,7 +13,10 @@ export class JavaCodegen {
         this._currentIndent = 0;
         this._functionContext = {};
         this.gen(node);
-        return this._buffer;
+        return {
+            buffer: this._buffer,
+            functionContext: this._functionContext
+        };
     }
 
     gen(node) {
@@ -299,9 +302,7 @@ export class JavaCodegen {
     // Arrays & Hashes
 
     MethodInvocation(node) {
-        this.gen(node.object);
-        this._emit(`.${node.method}`);
-        this.gen(node.arguments);
+        this._emitCodeGen(node.content, node.prompt)
     }
 
     ArrayDeclaration(node) {

@@ -255,9 +255,8 @@ function gen(node) {
     if (node.type === "method_invocation") {
         return {
             type: "MethodInvocation",
-            object: gen(node.children[0]),
-            method: node.children[2].text,
-            arguments: gen(node.children[3])
+            content: node.text,
+            prompt: unknownNodePrompt
         }
     }
 
