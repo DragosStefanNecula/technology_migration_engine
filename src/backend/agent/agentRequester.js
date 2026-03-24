@@ -1,4 +1,4 @@
-import { systemPrompt } from "./prompts";
+import { systemPrompt } from "./prompts.js";
 export async function processNodeWithAi(sourceContext, runningContext, node) {
     const prompt = systemPrompt + node.prompt + 
 `## sourceContext
@@ -10,5 +10,5 @@ ${node.value}`
 
     // return await sendtoai(prompt, agent);
     
-    return `Processed: ${text}`; 
+    return `Processed: ${node.value}`; 
 }
