@@ -39,16 +39,16 @@ class Widget {
     }
 }
 
-export default function FirstPassEditor({ buffer }) {
+export default function FirstPassEditor({ currentCodeBuffer, sourceContext }) {
 
-    function processBuffer(buffer) {
+    function processBuffer(currentCodeBuffer) {
         let showText = "";
         let line = 0;
         let widgets = {};
 
         const countNewlines = (str) => (str.match(/\n/g) || []).length;
 
-        for (const node of buffer) {
+        for (const node of currentCodeBuffer) {
             if (node.type === "text") {
                 showText += node.value;
                 line += countNewlines(node.value);
@@ -62,12 +62,12 @@ export default function FirstPassEditor({ buffer }) {
 
         return {
             showText,
-            processedBuffer: buffer,
+            processedBuffer: currentCodeBuffer,
             widgets
         };
     }
 
-    const { showText, processedBuffer } = processBuffer(buffer);
+    const { showText, processedBuffer } = processBuffer(currentCodeBuffer);
 
     const editorRef = useRef(null);
 
@@ -78,7 +78,7 @@ export default function FirstPassEditor({ buffer }) {
         editorRef.current = editor;
         const lineHeight = editor.getOption(monaco.editor.EditorOption.lineHeight);
         let widgets = {};
-        for (const node of buffer) {
+        for (const node of processedBuffer) {
             if (node.type === "codeGen") {
                 editor.changeViewZones((accessor) => {
                     let widget = new Widget(node, accessor, lineHeight);
@@ -89,18 +89,20 @@ export default function FirstPassEditor({ buffer }) {
         }
 
         // Create final text and update widgets as you go
-        let finalText;
-        for (const node of buffer) {
+        let runningContext;
+        for (const node of processedBuffer) {
             if (node.type === "text") {
-                finalText += node.value;
+                runningContext += node.value;
             }
 
             if (node.type === "codeGen") {
-                let result = await genAi(finalText);
-                finalText += result;
+                let result = await genAi(sourceContext, runningContext, node);
+                runningContext += result;
                 widgets[node.uuid].update(result);
             }
         }
+
+        const finalText = runningContext;
     }
 
     return (
