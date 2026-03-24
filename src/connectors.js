@@ -81,8 +81,8 @@ export function registerConnectors() {
         event.reply('delete-api-config-response', { success: true, name });
     });
 
-    ipcMain.handle('ai-process-node', async (event, sourceContext, runningContext, node) => {
-    const result = await processNodeWithAi(sourceContext, runningContext, node);
+    ipcMain.handle('ai-process-node', async (event, sourceContext, runningContext, node, selectedAgent) => {
+    const result = await processNodeWithAi(sourceContext, runningContext, node, selectedAgent);
         return result;
     });
 }

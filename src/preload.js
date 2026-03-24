@@ -7,8 +7,8 @@ contextBridge.exposeInMainWorld("electronAPI", {
 });
 
 contextBridge.exposeInMainWorld('aiAPI', {
-    genAi: async (sourceContext, runningContext, nodeData) => {
-        return await ipcRenderer.invoke('ai-process-node', sourceContext, runningContext, nodeData);
+    genAi: async (sourceContext, runningContext, node, selectedAgent) => {
+        return await ipcRenderer.invoke('ai-process-node', sourceContext, runningContext, node, selectedAgent);
     }
 });
 

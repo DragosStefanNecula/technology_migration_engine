@@ -1,5 +1,5 @@
 import { systemPrompt } from "./prompts.js";
-export async function processNodeWithAi(sourceContext, runningContext, node) {
+export async function processNodeWithAi(sourceContext, runningContext, node, selectedAgent) {
     const prompt = systemPrompt + node.prompt + 
 `## sourceContext
 ${sourceContext}

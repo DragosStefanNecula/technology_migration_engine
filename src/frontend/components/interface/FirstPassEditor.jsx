@@ -4,6 +4,7 @@ import { useRef, useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { AutoUpdatingWidget } from "./AutoUpdatingWidget";
 import { genAi } from "./genAi";
+import { useAppContext } from "../../renderer/renderer";
 
 class Widget {
     container = document.createElement("div");
@@ -40,6 +41,8 @@ class Widget {
 }
 
 export default function FirstPassEditor({ currentCodeBuffer, sourceContext }) {
+
+    const { selectedAgent, setSelectedAgent } = useAppContext();
 
     function processBuffer(currentCodeBuffer) {
         let showText = "";
@@ -96,7 +99,7 @@ export default function FirstPassEditor({ currentCodeBuffer, sourceContext }) {
             }
 
             if (node.type === "codeGen") {
-                let result = await genAi(sourceContext, runningContext, node);
+                let result = await genAi(sourceContext, runningContext, node, selectedAgent);
                 runningContext += result;
                 widgets[node.uuid].update(result);
             }
