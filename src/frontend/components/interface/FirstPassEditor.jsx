@@ -3,6 +3,7 @@ import React from "react";
 import { useRef, useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { AutoUpdatingWidget } from "./AutoUpdatingWidget";
+import { genAi } from "./genAi";
 
 class Widget {
     container = document.createElement("div");
@@ -29,10 +30,11 @@ class Widget {
     }
 
     load() {
-        this.root.render(<div></div>);
+        this.root.render(<div>LOADING</div>);
     }
 
-    update() {
+    update(text) {
+        this.root.render(<div>text</div>);
         // TODO: Make the zone the highlighted line too
     }
 }
@@ -71,7 +73,7 @@ export default function FirstPassEditor({ buffer }) {
 
     let finalText = "";
 
-    function handleMount(editor, monaco) {
+    async function handleMount(editor, monaco) {
         // Initialise Widgets
         editorRef.current = editor;
         const lineHeight = editor.getOption(monaco.editor.EditorOption.lineHeight);
@@ -94,9 +96,9 @@ export default function FirstPassEditor({ buffer }) {
             }
 
             if (node.type === "codeGen") {
-                // let resullt = await AI;
-                // finalText += result;
-                // widgets[node.uuid].update(result);
+                let result = await genAi();
+                finalText += result;
+                widgets[node.uuid].update(result);
             }
         }
     }
