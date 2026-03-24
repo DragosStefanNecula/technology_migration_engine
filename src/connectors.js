@@ -1,7 +1,7 @@
 import { ipcMain } from 'electron';
 import { handleFileUpload } from './backend/handlers.js';
 import Store from 'electron-store';
-import { processNodeWithAi } from './backend/agentRequester.js';
+import { processNodeWithAi } from './backend/agent/agentRequester.js';
 
 export function registerConnectors() {
     ipcMain.on('file-upload', (event, fileData) => {
