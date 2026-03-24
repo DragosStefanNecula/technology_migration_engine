@@ -96,7 +96,7 @@ export default function FirstPassEditor({ buffer }) {
             }
 
             if (node.type === "codeGen") {
-                let result = await genAi();
+                let result = await genAi(finalText);
                 finalText += result;
                 widgets[node.uuid].update(result);
             }
