@@ -34,7 +34,7 @@ class Widget {
     }
 
     update(text) {
-        this.root.render(<div>text</div>);
+        this.root.render(<div>{text}</div>);
         // TODO: Make the zone the highlighted line too
     }
 }

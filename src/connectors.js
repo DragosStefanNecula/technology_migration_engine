@@ -1,6 +1,7 @@
 import { ipcMain } from 'electron';
 import { handleFileUpload } from './backend/handlers.js';
 import Store from 'electron-store';
+import { processNodeWithAi } from './backend/agentRequester.js';
 
 export function registerConnectors() {
     ipcMain.on('file-upload', (event, fileData) => {
@@ -78,5 +79,10 @@ export function registerConnectors() {
         store.set('apiConfigs', existingConfigs);
 
         event.reply('delete-api-config-response', { success: true, name });
+    });
+
+    ipcMain.handle('ai-process-node', async (event, sourceContext, runningContext, node) => {
+    const result = await processNodeWithAi(sourceContext, runningContext, node);
+        return result;
     });
 }

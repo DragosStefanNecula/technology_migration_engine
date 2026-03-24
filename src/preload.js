@@ -6,6 +6,12 @@ contextBridge.exposeInMainWorld("electronAPI", {
     uploadFile: (fileData) => ipcRenderer.send("file-upload", fileData),
 });
 
+contextBridge.exposeInMainWorld('aiAPI', {
+    genAi: async (sourceContext, runningContext, nodeData) => {
+        return await ipcRenderer.invoke('ai-process-node', sourceContext, runningContext, nodeData);
+    }
+});
+
 contextBridge.exposeInMainWorld("apiStore", {
     saveApiConfig: (config) => {
         return new Promise((resolve, reject) => {
