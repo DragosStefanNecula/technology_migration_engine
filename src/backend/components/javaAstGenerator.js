@@ -488,7 +488,6 @@ class JavaAstHelper {
             case 'ArrayDeclaration':
             case 'ArrayAccessVariable':
             case 'ArrayFunctionPop':
-            case 'MethodInvocation':
             case 'ArrayFunctionReverse':
             case 'ArrayFunctionShift':
                 return { type: 'ExpressionStatement', exp: node };
