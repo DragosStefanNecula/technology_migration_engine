@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ScrivenerProject Template="No" Version="2.0" Identifier="1F60974D-D5F9-4D0A-9F84-1A1426D31B99" Creator="SCRWIN-3.1.6.0" Device="DragosN" Modified="2026-03-19 16:31:41 +0000" ModID="60A770FD-403C-475A-8881-AD53DCDFC618">
+<ScrivenerProject Template="No" Version="2.0" Identifier="1F60974D-D5F9-4D0A-9F84-1A1426D31B99" Creator="SCRWIN-3.1.6.0" Device="DragosN" Modified="2026-03-26 07:43:29 +0000" ModID="D1ADAFA1-9770-40E5-A118-AF0D4A6A1547">
     <Binder>
         <BinderItem UUID="4643EB6B-3D81-4CE8-809F-54EBE2CC359C" Type="DraftFolder" Created="2026-02-28 09:48:19 +0000" Modified="2026-02-28 09:48:19 +0000">
             <Title>Draft</Title>
@@ -476,6 +476,15 @@
                                         <TextSelection>0,0</TextSelection>
                                     </TextSettings>
                                 </BinderItem>
+                                <BinderItem UUID="5BCA626D-7B48-4D95-861F-4CB04356E4D5" Type="Text" Created="2026-03-26 07:43:22 +0000" Modified="2026-03-26 07:43:26 +0000">
+                                    <Title>Convetional Commits</Title>
+                                    <MetaData>
+                                        <IncludeInCompile>Yes</IncludeInCompile>
+                                    </MetaData>
+                                    <TextSettings>
+                                        <TextSelection>1,0</TextSelection>
+                                    </TextSettings>
+                                </BinderItem>
                             </Children>
                         </BinderItem>
                     </Children>
@@ -577,11 +586,11 @@
     <ProjectTargets Notify="No">
         <DraftTarget Type="Words" CountIncludedOnly="Yes" CurrentCompileGroupOnly="No" Deadline="2026-02-28 09:48:19 +0000" IgnoreDeadline="Yes">0</DraftTarget>
         <SessionTarget Type="Words" CountDraftOnly="No" AllowNegatives="Yes" ResetType="Time" ResetTime="01:00" DeterminedFromDeadline="No" CanWriteOnDeadlineDate="Yes" WritingDays="">0</SessionTarget>
-        <PreviousSession Words="36" Characters="243" Date="2026-03-19 16:31:41 +0000"/>
+        <PreviousSession Words="0" Characters="1" Date="2026-03-26 07:43:29 +0000"/>
     </ProjectTargets>
-    <RecentWritingHistory Date="2026-03-19 00:00:00 +0000">
-        <DraftWordCount>36</DraftWordCount>
-        <DraftCharCount>243</DraftCharCount>
+    <RecentWritingHistory Date="2026-03-26 00:00:00 +0000">
+        <DraftWordCount>0</DraftWordCount>
+        <DraftCharCount>1</DraftCharCount>
         <OtherWordCount>0</OtherWordCount>
         <OtherCharCount>0</OtherCharCount>
     </RecentWritingHistory>

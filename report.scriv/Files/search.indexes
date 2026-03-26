@@ -22,6 +22,10 @@ Emmission VS magic token VS fragments</Text>
             <Title> Unsupervised Neural Transcompilation
 </Title>
         </Document>
+        <Document ID="2B7DBF17-444C-444E-8D50-D196044D7011">
+            <Title>DiffChecker</Title>
+            <Text>Talk about how having tools familiar to developers is important</Text>
+        </Document>
         <Document ID="2DEBB0D5-6C9A-40DB-A241-88E9BDB4F072"/>
         <Document ID="349190A7-843B-48CD-8C77-C3E92217C4CC">
             <Title>OpenProject</Title>
@@ -53,6 +57,10 @@ Emmission VS magic token VS fragments</Text>
         </Document>
         <Document ID="5B76D83C-FAD4-4B32-9120-94AB52084113">
             <Title>Deploying software</Title>
+        </Document>
+        <Document ID="5BCA626D-7B48-4D95-861F-4CB04356E4D5">
+            <Title>Convetional Commits</Title>
+            <Text>#</Text>
         </Document>
         <Document ID="62C00051-54FE-4E44-9ED2-9F7894284657">
             <Title>Java AST Generator</Title>

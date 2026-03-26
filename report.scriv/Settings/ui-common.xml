@@ -18,7 +18,7 @@
             <ItemID>D2BDF672-F730-4565-A840-5CAF0A4C9577</ItemID>
         </ExpandedItems>
         <Selection>
-            <ItemID>FC72B19D-16EB-4C9B-A010-550C6C9923DD</ItemID>
+            <ItemID>5BCA626D-7B48-4D95-861F-4CB04356E4D5</ItemID>
         </Selection>
         <SearchResultsSort Titles="Ascending" Dates="Ascending">None</SearchResultsSort>
     </Binder>
@@ -72,9 +72,9 @@
                 <CurrentViewMode>Single</CurrentViewMode>
                 <SelectionAffects>Current</SelectionAffects>
                 <Content>
-                    <ItemID>FC72B19D-16EB-4C9B-A010-550C6C9923DD</ItemID>
+                    <ItemID>5BCA626D-7B48-4D95-861F-4CB04356E4D5</ItemID>
                 </Content>
-                <NavigationHistory CurrentIndex="96">
+                <NavigationHistory CurrentIndex="98">
                     <HistoryItem Type="BinderItems" ViewMode="Single">EA0A64E4-506E-4EAC-A135-3112A51C77F6</HistoryItem>
                     <HistoryItem Type="BinderItems" ViewMode="Corkboard">464CB377-563D-4573-9A76-AD6E80615AD6</HistoryItem>
                     <HistoryItem Type="BinderItems" ViewMode="Single">EA0A64E4-506E-4EAC-A135-3112A51C77F6</HistoryItem>
@@ -172,6 +172,8 @@
                     <HistoryItem Type="BinderItems" ViewMode="Corkboard">35BF3EF8-EF70-4F27-A8BD-AE078CADEDBB</HistoryItem>
                     <HistoryItem Type="BinderItems" ViewMode="Single">92B1DE47-D45F-4AD2-9199-3CC14A18ED4D</HistoryItem>
                     <HistoryItem Type="BinderItems" ViewMode="Single">FC72B19D-16EB-4C9B-A010-550C6C9923DD</HistoryItem>
+                    <HistoryItem Type="BinderItems" ViewMode="Single">2B7DBF17-444C-444E-8D50-D196044D7011</HistoryItem>
+                    <HistoryItem Type="BinderItems" ViewMode="Single">5BCA626D-7B48-4D95-861F-4CB04356E4D5</HistoryItem>
                 </NavigationHistory>
             </View>
             <Text>
@@ -179,7 +181,7 @@
                 <PageLayout Facing="No">No</PageLayout>
                 <TypewriterScrolling>No</TypewriterScrolling>
                 <LineNumbers Interval="1">No</LineNumbers>
-                <Selection>180,0</Selection>
+                <Selection>1,0</Selection>
             </Text>
             <Outliner>
                 <Columns>
