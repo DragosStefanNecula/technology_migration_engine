@@ -16,7 +16,7 @@ export function parseDebugOutput(code) {
 }
 
 export function handlePerlDebug(code) {
-    return handlePerl(code).map(item => {if(item.type!="codeGen") {return item.value}}).join('');
+    return handlePerl(code).buffer.map(item => {if(item.type!="codeGen") {return item.value}}).join('');
 }
 
 const walk = (node, indent = 0) => {
