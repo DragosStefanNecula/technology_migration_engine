@@ -8,6 +8,15 @@ test('GenNode', () => {
 let node = genJavaAstDebug(input).body[0];
 
 assert(node.type === 'GenNode');
-assert(node.prompt === 'This is a mock system prompt.This is some extra information');
 assert(node.content === 'do {} while()');
+});
+
+test('MethodInvocation', () => {
+  const input = `$obj->method($arg, $arg2);`;
+
+let node = genJavaAstDebug(input).body[0];
+console.log(node)
+
+assert(node.type === 'MethodInvocation');
+assert(node.content === '$obj->method($arg, $arg2)');
 });

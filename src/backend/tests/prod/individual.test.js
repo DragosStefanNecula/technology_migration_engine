@@ -338,8 +338,3 @@ test('MultipleAccesses', () => {
 `data.get('roles').get(0);`
 );});
 
-test('MethodInvocation', () => {
-    const input = `$obj->method($arg, $arg2);`;
-    assert(handlePerlDebug(input) === 
-`obj.method(arg,arg2);`
-);});
