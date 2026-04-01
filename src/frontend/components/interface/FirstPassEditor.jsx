@@ -2,31 +2,30 @@ import Editor from "@monaco-editor/react";
 import React from "react";
 import { useRef, useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
-import { AutoUpdatingWidget } from "./AutoUpdatingWidget";
 import { genAi } from "./genAi";
 import { useAppContext } from "../../renderer/renderer";
 
 class Widget {
     container = document.createElement("div");
 
-    constructor(codeBlock, accessor, lineHeight) {
+    constructor(codeBlock, editor, lineHeight) {
         this.codeBlock = codeBlock;
-        this.accessor = accessor;
+        this.editor = editor;
         this.lineHeight = lineHeight;
 
-        this.container.style.height = `${this.lineHeight}px`;
-        this.container.style.color = "white";
+        this.container.style.color = "black";
         this.container.style.display = "flex";
         this.container.style.alignItems = "center";
         this.container.style.padding = "0 10px";
-        this.container.style.background = "#1e1e1e";
+        this.container.style.background = "#f9ff53";
         this.container.style.fontSize = "13px";
         this.root = createRoot(this.container);
-        this.root.render(<AutoUpdatingWidget/>);
-        this.accessor.addZone({
-            afterLineNumber: this.codeBlock.line,
-            heightInPx: lineHeight,
-            domNode: this.container,
+        this.editor.changeViewZones((accessor) => {
+            this.zoneId = accessor.addZone({
+                afterLineNumber: this.codeBlock.line,
+                heightInPx: lineHeight,
+                domNode: this.container,
+            });
         });
     }
 
@@ -35,8 +34,20 @@ class Widget {
     }
 
     update(text) {
-        this.root.render(<div>{text}</div>);
-        // TODO: Make the zone the highlighted line too
+       this.root.render(<div style={{ whiteSpace: "pre" }}>{text}</div>);
+
+        const lineCount = text.split("\n").length;
+
+        const newHeight = lineCount * this.lineHeight;
+        
+        this.editor.changeViewZones((accessor) => {
+            accessor.removeZone(this.zoneId);
+            this.zoneId = accessor.addZone({
+                afterLineNumber: this.codeBlock.line,
+                heightInPx: newHeight,
+                domNode: this.container,
+            });    
+        });
     }
 }
 
@@ -84,7 +95,7 @@ export default function FirstPassEditor({ currentCodeBuffer, sourceContext }) {
         for (const node of processedBuffer) {
             if (node.type === "codeGen") {
                 editor.changeViewZones((accessor) => {
-                    let widget = new Widget(node, accessor, lineHeight);
+                    let widget = new Widget(node, editor, lineHeight);
                     widget.load();
                     widgets[node.uuid] = widget;
                 });
@@ -100,8 +111,13 @@ export default function FirstPassEditor({ currentCodeBuffer, sourceContext }) {
 
             if (node.type === "codeGen") {
                 let result = await genAi(sourceContext, runningContext, node, selectedAgent);
-                runningContext += result;
-                widgets[node.uuid].update(result);
+                let modifiedResult = result
+                    .split('\n')
+                    .map(line => node.ind + line)
+                    .join('\n');
+
+                runningContext += modifiedResult;
+                widgets[node.uuid].update(modifiedResult);
             }
         }
 

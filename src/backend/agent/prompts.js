@@ -26,6 +26,8 @@ You will receive:
 
 ## Output
 Return the processed result as plain text.
+Don't include the language it was transpiled to.
+Don't include any backticks or quotes.
 \n\n
 `;
 
