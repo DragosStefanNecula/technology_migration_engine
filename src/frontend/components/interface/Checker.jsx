@@ -30,7 +30,7 @@ const Checker = ({ code }) => {
         <div className='checker'>
             {Object.entries(functionDictionary).map(([functionName, items]) => (
                 <div className='pane' key={functionName}>
-                    <Pane currentCodeBuffer={functionDictionary[functionName]} sourceContext={code.functionContext[functionName]}/>
+                    <Pane currentCodeBuffer={functionDictionary[functionName]} sourceContext={code.functionContext[functionName]} functionName={functionName}/>
                 </div> 
             ))}
         </div>
