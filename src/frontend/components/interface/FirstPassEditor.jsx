@@ -116,8 +116,8 @@ export default function FirstPassEditor({ currentCodeBuffer, sourceContext }) {
                     .map((line) => node.ind + line)
                     .join('\n');
 
-                    widgets[node.uuid].update(modifiedResult);
-                    runningContext += modifiedResult.replace(node.ind, ''); //first line already has a ident applied
+                widgets[node.uuid].update(modifiedResult);
+                runningContext += modifiedResult.replace(node.ind, ''); //first line already has a ident applied
             }
         }
 
