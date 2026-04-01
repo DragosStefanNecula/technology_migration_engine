@@ -113,15 +113,16 @@ export default function FirstPassEditor({ currentCodeBuffer, sourceContext }) {
                 let result = await genAi(sourceContext, runningContext, node, selectedAgent);
                 let modifiedResult = result
                     .split('\n')
-                    .map(line => node.ind + line)
+                    .map((line) => node.ind + line)
                     .join('\n');
 
-                runningContext += modifiedResult;
-                widgets[node.uuid].update(modifiedResult);
+                    widgets[node.uuid].update(modifiedResult);
+                    runningContext += modifiedResult.replace(node.ind, ''); //first line already has a ident applied
             }
         }
 
         const finalText = runningContext;
+        console.log(finalText)
     }
 
     return (
