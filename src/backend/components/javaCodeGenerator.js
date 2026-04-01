@@ -102,7 +102,7 @@ export class JavaCodegen {
     }
 
     IfStatement(node) {
-        this._emit(`${this._ind()}if`);
+        this._emit(`if`);
         this.gen(node.condition);
         this._emit(`\n`);
 
