@@ -3,6 +3,7 @@ export default function Button({
     onClick,
     variant = "white",
     disabled = false,
+    clickable = true,
     style = {}
 }) {
     const variants = {
@@ -28,14 +29,32 @@ export default function Button({
         }
     };
 
+    const isInteractive = !disabled && clickable;
+
+    const nonClickableStyle = !clickable
+        ? {
+              filter: "grayscale(40%)",
+              opacity: 0.6,
+              cursor: "not-allowed",
+              boxShadow: "none",
+              border: "1px dashed #bbb"
+          }
+        : {};
+
     return (
         <button
-            onClick={onClick}
+            onClick={isInteractive ? onClick : undefined}
             disabled={disabled}
-            style={variants[variant]}
+            style={{
+                ...variants[variant],
+                ...nonClickableStyle,
+                ...style
+            }}
             className="button-base"
             onMouseEnter={e => {
-                if (!disabled) e.currentTarget.style.transform = "translateY(-1px)";
+                if (isInteractive) {
+                    e.currentTarget.style.transform = "translateY(-1px)";
+                }
             }}
             onMouseLeave={e => {
                 e.currentTarget.style.transform = "translateY(0)";

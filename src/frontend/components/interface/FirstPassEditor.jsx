@@ -58,7 +58,7 @@ class Widget {
     }
 }
 
-export default function FirstPassEditor({ currentCodeBuffer, sourceContext }) {
+export default function FirstPassEditor({ currentCodeBuffer, sourceContext, setFirstPassText,  isVisible }) {
 
     const { selectedAgent, setSelectedAgent } = useAppContext();
 
@@ -118,20 +118,19 @@ export default function FirstPassEditor({ currentCodeBuffer, sourceContext }) {
                     .split('\n')
                     .map((line) => node.ind + line)
                     .join('\n');
-                
-                    console.log(widgets)
-                    console.log(node.uuid)
                 widgets[node.uuid].update(modifiedResult);
                 runningContext += modifiedResult.replace(node.ind, ''); //first line already has a ident applied
             }
         }
 
         const finalText = runningContext;
+        setFirstPassText(finalText);
+        console.log("yes")
         setLoading(false);
     }
 
     return (
-        <div style={{width: "100%"}}>
+        <div style={{width: "100%", display: isVisible ? "block" : "none"}}>
             <div style={{width: "100%", display: "flex", justifyContent: "center", alignItems: "center", marginBlock: "2px", height:"20px"}}>
                 First Pass 
                 {loading && <div style={{marginInlineStart: "5px"}}>

@@ -3,10 +3,35 @@ import React from 'react';
 import FirstPassEditor from './FirstPassEditor';
 import ContextViewer from './ContextViewer';
 import { useAppContext } from '../../renderer/renderer';
+import SecondPassEditor from './SecondPassEditor';
+import LastPassEditor from './LastPassEditor';
+import { useState } from 'react';
+import SelectionButtons from './SelectionButtons';
 
 export const Pane = ({ currentCodeBuffer, sourceContext, functionName }) => {
 
     const { mode, setMode } = useAppContext();
+
+    const [firstPassText, setFirstPassText] = useState(null); 
+
+    const [secondPassText, setSecondPassText] = useState(null); 
+
+    const [finalPassText, setFinalPassText] = useState(null); 
+
+    const [currentView, setCurrentView] = useState("1stPass"); 
+
+    const isSecondPassVisible = mode === "2ndPass" || (mode === "1stPass" && currentView === "2ndPass");
+
+    const handleConfirm = () => {
+        if(currentView === "1stPass") {
+            setFinalPassText(firstPassText);
+        }
+        if(currentView === "2ndPass")
+        {
+            setFinalPassText(secondPassText);
+        }
+        console.log(finalPassText)
+    }
 
     return (
         <div style={{
@@ -28,12 +53,35 @@ export const Pane = ({ currentCodeBuffer, sourceContext, functionName }) => {
                 <ContextViewer code={sourceContext} />
 
                 {/* show firstpasseditor process, 
-        then secondpasseditor process 
-        then choose */}
+                    then secondpasseditor process 
+                    then choose */}
                 {/* if mode = 1st have two buttons to see the two and click submit */}
                 {/* if mode = 2nd, it's almost as if the second button was pressed */}
+                {finalPassText === null ?
+                    <>
+                        <FirstPassEditor
+                        isVisible={!isSecondPassVisible}
+                        currentCodeBuffer={currentCodeBuffer}
+                        sourceContext={sourceContext}
+                        setFirstPassText={setFirstPassText}
+                        />
+                        {firstPassText != null && 
+                            <SecondPassEditor
+                                isVisible={isSecondPassVisible}
+                                currentIteration={firstPassText}
+                                sourceContext={sourceContext}
+                                setSecondPassText={setSecondPassText}
+                            />
+                        }
+                        <SelectionButtons setCurrentView={setCurrentView} onConfirm={handleConfirm} firstPass={firstPassText!==null} secondPass={secondPassText != null}/>
+                    </> 
+                    : 
+                    <>
+                        <LastPassEditor finalPassText={finalPassText}/>
+                    </>
+                }
 
-                <FirstPassEditor currentCodeBuffer={currentCodeBuffer} sourceContext={sourceContext} />
+
 
                 {/* TODO: interface with buttons */}
                 {/* 2nd Pass */}
