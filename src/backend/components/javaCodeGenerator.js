@@ -35,7 +35,7 @@ export class JavaCodegen {
     }
 
     _emitCodeGen(value, prompt, ind) {
-        this._emitBase({ type: "codeGen", value: value, prompt: prompt, function: this._function, ind: ind  })
+        this._emitBase({ type: "codeGen", value: value, prompt: prompt, function: this._function, ind: ind, uuid: crypto.randomUUID() })
     }
 
     _ind() {

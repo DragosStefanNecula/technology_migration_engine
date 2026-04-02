@@ -1,9 +1,10 @@
 import Editor from "@monaco-editor/react";
 import React from "react";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { genAi } from "./genAi";
 import { useAppContext } from "../../renderer/renderer";
+import Spinner from "../base/Spinner";
 
 class Widget {
     container = document.createElement("div");
@@ -30,7 +31,13 @@ class Widget {
     }
 
     load() {
-        this.root.render(<div>LOADING</div>);
+        this.root.render(
+        <div style={{display: "flex", alignItems: "center"}}>
+            <span style={{marginInlineEnd: "5px"}}>
+                <Spinner size={10} />
+            </span> 
+            LOADING
+        </div>);
     }
 
     update(text) {
@@ -55,10 +62,11 @@ export default function FirstPassEditor({ currentCodeBuffer, sourceContext }) {
 
     const { selectedAgent, setSelectedAgent } = useAppContext();
 
-    function processBuffer(currentCodeBuffer) {
+    const [loading, setLoading] = useState(false); 
+
+    function contextMaker(currentCodeBuffer) {
         let showText = "";
         let line = 0;
-        let widgets = {};
 
         const countNewlines = (str) => (str.match(/\n/g) || []).length;
 
@@ -70,41 +78,36 @@ export default function FirstPassEditor({ currentCodeBuffer, sourceContext }) {
 
             if (node.type === "codeGen") {
                 node["line"] = line;
-                node["uuid"] = crypto.randomUUID();
             }
         }
 
         return {
             showText,
-            processedBuffer: currentCodeBuffer,
-            widgets
+            contextedBuffer: currentCodeBuffer,
         };
     }
 
-    const { showText, processedBuffer } = processBuffer(currentCodeBuffer);
-
+    const { showText, contextedBuffer } = contextMaker(currentCodeBuffer);
+    let finalText = "";
     const editorRef = useRef(null);
 
-    let finalText = "";
-
     async function handleMount(editor, monaco) {
+        setLoading(true);
         // Initialise Widgets
         editorRef.current = editor;
         const lineHeight = editor.getOption(monaco.editor.EditorOption.lineHeight);
         let widgets = {};
-        for (const node of processedBuffer) {
+        for (const node of contextedBuffer) {
             if (node.type === "codeGen") {
-                editor.changeViewZones((accessor) => {
-                    let widget = new Widget(node, editor, lineHeight);
-                    widget.load();
-                    widgets[node.uuid] = widget;
-                });
+                let widget = new Widget(node, editor, lineHeight);
+                widget.load();
+                widgets[node.uuid] = widget;
             }
         }
 
         // Create final text and update widgets as you go
         let runningContext;
-        for (const node of processedBuffer) {
+        for (const node of contextedBuffer) {
             if (node.type === "text") {
                 runningContext += node.value;
             }
@@ -115,26 +118,37 @@ export default function FirstPassEditor({ currentCodeBuffer, sourceContext }) {
                     .split('\n')
                     .map((line) => node.ind + line)
                     .join('\n');
-
+                
+                    console.log(widgets)
+                    console.log(node.uuid)
                 widgets[node.uuid].update(modifiedResult);
                 runningContext += modifiedResult.replace(node.ind, ''); //first line already has a ident applied
             }
         }
 
         const finalText = runningContext;
-        console.log(finalText)
+        setLoading(false);
     }
 
     return (
-        <Editor
-            height="400px"
-            defaultLanguage="java" //TODO: Add support for perl
-            defaultValue={showText}
-            onMount={handleMount}
-            options={{
-                lineNumbers: "off", // TODO: disables all line numbers
-                minimap: { enabled: false },
-            }}
-        />
+        <div style={{width: "100%"}}>
+            <div style={{width: "100%", display: "flex", justifyContent: "center", alignItems: "center", marginBlock: "2px", height:"20px"}}>
+                First Pass 
+                {loading && <div style={{marginInlineStart: "5px"}}>
+                    <Spinner size={10} />
+                </div>}
+            </div> 
+            <Editor
+                height="400px"
+                defaultLanguage="java" 
+                defaultValue={showText}
+                onMount={handleMount}
+                options={{
+                    lineNumbers: "off", 
+                    minimap: { enabled: false },
+                    readOnly: true
+                }}
+            />
+        </div>
     );
 }
