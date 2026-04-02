@@ -12,9 +12,9 @@ export const Pane = ({ currentCodeBuffer, sourceContext, functionName }) => {
         <div style={{
             marginBlock: "5px",
             backgroundColor: "#f5f5f5",
-            borderRadius: "8px"
+            borderRadius: "8px",
         }}>
-            <div style={{ padding: "20px", width: "100%", display: "flex", justifyContent: "center" }}>
+            <div style={{ paddingBlock: "20px", width: "100%", display: "flex", justifyContent: "center" }}>
                 function {functionName}
             </div>
             <div

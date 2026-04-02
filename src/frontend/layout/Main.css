@@ -39,13 +39,11 @@ body {
 }
 
 .main-content {
-  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow-y: auto;
   height: 90%;
-  padding: 20px;
   background-color: #ecf0f1;
 }
 
@@ -94,6 +92,7 @@ body {
   text-align: center;
   cursor: pointer;
   transition: all 0.2s ease;
+  margin: 20px;
   background-color: #fafafa;
 }
 
@@ -124,10 +123,11 @@ body {
 .checker{
   display:flex;
   flex-direction: column;
-  width: 100%;
+  flex-grow: 1;
   height: 100%;
 }
 
 .pane{
   flex-grow: 1;
+  padding: 20px;
 }
