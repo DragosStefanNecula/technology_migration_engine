@@ -31,11 +31,11 @@ export class JavaCodegen {
     }
 
     _emit(value) {
-        this._emitBase({ type: "text", value: value, function: this._function });
+        this._emitBase({ shard: "text", value: value, function: this._function });
     }
 
-    _emitCodeGen(value, prompt, ind, nodeType) {
-        this._emitBase({ type: "codeGen", value: value, nodeType: nodeType, function: this._function, ind: ind, uuid: crypto.randomUUID() })
+    _emitCodeGen(value, type, ind) {
+        this._emitBase({ shard: "codeGen", value: value, type:type, function: this._function, ind: ind, uuid: crypto.randomUUID() })
     }
 
     _ind() {

@@ -1,7 +1,7 @@
 import { ipcMain } from 'electron';
 import { handleFileUpload } from './backend/handlers.js';
 import Store from 'electron-store';
-import { processNodeWithAi, processBlockWithAi } from './backend/agent/agentRequester.js';
+import { processNodeWithAi, processBlockWithAi, processTextWithAi } from './backend/agent/agentRequester.js';
 
 export function registerConnectors() {
     ipcMain.on('file-upload', (event, fileData) => {
@@ -88,6 +88,11 @@ export function registerConnectors() {
 
     ipcMain.handle('ai-process-block', async (event, sourceContext, firstPassText, selectedAgent) => {
     const result = await processBlockWithAi(sourceContext, firstPassText, selectedAgent);
+        return result;
+    });
+
+    ipcMain.handle('ai-process-text', async (event, sourceContext, finalText, selectedAgent) => {
+    const result = await processTextWithAi(sourceContext, finalText, selectedAgent);
         return result;
     });
 }

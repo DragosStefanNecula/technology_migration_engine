@@ -12,6 +12,9 @@ contextBridge.exposeInMainWorld('aiAPI', {
     },
     secondPassGenAi: async (sourceContext, firstPassText, selectedAgent) => {
         return await ipcRenderer.invoke('ai-process-block', sourceContext, firstPassText, selectedAgent);
+    },
+    hotTipGenAi: async (sourceContext, finalText, selectedAgent) => {
+        return await ipcRenderer.invoke('ai-process-text', sourceContext, finalText, selectedAgent);
     }
 });
 

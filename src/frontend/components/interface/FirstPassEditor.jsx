@@ -71,12 +71,12 @@ export default function FirstPassEditor({ currentCodeBuffer, sourceContext, setF
         const countNewlines = (str) => (str.match(/\n/g) || []).length;
 
         for (const node of currentCodeBuffer) {
-            if (node.type === "text") {
+            if (node.shard === "text") {
                 showText += node.value;
                 line += countNewlines(node.value);
             }
 
-            if (node.type === "codeGen") {
+            if (node.shard === "codeGen") {
                 node["line"] = line;
             }
         }
@@ -98,7 +98,7 @@ export default function FirstPassEditor({ currentCodeBuffer, sourceContext, setF
         const lineHeight = editor.getOption(monaco.editor.EditorOption.lineHeight);
         let widgets = {};
         for (const node of contextedBuffer) {
-            if (node.type === "codeGen") {
+            if (node.shard === "codeGen") {
                 let widget = new Widget(node, editor, lineHeight);
                 widget.load();
                 widgets[node.uuid] = widget;
@@ -108,11 +108,11 @@ export default function FirstPassEditor({ currentCodeBuffer, sourceContext, setF
         // Create final text and update widgets as you go
         let runningContext;
         for (const node of contextedBuffer) {
-            if (node.type === "text") {
+            if (node.shard === "text") {
                 runningContext += node.value;
             }
 
-            if (node.type === "codeGen") {
+            if (node.shard === "codeGen") {
                 let result = await firstPassGenAi(sourceContext, runningContext, node, selectedAgent);
                 let modifiedResult = result
                     .split('\n')
