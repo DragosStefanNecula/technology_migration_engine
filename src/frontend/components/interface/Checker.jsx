@@ -3,7 +3,6 @@ import { Pane } from './Pane';
 
 const Checker = ({ code }) => {
     const buffer = code.buffer;
-    const context = code.functionContext;
     
     function groupByFunction(items) {
         const grouped = {};

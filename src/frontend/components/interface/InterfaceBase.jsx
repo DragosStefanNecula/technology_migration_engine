@@ -7,7 +7,6 @@ import MyEditor from './FirstPassEditor';
 const InterfaceBase = () => {
     const [code, setCode] = useState(null);
     return (code == null ? <FileUpload setCode={setCode} /> : <Checker code={code}/>);
-    // return <MyEditor/>
 };
 
 export default InterfaceBase; 
