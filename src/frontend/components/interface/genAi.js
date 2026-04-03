@@ -1,4 +1,9 @@
-export async function genAi(sourceContext, runningContext, node, selectedAgent){
-  const result = await window.aiAPI.genAi(sourceContext, runningContext, node, selectedAgent);
+export async function firstPassGenAi(sourceContext, runningContext, node, selectedAgent){
+  const result = await window.aiAPI.firstPassGenAi(sourceContext, runningContext, node, selectedAgent);
+  return result;
+}
+
+export async function secondPassGenAi(sourceContext, firstPassText, selectedAgent){
+  const result = await window.aiAPI.secondPassGenAi(sourceContext, firstPassText, selectedAgent);
   return result;
 }

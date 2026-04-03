@@ -1,5 +1,3 @@
-import { unknownNodePrompt } from "../agent/prompts.js";
-
 export function genJavaAst(astRoot) {
     return gen(astRoot);
 }
@@ -256,7 +254,6 @@ function gen(node) {
         return {
             type: "MethodInvocation",
             content: node.text,
-            prompt: unknownNodePrompt
         }
     }
 
@@ -394,8 +391,7 @@ function gen(node) {
         }
     }
 
-    const err = new Error(unknownNodePrompt);
-    err.name = "GenNode";
+    const err = new Error("GenNode");
     throw err;
 }
 
@@ -449,8 +445,7 @@ class JavaAstHelper {
             } catch (error) {
                 if (error.name === "TypeError") throw error;
                 return {
-                    type: error.name,
-                    prompt: error.message,
+                    type: error.message,
                     content: child.text
                 }
 

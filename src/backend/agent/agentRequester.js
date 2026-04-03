@@ -1,19 +1,22 @@
-import { systemPrompt } from "./prompts.js";
+import { processBlockWithAiPrompt, processNodeWithAiPrompt } from "./prompts.js";
 import Store from 'electron-store';
 const store = new Store();
 
 export async function processNodeWithAi(sourceContext, runningContext, node, selectedAgent) {
-    const prompt = systemPrompt + node.prompt + 
-`## sourceContext
-${sourceContext}
-## runningContext
-${runningContext}
-## node
-${node.value}`
+    const prompt = processNodeWithAiPrompt(sourceContext, runningContext, node)
 
     const existingConfigs = store.get('apiConfigs', {});
     
     return await sendRequest(prompt, existingConfigs[selectedAgent]);
+}
+
+
+export async function processBlockWithAi(sourceContext, firstPassText, selectedAgent){
+    const prompt = processBlockWithAiPrompt(sourceContext, firstPassText);
+
+    const existingConfigs = store.get('apiConfigs', {});
+
+    return await sendRequest(prompt, existingConfigs[selectedAgent]); 
 }
 
 async function sendRequest(prompt, config) {

@@ -34,8 +34,8 @@ export class JavaCodegen {
         this._emitBase({ type: "text", value: value, function: this._function });
     }
 
-    _emitCodeGen(value, prompt, ind) {
-        this._emitBase({ type: "codeGen", value: value, prompt: prompt, function: this._function, ind: ind, uuid: crypto.randomUUID() })
+    _emitCodeGen(value, prompt, ind, nodeType) {
+        this._emitBase({ type: "codeGen", value: value, nodeType: nodeType, function: this._function, ind: ind, uuid: crypto.randomUUID() })
     }
 
     _ind() {
@@ -302,7 +302,7 @@ export class JavaCodegen {
     // Arrays & Hashes
 
     MethodInvocation(node) {
-        this._emitCodeGen(node.content, node.prompt, this._ind())
+        this._emitCodeGen(node.content, node.type, this._ind())
     }
 
     ArrayDeclaration(node) {
@@ -397,6 +397,6 @@ export class JavaCodegen {
     // Gen Logic
 
     GenNode(node) {
-        this._emitCodeGen(node.content, node.prompt, this._ind());
+        this._emitCodeGen(node.content, node.type, this._ind());
     }
 }

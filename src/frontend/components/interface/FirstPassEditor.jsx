@@ -2,7 +2,7 @@ import Editor from "@monaco-editor/react";
 import React from "react";
 import { useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
-import { genAi } from "./genAi";
+import { firstPassGenAi } from "./genAi";
 import { useAppContext } from "../../renderer/renderer";
 import Spinner from "../base/Spinner";
 
@@ -32,37 +32,37 @@ class Widget {
 
     load() {
         this.root.render(
-        <div style={{display: "flex", alignItems: "center"}}>
-            <span style={{marginInlineEnd: "5px"}}>
-                <Spinner size={10} />
-            </span> 
-            LOADING
-        </div>);
+            <div style={{ display: "flex", alignItems: "center" }}>
+                <span style={{ marginInlineEnd: "5px" }}>
+                    <Spinner size={10} />
+                </span>
+                LOADING
+            </div>);
     }
 
     update(text) {
-       this.root.render(<div style={{ whiteSpace: "pre" }}>{text}</div>);
+        this.root.render(<div style={{ whiteSpace: "pre" }}>{text}</div>);
 
         const lineCount = text.split("\n").length;
 
         const newHeight = lineCount * this.lineHeight;
-        
+
         this.editor.changeViewZones((accessor) => {
             accessor.removeZone(this.zoneId);
             this.zoneId = accessor.addZone({
                 afterLineNumber: this.codeBlock.line,
                 heightInPx: newHeight,
                 domNode: this.container,
-            });    
+            });
         });
     }
 }
 
-export default function FirstPassEditor({ currentCodeBuffer, sourceContext, setFirstPassText,  isVisible }) {
+export default function FirstPassEditor({ currentCodeBuffer, sourceContext, setFirstPassText, isVisible }) {
 
     const { selectedAgent, setSelectedAgent } = useAppContext();
 
-    const [loading, setLoading] = useState(false); 
+    const [loading, setLoading] = useState(false);
 
     function contextMaker(currentCodeBuffer) {
         let showText = "";
@@ -113,7 +113,7 @@ export default function FirstPassEditor({ currentCodeBuffer, sourceContext, setF
             }
 
             if (node.type === "codeGen") {
-                let result = await genAi(sourceContext, runningContext, node, selectedAgent);
+                let result = await firstPassGenAi(sourceContext, runningContext, node, selectedAgent);
                 let modifiedResult = result
                     .split('\n')
                     .map((line) => node.ind + line)
@@ -125,25 +125,24 @@ export default function FirstPassEditor({ currentCodeBuffer, sourceContext, setF
 
         const finalText = runningContext;
         setFirstPassText(finalText);
-        console.log("yes")
         setLoading(false);
     }
 
     return (
-        <div style={{width: "100%", display: isVisible ? "block" : "none"}}>
-            <div style={{width: "100%", display: "flex", justifyContent: "center", alignItems: "center", marginBlock: "2px", height:"20px"}}>
-                First Pass 
-                {loading && <div style={{marginInlineStart: "5px"}}>
+        <div style={{ width: "100%", display: isVisible ? "block" : "none" }}>
+            <div style={{ width: "100%", display: "flex", justifyContent: "center", alignItems: "center", marginBlock: "2px", height: "20px" }}>
+                First Pass
+                {loading && <div style={{ marginInlineStart: "5px" }}>
                     <Spinner size={10} />
                 </div>}
-            </div> 
+            </div>
             <Editor
                 height="400px"
-                defaultLanguage="java" 
+                defaultLanguage="java"
                 defaultValue={showText}
                 onMount={handleMount}
                 options={{
-                    lineNumbers: "off", 
+                    lineNumbers: "off",
                     minimap: { enabled: false },
                     readOnly: true
                 }}

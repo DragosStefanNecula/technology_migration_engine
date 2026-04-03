@@ -8,6 +8,7 @@ import LastPassEditor from './LastPassEditor';
 import SelectionButtons from './SelectionButtons';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import TextHelper from './TextHelper';
 
 export const Pane = ({ currentCodeBuffer, sourceContext, functionName }) => {
 
@@ -53,8 +54,9 @@ export const Pane = ({ currentCodeBuffer, sourceContext, functionName }) => {
             backgroundColor: "#f5f5f5",
             borderRadius: "8px",
         }}>
-            <div style={{ paddingBlock: "20px", width: "100%", display: "flex", justifyContent: "center" }}>
+            <div style={{ paddingBlock: "20px", width: "100%", display: "flex", flexDirection: "column", alignItems: "center" }}>
                 function {functionName}
+                {finalPassText !== null ? <TextHelper sourceContext={sourceContext} finalPassText={finalPassText}/> : <></>}
             </div>
             {/* TODO: <TextHelper/> on top */}
             <div
