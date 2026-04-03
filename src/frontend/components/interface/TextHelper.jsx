@@ -50,7 +50,7 @@ export const TextHelper = ({ sourceContext, finalPassText }) => {
                             cursor: 'default',
                         }}
                     >
-                        {firstSentence}<b>Hover for more information.</b>
+                        <b>Hover for more information. </b>{firstSentence}
                     </div>
                 </SmartTooltip>
             ) : (
