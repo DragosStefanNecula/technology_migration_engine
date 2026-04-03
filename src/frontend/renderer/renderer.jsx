@@ -7,10 +7,11 @@ const AppContext = createContext();
 const AppProvider = ({ children }) => {
     const [selectedAgent, setSelectedAgent] = useState(null);
     const [mode, setMode] = useState("1stPass");
+    const [output, setOutput] = useState(null);
 
     return (
         <AppContext.Provider
-            value={{ selectedAgent, setSelectedAgent, mode, setMode }}
+            value={{ selectedAgent, setSelectedAgent, mode, setMode, output, setOutput }}
         >
             {children}
         </AppContext.Provider>

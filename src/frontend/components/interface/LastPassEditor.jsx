@@ -1,7 +1,10 @@
 import React from 'react';
 import { Editor } from '@monaco-editor/react';
 
-export const LastPassEditor = ({finalPassText}) => {
+export const LastPassEditor = ({finalPassText, setFinalPassText}) => {
+  const handleEditorChange = (value) => {
+    setFinalPassText(value);
+  };
   return (
     <div style={{width: "100%"}}>
         <div style={{width: "100%", display: "flex", justifyContent: "center", alignItems: "center", marginBlock: "2px", height:"20px"}}>
@@ -10,7 +13,8 @@ export const LastPassEditor = ({finalPassText}) => {
         <Editor
             height="400px"
             defaultLanguage="java" 
-            defaultValue={finalPassText}
+            value={finalPassText}
+            onChange={handleEditorChange}
             options={{
                 lineNumbers: "off", 
                 minimap: { enabled: false },

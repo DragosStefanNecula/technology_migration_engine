@@ -10,7 +10,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import TextHelper from './TextHelper';
 
-export const Pane = ({ currentCodeBuffer, sourceContext, functionName }) => {
+export const Pane = ({ currentCodeBuffer, sourceContext, functionName, onFinalText }) => {
 
     const { mode, setMode } = useAppContext();
 
@@ -45,8 +45,13 @@ export const Pane = ({ currentCodeBuffer, sourceContext, functionName }) => {
         {
             setFinalPassText(secondPassText);
         }
-        console.log(finalPassText)
     }
+
+    useEffect(() =>
+    {
+        if(finalPassText===null) return;
+        onFinalText(functionName, finalPassText); 
+    }, [finalPassText]); 
 
     return (
         <div style={{
@@ -89,7 +94,7 @@ export const Pane = ({ currentCodeBuffer, sourceContext, functionName }) => {
                     </> 
                     : 
                     <>
-                        <LastPassEditor finalPassText={finalPassText}/>
+                        <LastPassEditor finalPassText={finalPassText} setFinalPassText={setFinalPassText}/>
                     </>
                 }
             </div>
