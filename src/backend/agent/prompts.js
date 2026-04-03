@@ -39,7 +39,8 @@ const textOutput =
 - Return the processed result as plain text.
 - Don't include any backticks or quotes.
 - Don't include any symbols used for formatting such as * or others.
-- Keep to about 5 paragraphs at most.
+- Keep to about 5 nunmbered bulletpoints at most, with space between them.
+- The first line is a short summary.
 - If the task cannot be completed, return: ERROR: <reason>`
 
 const outputPrompt = {
