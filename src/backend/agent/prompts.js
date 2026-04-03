@@ -38,6 +38,8 @@ const textOutput =
 `## Output
 - Return the processed result as plain text.
 - Don't include any backticks or quotes.
+- Don't include any symbols used for formatting such as * or others.
+- Keep to about 5 paragraphs at most.
 - If the task cannot be completed, return: ERROR: <reason>`
 
 const outputPrompt = {
