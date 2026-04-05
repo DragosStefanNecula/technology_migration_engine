@@ -5,6 +5,7 @@ import { createRoot } from "react-dom/client";
 import { firstPassGenAi } from "./genAi";
 import { useAppContext } from "../../renderer/renderer";
 import Spinner from "../base/Spinner";
+import { SmartTooltip } from "../base/SmartTooltip";
 
 class Widget {
     container = document.createElement("div");
@@ -40,15 +41,44 @@ class Widget {
             </div>);
     }
 
-    update(text) {
-        this.root.render(<div style={{ whiteSpace: "pre" }}>{text}</div>);
+    update(text, context) {
+        let visible = false;
 
-        const lineCount = text.split("\n").length;
+        const render = () => {
+            this.root.render(
+                <SmartTooltip content={context} open={visible}>
+                    <div style={{ whiteSpace: "pre" }}>{text}</div>
+                </SmartTooltip>
+            );
+        };
 
-        const newHeight = lineCount * this.lineHeight;
+        render();
+
+        if (!this._listenersAttached) {
+            this._listenersAttached = true;
+
+            this._mouseListener = this.editor.onMouseMove((e) => {
+                const isInZone = e.target.position?.lineNumber === this.codeBlock.line;
+
+                if (isInZone !== visible) {
+                    visible = isInZone;
+                    render();
+                }
+            });
+
+            this.editor.getDomNode().addEventListener("mouseleave", () => {
+                if (visible) {
+                    visible = false;
+                    render();
+                }
+            });
+        }
+
+        const newHeight = text.split("\n").length * this.lineHeight;
 
         this.editor.changeViewZones((accessor) => {
-            accessor.removeZone(this.zoneId);
+            if (this.zoneId) accessor.removeZone(this.zoneId);
+
             this.zoneId = accessor.addZone({
                 afterLineNumber: this.codeBlock.line,
                 heightInPx: newHeight,
@@ -118,7 +148,7 @@ export default function FirstPassEditor({ currentCodeBuffer, sourceContext, setF
                     .split('\n')
                     .map((line) => node.ind + line)
                     .join('\n');
-                widgets[node.uuid].update(modifiedResult);
+                widgets[node.uuid].update(modifiedResult, node.value);
                 runningContext += modifiedResult.replace(node.ind, ''); //first line already has a ident applied
             }
         }
