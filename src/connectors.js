@@ -1,12 +1,28 @@
-import { ipcMain } from 'electron';
+import { ipcMain, dialog } from 'electron';
 import { handleFileUpload } from './backend/handlers.js';
 import Store from 'electron-store';
 import { processNodeWithAi, processBlockWithAi, processTextWithAi } from './backend/agent/agentRequester.js';
+import fs from 'fs';
 
 export function registerConnectors() {
     ipcMain.on('file-upload', (event, fileData) => {
         const { name, content } = fileData;
         event.sender.send('set-value', handleFileUpload(content));
+    });
+
+    ipcMain.handle('save-java-file', async (event, content) => {
+        const { cancelled, filePath } = await dialog.showSaveDialog({
+            title: 'Save Java File',
+            defaultPath: 'Functions.java',
+            filters: [
+                { name: 'Java Files', extensions: ['java'] }
+            ]
+        });
+
+        if (cancelled || !filePath) return;
+
+        fs.writeFileSync(filePath, content, 'utf-8');
+        return filePath;
     });
 
     const store = new Store();
