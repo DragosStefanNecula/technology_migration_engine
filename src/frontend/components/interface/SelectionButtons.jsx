@@ -14,11 +14,11 @@ export const SelectionButtons = ({ setCurrentView, currentView, onConfirm, first
                     selected={currentView === "1stPass"}
                     onClick={() => setCurrentView("1stPass")}>1st Pass</Button>
                 <Button style={{ marginBlock: "2px" }}
-                    clickable={firstPass}
+                    clickable={firstPass} reason="Please wait for the first pass to finish."
                     selected={currentView === "2ndPass"}
                     onClick={() => setCurrentView("2ndPass")}>2nd Pass</Button>
                 <Button style={{ marginBlock: "2px" }} variant={"green"}
-                    clickable={secondPass}
+                    clickable={secondPass} reason="Please wait for the second pass to finish."
                     onClick={onConfirm}>Confirm</Button>
             </div>
         </div>
