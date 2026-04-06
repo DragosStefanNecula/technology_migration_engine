@@ -1,16 +1,25 @@
 import React from "react";
 import AgentBar from "../components/agent/AgentBar";
 import { ModeSelect } from "../components/base/ModeSelect";
+import { useAppContext } from "../renderer/renderer";
+import LockedSelections from "../components/navbar/LockedSelections";
+import Button from "../components/base/Button";
 
 export default function Navbar() {
+    const { processing, setProcessing, mode, selectedAgent } = useAppContext();
     return (
         <nav className="navbar">
             <div className="navbar-left">
                 <h2>Technology Migration Engine</h2>
             </div>
             <ul className="navbar-right">
-                <ModeSelect />
-                <AgentBar />
+                {!processing ? (<>
+                    <ModeSelect />
+                    <AgentBar />
+                </>):(<>
+                    <LockedSelections mode={mode} agent={selectedAgent}/>
+                    <Button onClick={() => {setProcessing(false)}}>Reset</Button>
+                </>)} 
             </ul>
         </nav>
     );

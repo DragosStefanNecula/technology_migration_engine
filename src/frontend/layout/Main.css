@@ -132,3 +132,27 @@ body {
   padding-inline: 20px;
   padding-block: 5px;
 }
+
+/* LockedSelections */
+
+.info-table {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 6px 12px;
+  padding: 8px 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background-color: #fafafa;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 14px;
+  width: fit-content;
+}
+
+.label {
+  font-weight: 600;
+  color: #555;
+}
+
+.value {
+  color: #222;
+}

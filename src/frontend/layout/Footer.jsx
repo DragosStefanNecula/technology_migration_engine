@@ -6,10 +6,13 @@ import ExportJavaButton from "../components/interface/ExportButton";
 
 export default function Footer() {
     const { output, setOutput } = useAppContext();
+    const { processing } = useAppContext();
     
     return (
         <nav className="navbar">
-            <ExportJavaButton content={output}/>
+            {processing === true ? (<>
+                <ExportJavaButton content={output}/>
+            </>):(<></>)} 
         </nav>
     );
 }

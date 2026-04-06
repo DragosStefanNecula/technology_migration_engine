@@ -1,8 +1,10 @@
 import React, { useRef, useEffect, useState } from "react";
+import { useAppContext } from "../../renderer/renderer";
 
 export default function FileUpload({ setCode }) {
     const fileInputRef = useRef(null);
     const [isDragging, setIsDragging] = useState(false);
+    const { processing, setProcessing } = useAppContext();
 
     globalThis.electronAPI.sendReady();
 
@@ -32,6 +34,7 @@ export default function FileUpload({ setCode }) {
         if (globalThis.electronAPI) {
             globalThis.electronAPI.onSetValue((_, value) => {
                 setCode(value);
+                setProcessing(true);
             });
         }
     }, []);
