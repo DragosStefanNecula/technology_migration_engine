@@ -6,51 +6,22 @@ export default function Button({
     clickable = true,
     style = {}
 }) {
-    const variants = {
-        green: {
-            background: "#22c55e",
-            color: "white",
-            border: "1px solid #16a34a"
-        },
-        red: {
-            background: "#ef4444",
-            color: "white",
-            border: "1px solid #dc2626"
-        },
-        yellow: {
-            background: "#facc15",
-            color: "#333",
-            border: "1px solid #eab308"
-        },
-        white: {
-            background: "white",
-            color: "#333",
-            border: "1px solid #ddd"
-        }
-    };
-
     const isInteractive = !disabled && clickable;
 
-    const nonClickableStyle = !clickable
-        ? {
-              filter: "grayscale(40%)",
-              opacity: 0.6,
-              cursor: "not-allowed",
-              boxShadow: "none",
-              border: "1px dashed #bbb"
-          }
-        : {};
+    const classNames = [
+        "button-base",
+        "button",
+        `button-${variant}`,          
+        !clickable && "button-static",
+        disabled && "button-disabled" 
+    ].filter(Boolean).join(" ");
 
     return (
         <button
             onClick={isInteractive ? onClick : undefined}
             disabled={disabled}
-            style={{
-                ...variants[variant],
-                ...nonClickableStyle,
-                ...style
-            }}
-            className="button-base"
+            style={style}
+            className={classNames}
             onMouseEnter={e => {
                 if (isInteractive) {
                     e.currentTarget.style.transform = "translateY(-1px)";
