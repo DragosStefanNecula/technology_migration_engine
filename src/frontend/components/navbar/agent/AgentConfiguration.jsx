@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
 
-
-
 export default function AgentConfiguration({ config, setConfig }) {
 
     const updateField = (field, value) => setConfig(prev => ({ ...prev, [field]: value }))

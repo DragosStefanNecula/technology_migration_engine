@@ -1,9 +1,11 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
+
 import AgentPicker from "./AgentPicker";
 import AgentAdd from "./AgentAdd";
 import AgentEdit from "./AgentEdit";
-import { useState, useEffect } from 'react';
-import { useAppContext } from '../../renderer/renderer';
+
+import { useAppContext } from '../../../renderer/renderer';
 
 const AgentBar = () => {
     const { selectedAgent, setSelectedAgent } = useAppContext();

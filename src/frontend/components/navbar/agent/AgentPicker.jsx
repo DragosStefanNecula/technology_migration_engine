@@ -1,5 +1,5 @@
 import React from 'react';
-import Select from '../base/Select';
+import Select from '../../base/Select';
 
 const AgentPicker = ({ options, selectedAgent, setSelectedAgent }) => {
 

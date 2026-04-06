@@ -1,12 +1,14 @@
 import React from 'react';
-import Button from '../base/Button';
-import FloatingWindow from '../base/FloatingWindow';
 import { useState } from 'react';
-import AgentConfiguration from './AgentConfiguration';
-import Select from '../base/Select';
 import { useEffect } from 'react';
-import DeleteModal from '../base/DeleteModal';
-import Divider from '../base/Divider';
+
+import AgentConfiguration from './AgentConfiguration';
+
+import Button from '../../base/Button';
+import FloatingWindow from '../../base/FloatingWindow';
+import Select from '../../base/Select';
+import DeleteModal from '../../base/DeleteModal';
+import Divider from '../../base/Divider';
 
 const AgentEdit = ({ options, selectedAgent, setSelectedAgent, triggerReloadAgents }) => {
     const [open, setOpen] = useState(false);
