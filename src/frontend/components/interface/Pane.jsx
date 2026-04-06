@@ -89,7 +89,8 @@ export const Pane = ({ currentCodeBuffer, sourceContext, functionName, onFinalTe
                             />
                         }
                         {mode === "1stPass" && 
-                            <SelectionButtons setCurrentView={setCurrentView} onConfirm={handleConfirm} firstPass={firstPassText!==null} secondPass={secondPassText != null}/>
+                            <SelectionButtons setCurrentView={setCurrentView} currentView={currentView} 
+                            onConfirm={handleConfirm} firstPass={firstPassText!==null} secondPass={secondPassText != null}/>
                         }
                     </> 
                     : 
