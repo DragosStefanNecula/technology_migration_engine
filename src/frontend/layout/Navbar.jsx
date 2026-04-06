@@ -1,6 +1,6 @@
 import React from "react";
-import AgentBar from "../components/agent/AgentBar";
-import { ModeSelect } from "../components/base/ModeSelect";
+import AgentBar from "../components/navbar/agent/AgentBar";
+import { ModeSelect } from "../components/navbar/ModeSelect";
 import { useAppContext } from "../renderer/renderer";
 import LockedSelections from "../components/navbar/LockedSelections";
 import Button from "../components/base/Button";

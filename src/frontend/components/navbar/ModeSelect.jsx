@@ -1,5 +1,5 @@
 import { useAppContext } from "../../renderer/renderer";
-import Button from "./Button";
+import Button from "../base/Button";
 
 export const ModeSelect = () => {
     const { mode, setMode } = useAppContext();

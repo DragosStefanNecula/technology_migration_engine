@@ -1,12 +1,12 @@
 
 import React from 'react';
-import Button from '../base/Button';
-import FloatingWindow from '../base/FloatingWindow';
+import Button from '../../base/Button';
+import FloatingWindow from '../../base/FloatingWindow';
 import { useState } from 'react';
 import AgentConfiguration from './AgentConfiguration';
 import { agentTemplates } from "./AgentTemplates";
-import Select from '../base/Select';
-import Divider from '../base/Divider';
+import Select from '../../base/Select';
+import Divider from '../../base/Divider';
 
 const AgentAdd = ({ triggerReloadAgents }) => {
     const [open, setOpen] = useState(false);
