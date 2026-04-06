@@ -5,6 +5,7 @@ export default function Button({
     onClick,
     variant = "white",
     disabled = false,
+    selected = false,
     clickable = true,
     reason,
     style = {}
@@ -16,7 +17,8 @@ export default function Button({
         "button",
         `button-${variant}`,          
         !clickable && "button-static",
-        disabled && "button-disabled" 
+        disabled && "button-disabled",
+        selected && "button-selected"
     ].filter(Boolean).join(" ");
 
     return (

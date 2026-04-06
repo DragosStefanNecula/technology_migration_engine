@@ -14,14 +14,16 @@ export const ModeSelect = () => {
         <div style={{ display: "flex", gap: 8 }}>
             <Button
                 onClick={() => handleSelect("1stPass")}
-                variant={mode === "1stPass" ? "green" : "white"}
+                selected={mode === "1stPass"}
+                style={{ width: "100px" }}
             >
                 Detailed
             </Button>
 
             <Button
                 onClick={() => handleSelect("2ndPass")}
-                variant={mode === "2ndPass" ? "green" : "white"}
+                selected={mode === "2ndPass"}
+                style={{ width: "100px" }}
             >
                 Full Pass
             </Button>
