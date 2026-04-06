@@ -8,10 +8,10 @@ export default function FileUpload({ setCode }) {
 
     globalThis.electronAPI.sendReady();
 
-    const handleDrop = (e) => {
+    const handleDrop = async (e) => {
         e.preventDefault();
         setIsDragging(false);
-        handleFileChange(e.dataTransfer.files);
+        handleFileChange(e.dataTransfer.files[0]);
     };
 
     const handleDragOver = (e) => {
