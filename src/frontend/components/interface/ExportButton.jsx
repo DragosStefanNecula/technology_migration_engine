@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from '../base/Button';
 
 const ExportJavaButton = ({ content }) => {
     const handleClick = async () => {
@@ -13,9 +14,9 @@ const ExportJavaButton = ({ content }) => {
     };
 
     return (
-        <button onClick={handleClick}>
+        <Button onClick={handleClick} clickable={content!=null} reason={"First confirm between first pass and second pass in all panes."}>
             Export as .java
-        </button>
+        </Button>
     );
 };
 

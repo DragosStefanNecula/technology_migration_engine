@@ -5,6 +5,7 @@ export function SmartTooltip({
   type = "hover",   
   open: controlledOpen,
   onOpenChange,
+  disabled = false, 
   children,
   content,
   ...props
@@ -14,14 +15,16 @@ export function SmartTooltip({
 
   const [internalOpen, setInternalOpen] = React.useState(false)
 
-  const open = isManual
+  const open = disabled
+    ? false
+    : isManual
     ? controlledOpen ?? false
     : isControlled
     ? controlledOpen
     : internalOpen
 
   const handleOpenChange = (nextOpen) => {
-    if (isManual) return
+    if (disabled || isManual) return
 
     if (!isControlled) {
       setInternalOpen(nextOpen)

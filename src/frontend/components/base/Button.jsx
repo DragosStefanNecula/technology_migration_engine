@@ -1,9 +1,12 @@
+import { SmartTooltip } from "./SmartTooltip";
+
 export default function Button({
     children,
     onClick,
     variant = "white",
     disabled = false,
     clickable = true,
+    reason,
     style = {}
 }) {
     const isInteractive = !disabled && clickable;
@@ -17,21 +20,23 @@ export default function Button({
     ].filter(Boolean).join(" ");
 
     return (
-        <button
-            onClick={isInteractive ? onClick : undefined}
-            disabled={disabled}
-            style={style}
-            className={classNames}
-            onMouseEnter={e => {
-                if (isInteractive) {
-                    e.currentTarget.style.transform = "translateY(-1px)";
-                }
-            }}
-            onMouseLeave={e => {
-                e.currentTarget.style.transform = "translateY(0)";
-            }}
-        >
-            {children}
-        </button>
+        <SmartTooltip disabled={isInteractive} content={reason}>
+            <button
+                onClick={isInteractive ? onClick : undefined}
+                disabled={disabled}
+                style={style}
+                className={classNames}
+                onMouseEnter={e => {
+                    if (isInteractive) {
+                        e.currentTarget.style.transform = "translateY(-1px)";
+                    }
+                }}
+                onMouseLeave={e => {
+                    e.currentTarget.style.transform = "translateY(0)";
+                }}
+            >
+                {children}
+            </button>
+        </SmartTooltip> 
     );
 }
