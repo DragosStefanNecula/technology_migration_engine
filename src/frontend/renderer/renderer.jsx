@@ -5,7 +5,9 @@ import Main from "../layout/Main";
 const AppContext = createContext();
 
 const AppProvider = ({ children }) => {
-    const [selectedAgent, setSelectedAgent] = useState(null);
+    const [selectedAgent, setSelectedAgent] = useState(() => {
+        return localStorage.getItem("selectedAgent") || null;
+    })
     const [mode, setMode] = useState(() => {
         return localStorage.getItem("mode") || "1stPass";
     });

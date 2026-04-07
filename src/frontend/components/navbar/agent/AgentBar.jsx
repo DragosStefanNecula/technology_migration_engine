@@ -10,6 +10,10 @@ import { useAppContext } from '../../../renderer/renderer';
 const AgentBar = () => {
     const { selectedAgent, setSelectedAgent } = useAppContext();
 
+    useEffect(() => {
+        localStorage.setItem("selectedAgent", selectedAgent);
+    }, [selectedAgent]);
+
     const [options, setOptions] = useState([]);
     const [reloadAgentsFlag, setReloadAgentsFlag] = useState(false);
 
