@@ -1,12 +1,14 @@
 import { createRoot } from "react-dom/client";
-import { createContext, useContext, useState } from "react";
+import { useEffect, createContext, useContext, useState } from "react";
 import Main from "../layout/Main";
 
 const AppContext = createContext();
 
 const AppProvider = ({ children }) => {
     const [selectedAgent, setSelectedAgent] = useState(null);
-    const [mode, setMode] = useState("1stPass");
+    const [mode, setMode] = useState(() => {
+        return localStorage.getItem("mode") || "1stPass";
+    });
     const [output, setOutput] = useState(null);
     const [processing, setProcessing] = useState(false);
 

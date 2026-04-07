@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useAppContext } from "../../renderer/renderer";
 import Button from "../base/Button";
 import { SmartTooltip } from "../base/SmartTooltip";
@@ -10,6 +11,10 @@ export const ModeSelect = () => {
             setMode(newMode);
         }
     };
+
+    useEffect(() => {
+        localStorage.setItem("mode", mode);
+    }, [mode]);
 
     return (
         <div style={{ display: "flex", gap: 8 }}>
