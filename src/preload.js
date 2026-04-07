@@ -3,6 +3,7 @@ import { contextBridge, ipcRenderer } from "electron";
 contextBridge.exposeInMainWorld("electronAPI", {
     sendReady: () => ipcRenderer.send("renderer-ready"),
     onSetValue: (callback) => ipcRenderer.on("set-value", callback),
+    onFileUploadError: (callback) => ipcRenderer.on("file-upload-error", callback),
     uploadFile: (fileData) => ipcRenderer.send("file-upload", fileData),
     saveJavaFile: (content) => ipcRenderer.invoke('save-java-file', content)
 });

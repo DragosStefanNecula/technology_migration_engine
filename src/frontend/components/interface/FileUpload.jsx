@@ -4,7 +4,8 @@ import { useAppContext } from "../../renderer/renderer";
 export default function FileUpload({ setCode }) {
     const fileInputRef = useRef(null);
     const [isDragging, setIsDragging] = useState(false);
-    const { processing, setProcessing } = useAppContext();
+    const [uploadError, setUploadError] = useState("");
+    const { setProcessing } = useAppContext();
 
     globalThis.electronAPI.sendReady();
 
@@ -33,16 +34,21 @@ export default function FileUpload({ setCode }) {
     useEffect(() => {
         if (globalThis.electronAPI) {
             globalThis.electronAPI.onSetValue((_, value) => {
+                setUploadError("");
                 setCode(value);
                 setProcessing(true);
+            });
+            globalThis.electronAPI.onFileUploadError(() => {
+                setUploadError("Couldn't process the file. Can you try another?");
             });
         }
     }, []);
 
     const handleFileChange = async (file) => {
         if (!file) return;
+        setUploadError("");
         const content = await file.text();
-        globalThis.electronAPI.uploadFile({ name: file.name, content: content });
+        globalThis.electronAPI.uploadFile({ name: file.name, content });
     };
 
     const handleChange = async (e) => {
@@ -69,6 +75,7 @@ export default function FileUpload({ setCode }) {
                 <p className="upload-text">
                     Drag & drop files anywhere or <span>click to upload</span>
                 </p>
+                {uploadError && <p className="field-error-text">{uploadError}</p>}
             </div>
         </div>
     );

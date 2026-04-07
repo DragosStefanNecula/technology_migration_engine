@@ -6,8 +6,14 @@ import fs from 'fs';
 
 export function registerConnectors() {
     ipcMain.on('file-upload', (event, fileData) => {
-        const { name, content } = fileData;
-        event.sender.send('set-value', handleFileUpload(content));
+        const { content } = fileData;
+        try {
+            const processedValue = handleFileUpload(content);
+            event.sender.send('set-value', processedValue);
+        } catch (error) {
+            const message = error instanceof Error ? error.message : String(error);
+            event.sender.send('file-upload-error', message);
+        }
     });
 
     ipcMain.handle('save-java-file', async (event, content) => {
