@@ -17,15 +17,19 @@ const AgentEdit = ({ options, selectedAgent, setSelectedAgent, triggerReloadAgen
     const [getConfirmation, setGetConfirmation] = useState(false);
     const [config, setConfig] = useState(null);
     const [errors, setErrors] = useState({ name: "", requestBody: "", responsePath: "" });
+    const [apiError, setApiError] = useState("");
 
     useEffect(() => {
         if (!selectedAgent || open === false) return;
 
         const loadConfig = async () => {
+            setApiError("");
             try {
                 const loaded = await window.apiStore.getApiConfig(selectedAgent);
                 setConfig(loaded);
             } catch (err) {
+                const message = err?.message || `Failed to load config for ${selectedAgent}.`;
+                setApiError(message);
                 console.error(`Failed to load config for ${selectedAgent}:`, err);
                 setConfig(null);
             }
@@ -44,8 +48,11 @@ const AgentEdit = ({ options, selectedAgent, setSelectedAgent, triggerReloadAgen
     }, [config, options, selectedAgent]);
 
     const handleEdit = async () => {
+        setApiError("");
         if (!selectedAgent) {
-            console.error("No agent selected to edit");
+            const message = "No agent selected to edit.";
+            setApiError(message);
+            console.error(message);
             return;
         }
 
@@ -65,31 +72,40 @@ const AgentEdit = ({ options, selectedAgent, setSelectedAgent, triggerReloadAgen
         try {
             const response = await window.apiStore.editApiConfig(selectedAgent, apiConfigObject);
             console.log(`API config "${response.name}" edited successfully.`);
+            setApiError("");
 
             triggerReloadAgents();
             if (selectedAgent !== apiConfigObject.name) {
                 setSelectedAgent(apiConfigObject.name);
             }
         } catch (err) {
-            console.error("Failed to edit config:", err.message);
+            const message = err?.message || "Failed to save agent changes. Please try again.";
+            setApiError(message);
+            console.error("Failed to edit config:", message);
         }
     };
 
     const handleDelete = async () => {
+        setApiError("");
         if (!selectedAgent) {
-            console.error("No agent selected to delete");
+            const message = "No agent selected to delete.";
+            setApiError(message);
+            console.error(message);
             return;
         }
 
         try {
             const response = await window.apiStore.deleteApiConfig(selectedAgent);
             console.log(`API config "${response.name}" deleted successfully.`);
+            setApiError("");
 
             setGetConfirmation(false);
             setSelectedAgent("");
             triggerReloadAgents();
         } catch (err) {
-            console.error("Failed to delete config:", err.message);
+            const message = err?.message || "Failed to delete agent. Please try again.";
+            setApiError(message);
+            console.error("Failed to delete config:", message);
         }
     };
 
@@ -129,6 +145,11 @@ const AgentEdit = ({ options, selectedAgent, setSelectedAgent, triggerReloadAgen
                     {hasValidationErrors(errors) && (
                         <span style={{ color: "red", fontSize: "0.9em", marginRight: "10px" }}>
                             Please fix the highlighted form errors.
+                        </span>
+                    )}
+                    {apiError && (
+                        <span style={{ color: "red", fontSize: "0.9em", marginRight: "10px" }}>
+                            {apiError}
                         </span>
                     )}
 

@@ -15,6 +15,7 @@ import FloatingWindow from '../../base/FloatingWindow';
 const AgentAdd = ({ options, triggerReloadAgents }) => {
     const [open, setOpen] = useState(false);
     const [errors, setErrors] = useState({ name: "", requestBody: "", responsePath: "" });
+    const [apiError, setApiError] = useState("");
 
     function cloneAgentConfig(config) {
         return {
@@ -32,6 +33,7 @@ const AgentAdd = ({ options, triggerReloadAgents }) => {
     }, [config, options]);
 
     const handleSubmit = async () => {
+        setApiError("");
         const nextErrors = validateAgentConfig({ config, options });
         setErrors(nextErrors);
         if (hasValidationErrors(nextErrors)) {
@@ -52,9 +54,12 @@ const AgentAdd = ({ options, triggerReloadAgents }) => {
             triggerReloadAgents();
             setConfig(cloneAgentConfig(agentTemplates[0]));
             setOpen(false);
+            setApiError("");
             console.log(`API config "${response.name}" saved successfully.`);
         } catch (err) {
-            console.error(err.message);
+            const message = err?.message || "Failed to save agent. Please try again.";
+            setApiError(message);
+            console.error(message);
         }
     };
 
@@ -104,6 +109,11 @@ const AgentAdd = ({ options, triggerReloadAgents }) => {
                     {hasValidationErrors(errors) && (
                         <span style={{ color: "red", fontSize: "0.9em", marginRight: "10px" }}>
                             Please fix the highlighted form errors.
+                        </span>
+                    )}
+                    {apiError && (
+                        <span style={{ color: "red", fontSize: "0.9em", marginRight: "10px" }}>
+                            {apiError}
                         </span>
                     )}
 
