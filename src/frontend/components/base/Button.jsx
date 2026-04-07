@@ -8,6 +8,7 @@ export default function Button({
     selected = false,
     clickable = true,
     reason,
+    tooltip,
     style = {}
 }) {
     const isInteractive = !disabled && clickable;
@@ -22,7 +23,7 @@ export default function Button({
     ].filter(Boolean).join(" ");
 
     return (
-        <SmartTooltip disabled={isInteractive} content={reason}>
+        <SmartTooltip disabled={isInteractive && tooltip == undefined} content={tooltip ? tooltip : reason}>
             <button
                 onClick={isInteractive ? onClick : undefined}
                 disabled={disabled}
