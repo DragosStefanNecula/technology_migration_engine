@@ -53,6 +53,7 @@ export function SmartTooltip({
                 maxWidth: "600px",
                 whiteSpace: "pre-wrap",
                 overflowWrap: "break-word",
+                zIndex: 10000,
             }}
             >
             {content}

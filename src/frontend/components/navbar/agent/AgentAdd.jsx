@@ -1,42 +1,56 @@
-
-import React from 'react';
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { agentTemplates } from "./AgentTemplates";
 import AgentConfiguration from './AgentConfiguration';
+import {
+    hasValidationErrors,
+    validateAgentConfig
+} from "./agentFormValidation";
 
 import Button from '../../base/Button';
 import Select from '../../base/Select';
 import Divider from '../../base/Divider';
 import FloatingWindow from '../../base/FloatingWindow';
 
-const AgentAdd = ({ triggerReloadAgents }) => {
+const AgentAdd = ({ options, triggerReloadAgents }) => {
     const [open, setOpen] = useState(false);
+    const [errors, setErrors] = useState({ name: "", requestBody: "", responsePath: "" });
 
-    function cloneConfig(object) {
-        return { ...object, headers: object.headers.map(h => ({ ...h })) };
+    function cloneAgentConfig(config) {
+        return {
+            ...config,
+            headers: (config?.headers || []).map((header) => ({ ...header }))
+        };
     }
-
     const [config, setConfig] = useState(() => {
         const initial = agentTemplates[0];
-        return cloneConfig(initial);
+        return cloneAgentConfig(initial);
     });
 
+    useEffect(() => {
+        setErrors(validateAgentConfig({ config, options }));
+    }, [config, options]);
 
     const handleSubmit = async () => {
+        const nextErrors = validateAgentConfig({ config, options });
+        setErrors(nextErrors);
+        if (hasValidationErrors(nextErrors)) {
+            return;
+        }
+
         const apiConfigObject = {
-            name: config.name,
-            url: config.url,
-            method: config.method,
-            headers: config.headers,
-            requestBody: config.requestBody,
-            responsePath: config.responsePath
+            name: config?.name || "",
+            url: config?.url || "",
+            method: config?.method || "GET",
+            headers: config?.headers || [],
+            requestBody: config?.requestBody || "",
+            responsePath: config?.responsePath || ""
         };
 
         try {
             const response = await window.apiStore.saveApiConfig(apiConfigObject);
             triggerReloadAgents();
-            setConfig(cloneConfig(agentTemplates[0]));
+            setConfig(cloneAgentConfig(agentTemplates[0]));
             setOpen(false);
             console.log(`API config "${response.name}" saved successfully.`);
         } catch (err) {
@@ -46,7 +60,10 @@ const AgentAdd = ({ triggerReloadAgents }) => {
 
     return (
         <>
-            <Button onClick={() => setOpen(!open)} variant="white">Add Agent</Button>
+            <Button onClick={() => setOpen(!open)} variant="white">
+                Add Agent
+            </Button>
+
             <FloatingWindow
                 open={open}
                 title="Agent Picker"
@@ -54,30 +71,47 @@ const AgentAdd = ({ triggerReloadAgents }) => {
             >
                 <FloatingWindow.Body>
                     <Select
-                        options={agentTemplates.map(agent => ({ label: agent.name, value: agent.name }))}
+                        options={agentTemplates.map(agent => ({
+                            label: agent.name,
+                            value: agent.name
+                        }))}
                         value=""
                         placeholder="Templates"
                         onChange={(e) => {
                             const agent = agentTemplates.find(a => a.name === e.target.value);
                             if (!agent) return;
 
-                            const copy = cloneConfig(agent);
-                            setConfig(copy);
-
+                            setConfig(cloneAgentConfig(agent));
                             e.target.value = "";
                         }}
                         variant="yellow"
                         style={{ display: "inline-block", width: "auto", minWidth: "150px" }}
                     />
-                    <Divider/>
-                    <AgentConfiguration config={config} setConfig={setConfig} />
+
+                    <Divider />
+
+                    <AgentConfiguration
+                        config={config}
+                        setConfig={setConfig}
+                        validationErrors={errors}
+                        templateHintsEnabled={true}
+                    />
                 </FloatingWindow.Body>
-                <FloatingWindow.Footer>
-                    <Button onClick={handleSubmit}>Save</Button>
+
+                <FloatingWindow.Footer
+                    style={{ display: "flex", alignItems: "center", gap: "10px" }}
+                >
+                    {hasValidationErrors(errors) && (
+                        <span style={{ color: "red", fontSize: "0.9em", marginRight: "10px" }}>
+                            Please fix the highlighted form errors.
+                        </span>
+                    )}
+
+                    <Button onClick={handleSubmit} clickable={!hasValidationErrors(errors)} reason="Please fix the highlighted form errors.">Save</Button>
                 </FloatingWindow.Footer>
             </FloatingWindow>
         </>
     );
 };
 
-export default AgentAdd; 
+export default AgentAdd;
