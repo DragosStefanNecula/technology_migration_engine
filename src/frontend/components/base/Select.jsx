@@ -5,7 +5,8 @@ export default function Select({
     value,
     onChange,
     disabled = false,
-    placeholder = "Select..."
+    placeholder = "Select...",
+    style
 }) {
 
     const showPlaceholder = value === "" || value == null;
@@ -16,6 +17,7 @@ export default function Select({
             onChange={onChange}
             disabled={disabled}
             className="button-base"
+            style={style}
         >
             {showPlaceholder && (
                 <option

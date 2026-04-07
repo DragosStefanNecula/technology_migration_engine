@@ -12,7 +12,7 @@ export default function Navbar() {
             <div className="navbar-left">
                 <h2>Technology Migration Engine</h2>
             </div>
-            <ul className="navbar-right">
+            <div className="navbar-right">
                 {!processing ? (<>
                     <ModeSelect />
                     <AgentBar />
@@ -20,7 +20,7 @@ export default function Navbar() {
                     <LockedSelections mode={mode} agent={selectedAgent}/>
                     <Button onClick={() => {setProcessing(false); setOutput(null);}}>Reset</Button>
                 </>)} 
-            </ul>
+            </div>
         </nav>
     );
 }

@@ -27,9 +27,8 @@ body {
 }
 
 .navbar-right {
-  list-style: none;
   display: flex;
-  gap: 20px;
+  gap: 5px;
   margin: 0;
   padding: 0;
 }
@@ -310,4 +309,36 @@ textarea {
 .header-item input {
     flex: 1;
     min-width: 0;
+}
+
+/* Outlined Group */
+
+.outlined-group {
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    background: transparent;
+    padding: 16px 12px 12px;
+    border-radius: 8px;
+  }
+  
+.outlined-group__content {
+    display: flex;
+    width: auto;
+    gap: 5px;
+}
+
+.outlined-group__label {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translate(-50%, -50%);
+    padding: 0 10px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(0, 0, 0, 0.9);
+    background: #ffffff;
+    border-radius: 999px;
+    white-space: nowrap;
 }

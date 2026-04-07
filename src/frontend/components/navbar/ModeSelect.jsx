@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useAppContext } from "../../renderer/renderer";
 import Button from "../base/Button";
 import { SmartTooltip } from "../base/SmartTooltip";
+import { OutlinedGroup } from "../base/OutlinedGroup";
 
 export const ModeSelect = () => {
     const { mode, setMode } = useAppContext();
@@ -17,7 +18,7 @@ export const ModeSelect = () => {
     }, [mode]);
 
     return (
-        <div style={{ display: "flex", gap: 8 }}>
+        <OutlinedGroup label="Mode">
             <Button
                 onClick={() => handleSelect("1stPass")}
                 selected={mode === "1stPass"}
@@ -37,6 +38,6 @@ The second pass is another pass over using only large language model."
             >
                 Full Pass
             </Button>
-        </div>
+        </OutlinedGroup>
     );
 };
