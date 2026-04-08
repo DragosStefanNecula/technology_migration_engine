@@ -2,10 +2,10 @@ import Editor from "@monaco-editor/react";
 import React from "react";
 import { useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
-import { firstPassGenAi } from "./genAi";
-import { useAppContext } from "../../renderer/renderer";
-import Spinner from "../base/Spinner";
-import { SmartTooltip } from "../base/SmartTooltip";
+import { firstPassGenAi } from "../genAi";
+import { useAppContext } from "../../../../renderer/renderer";
+import Spinner from "../../../base/Spinner";
+import { SmartTooltip } from "../../../base/SmartTooltip";
 import "./FirstPassEditor.css";
 
 class Widget {

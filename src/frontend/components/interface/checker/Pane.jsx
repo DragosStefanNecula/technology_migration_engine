@@ -1,10 +1,10 @@
 // TODO: remember the text editor
 import React from 'react';
-import FirstPassEditor from './FirstPassEditor';
+import FirstPassEditor from './editors/FirstPassEditor';
 import ContextViewer from './ContextViewer';
-import { useAppContext } from '../../renderer/renderer';
-import SecondPassEditor from './SecondPassEditor';
-import LastPassEditor from './LastPassEditor';
+import { useAppContext } from '../../../renderer/renderer';
+import SecondPassEditor from './editors/SecondPassEditor';
+import LastPassEditor from './editors/LastPassEditor';
 import SelectionButtons from './SelectionButtons';
 import { useState } from 'react';
 import { useEffect } from 'react';

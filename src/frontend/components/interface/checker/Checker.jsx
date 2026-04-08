@@ -1,7 +1,7 @@
 import React from 'react';
 import { Pane } from './Pane';
 import { useState, useMemo, useEffect } from 'react';
-import { useAppContext } from '../../renderer/renderer';
+import { useAppContext } from '../../../renderer/renderer';
 import "./Checker.css";
 
 const Checker = ({ code }) => {

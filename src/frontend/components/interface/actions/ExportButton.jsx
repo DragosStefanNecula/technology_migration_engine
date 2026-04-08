@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '../base/Button';
+import Button from '../../base/Button';
 
 const ExportJavaButton = ({ content }) => {
     const handleClick = async () => {

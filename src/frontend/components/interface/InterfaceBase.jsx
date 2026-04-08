@@ -1,8 +1,7 @@
 import React from 'react';
-import FileUpload from "./FileUpload";
-import Checker from './Checker';
+import FileUpload from "./upload/FileUpload";
+import Checker from './checker/Checker';
 import { useState } from 'react';
-import MyEditor from './FirstPassEditor';
 import { useAppContext } from '../../renderer/renderer';
 
 const InterfaceBase = () => {
