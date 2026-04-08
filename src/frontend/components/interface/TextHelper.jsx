@@ -3,6 +3,7 @@ import { textGenAi } from './genAi';
 import { useAppContext } from '../../renderer/renderer';
 import Spinner from '../base/Spinner';
 import { SmartTooltip } from '../base/SmartTooltip';
+import "./TextHelper.css";
 
 export const TextHelper = ({ sourceContext, finalPassText }) => {
     const [hotTip, setHotTip] = useState();
@@ -22,7 +23,6 @@ export const TextHelper = ({ sourceContext, finalPassText }) => {
         run();
     }, []);
 
-    // Split into first sentence + remainder
     const getFirstSentence = (text = '') => {
         const match = text.match(/[^.!?]+[.!?]/);
         return match ? match[0].trim() : text;
@@ -32,29 +32,15 @@ export const TextHelper = ({ sourceContext, finalPassText }) => {
     const remainingText = hotTip ? hotTip : '';
 
     return (
-        <div style={{ marginTop: '5px' }}>
+        <div className="text-helper">
             {!loading && hotTip ? (
                 <SmartTooltip content={remainingText} type="hover">
-                    <div
-                        style={{
-                            width: '400px',
-                            padding: '4px 8px',
-                            border: '1px solid #ccc',
-                            borderRadius: '6px',
-                            backgroundColor: '#f9f9f9',
-                            fontSize: '13px',
-                            lineHeight: '1.4',
-                            whiteSpace: 'nowrap',
-                            overflow: 'hidden',
-                            textOverflow: 'ellipsis',
-                            cursor: 'default',
-                        }}
-                    >
+                    <div className="text-helper__tip">
                         <b>Hover for more information. </b>{firstSentence}
                     </div>
                 </SmartTooltip>
             ) : (
-                <div style={{ fontSize: '13px' }}>
+                <div className="text-helper__loading">
                     Loading more information <Spinner size={10} />
                 </div>
             )}

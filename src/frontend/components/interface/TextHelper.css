@@ -1,0 +1,21 @@
+.text-helper {
+  margin-top: 5px;
+}
+
+.text-helper__tip {
+  width: 400px;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border: 1px solid #ccc;
+  border-radius: var(--radius-sm);
+  background-color: #f9f9f9;
+  font-size: var(--font-base);
+  line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: default;
+}
+
+.text-helper__loading {
+  font-size: var(--font-base);
+}

@@ -1,0 +1,130 @@
+.form-container {
+  max-width: 800px;
+  max-height: 40vh;
+  overflow-y: auto;
+  padding: var(--spacing-xl);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border-medium);
+  border-radius: 10px;
+  box-shadow: var(--shadow-sm);
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-container label {
+  font-size: var(--font-base);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+.form-container input,
+.form-container select,
+.form-container textarea {
+  padding: var(--spacing-sm) 10px;
+  border: 1px solid var(--color-border-medium);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-md);
+  outline: none;
+  transition: border var(--transition-base), box-shadow var(--transition-base);
+}
+
+.form-container input:focus,
+.form-container select:focus,
+.form-container textarea:focus {
+  border-color: var(--color-focus);
+  box-shadow: 0 0 0 2px var(--color-focus-ring);
+}
+
+.form-container textarea {
+  width: auto;
+  height: 200px;
+  font-family: monospace;
+  resize: vertical;
+}
+
+.section-title {
+  font-size: var(--font-lg);
+  font-weight: 700;
+  margin-top: var(--spacing-xs);
+  color: #111827;
+}
+
+.helper-text {
+  font-size: var(--font-sm);
+  color: var(--color-text-muted);
+  margin-top: var(--spacing-xs);
+}
+
+.header-row {
+  display: flex;
+  gap: var(--spacing-sm);
+  align-items: center;
+}
+
+.btn {
+  padding: 6px 10px;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: var(--font-base);
+  background: var(--color-border-medium);
+  transition: background var(--transition-base);
+}
+
+.btn:hover {
+  background: #d1d5db;
+}
+
+.btn-danger {
+  background: var(--color-error-bg);
+  color: #991b1b;
+}
+
+.btn-danger:hover {
+  background: #fecaca;
+}
+
+.btn-primary {
+  background: var(--color-focus);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #4f46e5;
+}
+
+.header-item {
+  display: flex;
+  gap: var(--spacing-sm);
+  width: 100%;
+  align-items: center;
+}
+
+.header-item input {
+  flex: 1;
+  min-width: 0;
+}
+
+.input-error {
+  border-color: var(--color-error) !important;
+  box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.18) !important;
+}
+
+.field-error-text {
+  color: var(--color-error-text);
+  font-size: var(--font-sm);
+  margin: 2px 0 0 0;
+}
+
+.agent-template-highlight {
+  border-color: var(--color-hint-border);
+  background: var(--color-hint-bg);
+}

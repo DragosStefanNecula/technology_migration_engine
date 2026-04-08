@@ -1,19 +1,18 @@
 import React from 'react';
+import "./LockedSelections.css";
 
 const LockedSelections = ({ mode, agent }) => {
     return (
-        <>
-            <div className="info-table">
-                <div className="label">Selected Mode</div>
-                <div className="value">
-                    {mode === "1stPass" ? "Detailed" : "Full Pass"}
-                </div>
-
-                <div className="label">Selected Agent</div>
-                <div className="value">{agent}</div>
+        <div className="info-table">
+            <div className="info-table__label">Selected Mode</div>
+            <div className="info-table__value">
+                {mode === "1stPass" ? "Detailed" : "Full Pass"}
             </div>
-        </>
+
+            <div className="info-table__label">Selected Agent</div>
+            <div className="info-table__value">{agent}</div>
+        </div>
     );
 };
 
-export default LockedSelections; 
+export default LockedSelections;

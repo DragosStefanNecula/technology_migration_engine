@@ -11,6 +11,7 @@ import Button from '../../base/Button';
 import Select from '../../base/Select';
 import Divider from '../../base/Divider';
 import FloatingWindow from '../../base/FloatingWindow';
+import "./AgentAdd.css";
 
 const AgentAdd = ({ options, triggerReloadAgents }) => {
     const [open, setOpen] = useState(false);
@@ -90,7 +91,7 @@ const AgentAdd = ({ options, triggerReloadAgents }) => {
                             e.target.value = "";
                         }}
                         variant="yellow"
-                        style={{ display: "inline-block", width: "auto", minWidth: "150px" }}
+                        className="agent-form-select"
                     />
 
                     <Divider />
@@ -103,16 +104,14 @@ const AgentAdd = ({ options, triggerReloadAgents }) => {
                     />
                 </FloatingWindow.Body>
 
-                <FloatingWindow.Footer
-                    style={{ display: "flex", alignItems: "center", gap: "10px" }}
-                >
+                <FloatingWindow.Footer>
                     {hasValidationErrors(errors) && (
-                        <span style={{ color: "red", fontSize: "0.9em", marginRight: "10px" }}>
+                        <span className="agent-form-error">
                             Please fix the highlighted form errors.
                         </span>
                     )}
                     {apiError && (
-                        <span style={{ color: "red", fontSize: "0.9em", marginRight: "10px" }}>
+                        <span className="agent-form-error">
                             {apiError}
                         </span>
                     )}

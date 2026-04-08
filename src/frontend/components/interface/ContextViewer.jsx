@@ -1,13 +1,14 @@
 import React from 'react';
 import { Editor } from '@monaco-editor/react';
+import "./ContextViewer.css";
 
 export const ContextViewer = ({ code }) => {
     return (
-        <div style={{width: "100%"}}>
-            <div style={{width: "100%", display: "flex", justifyContent: "center", marginBlock: "2px", height:"20px"}}>
+        <div className="context-viewer">
+            <div className="context-viewer__label">
                 Source Code
-            </div> 
-            <Editor //TODO: add support for perl
+            </div>
+            <Editor
                 height="400px"
                 defaultValue={code}
                 options={{
@@ -16,8 +17,8 @@ export const ContextViewer = ({ code }) => {
                     readOnly: true
                 }}
             />
-        </div> 
+        </div>
     );
 };
 
-export default ContextViewer; 
+export default ContextViewer;

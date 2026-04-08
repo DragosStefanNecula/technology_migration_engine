@@ -2,6 +2,7 @@ import React from 'react';
 import { Pane } from './Pane';
 import { useState, useMemo, useEffect } from 'react';
 import { useAppContext } from '../../renderer/renderer';
+import "./Checker.css";
 
 const Checker = ({ code }) => {
 
@@ -55,9 +56,9 @@ const Checker = ({ code }) => {
     }, [allDone, finalTexts]); 
 
     return (
-        <div className='checker'>
+        <div className="checker">
             {Object.entries(functionDictionary).map(([functionName, items]) => (
-                <div className='pane' key={functionName}>
+                <div className="checker__pane" key={functionName}>
                     <Pane
                         currentCodeBuffer={items}
                         sourceContext={code.functionContext[functionName]}

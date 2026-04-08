@@ -1,0 +1,12 @@
+.checker {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100%;
+}
+
+.checker__pane {
+  flex-grow: 1;
+  padding-inline: var(--spacing-xl);
+  padding-block: 5px;
+}

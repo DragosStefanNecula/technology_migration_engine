@@ -1,0 +1,19 @@
+.pane-card {
+  margin-block: 5px;
+  background-color: var(--color-bg-elevated);
+  border-radius: var(--radius-md);
+}
+
+.pane-card__header {
+  padding-block: var(--spacing-xl);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pane-card__editors {
+  display: flex;
+  background-color: var(--color-bg-elevated);
+  border-radius: var(--radius-md);
+}

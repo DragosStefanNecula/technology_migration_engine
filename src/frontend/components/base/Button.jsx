@@ -1,3 +1,4 @@
+import "./Button.css";
 import { SmartTooltip } from "./SmartTooltip";
 
 export default function Button({
@@ -9,17 +10,19 @@ export default function Button({
     clickable = true,
     reason,
     tooltip,
-    style = {}
+    style = {},
+    className = ""
 }) {
     const isInteractive = !disabled && clickable;
 
     const classNames = [
         "button-base",
         "button",
-        `button-${variant}`,          
+        `button-${variant}`,
         !clickable && "button-static",
         disabled && "button-disabled",
-        selected && "button-selected"
+        selected && "button-selected",
+        className
     ].filter(Boolean).join(" ");
 
     return (
@@ -29,17 +32,9 @@ export default function Button({
                 disabled={disabled}
                 style={style}
                 className={classNames}
-                onMouseEnter={e => {
-                    if (isInteractive) {
-                        e.currentTarget.style.transform = "translateY(-1px)";
-                    }
-                }}
-                onMouseLeave={e => {
-                    e.currentTarget.style.transform = "translateY(0)";
-                }}
             >
                 {children}
             </button>
-        </SmartTooltip> 
+        </SmartTooltip>
     );
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import "./OutlinedGroup.css";
 
 export const OutlinedGroup = ({ label, children}) => {
     return (

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useAppContext } from "../../renderer/renderer";
 import { secondPassGenAi } from "./genAi";
 import Spinner from "../base/Spinner";
+import "./PassEditor.css";
 
 export default function SecondPassEditor({ currentIteration, sourceContext, setSecondPassText, isVisible }) {
 
@@ -28,12 +29,14 @@ export default function SecondPassEditor({ currentIteration, sourceContext, setS
     }, []);
 
     return (
-        <div style={{ width: "100%", display: isVisible ? "block" : "none" }}>
-            <div style={{ width: "100%", display: "flex", justifyContent: "center", alignItems: "center", marginBlock: "2px", height: "20px" }}>
+        <div className={`pass-editor${isVisible ? "" : " pass-editor--hidden"}`}>
+            <div className="pass-editor__label">
                 Second Pass
-                {loading && <div style={{ marginInlineStart: "5px" }}>
-                    <Spinner size={10} />
-                </div>}
+                {loading && (
+                    <div className="pass-editor__spinner">
+                        <Spinner size={10} />
+                    </div>
+                )}
             </div>
             <Editor
                 height="400px"

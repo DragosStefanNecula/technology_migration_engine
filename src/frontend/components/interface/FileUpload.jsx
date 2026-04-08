@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import { useAppContext } from "../../renderer/renderer";
+import "./FileUpload.css";
 
 export default function FileUpload({ setCode }) {
     const fileInputRef = useRef(null);
@@ -71,7 +72,7 @@ export default function FileUpload({ setCode }) {
                 hidden
             />
 
-            <div className="content">
+            <div className="upload-content">
                 <p className="upload-text">
                     Drag & drop files anywhere or <span>click to upload</span>
                 </p>

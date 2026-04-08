@@ -1,4 +1,5 @@
 import React from "react";
+import "./Navbar.css";
 import AgentBar from "../components/navbar/agent/AgentBar";
 import { ModeSelect } from "../components/navbar/ModeSelect";
 import { useAppContext } from "../renderer/renderer";

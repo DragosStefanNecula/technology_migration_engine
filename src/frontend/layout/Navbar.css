@@ -1,0 +1,25 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--color-navbar);
+  color: white;
+  padding: var(--spacing-xl);
+  height: 10%;
+  flex-shrink: 0;
+}
+
+.navbar-left h2 {
+  margin: 0;
+}
+
+.navbar-right {
+  display: flex;
+  gap: 5px;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-right li {
+  cursor: pointer;
+}

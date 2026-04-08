@@ -11,6 +11,7 @@ import FloatingWindow from '../../base/FloatingWindow';
 import Select from '../../base/Select';
 import DeleteModal from '../../base/DeleteModal';
 import Divider from '../../base/Divider';
+import "./AgentAdd.css";
 
 const AgentEdit = ({ options, selectedAgent, setSelectedAgent, triggerReloadAgents }) => {
     const [open, setOpen] = useState(false);
@@ -125,7 +126,7 @@ const AgentEdit = ({ options, selectedAgent, setSelectedAgent, triggerReloadAgen
                         placeholder="Templates"
                         onChange={(e) => setSelectedAgent(e.target.value)}
                         variant="yellow"
-                        style={{ display: "inline-block", width: "auto", minWidth: "150px" }}
+                        className="agent-form-select"
                     />
 
                     <Divider />
@@ -139,16 +140,14 @@ const AgentEdit = ({ options, selectedAgent, setSelectedAgent, triggerReloadAgen
                     )}
                 </FloatingWindow.Body>
 
-                <FloatingWindow.Footer
-                    style={{ display: "flex", alignItems: "center", gap: "10px" }}
-                >
+                <FloatingWindow.Footer>
                     {hasValidationErrors(errors) && (
-                        <span style={{ color: "red", fontSize: "0.9em", marginRight: "10px" }}>
+                        <span className="agent-form-error">
                             Please fix the highlighted form errors.
                         </span>
                     )}
                     {apiError && (
-                        <span style={{ color: "red", fontSize: "0.9em", marginRight: "10px" }}>
+                        <span className="agent-form-error">
                             {apiError}
                         </span>
                     )}

@@ -1,0 +1,29 @@
+.outlined-group {
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  background: transparent;
+  padding: 16px 12px 12px;
+  border-radius: var(--radius-md);
+}
+
+.outlined-group__content {
+  display: flex;
+  width: auto;
+  gap: 5px;
+}
+
+.outlined-group__label {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, -50%);
+  padding: 0 10px;
+  font-size: var(--font-xs);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.9);
+  background: var(--color-bg-surface);
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+}

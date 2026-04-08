@@ -6,7 +6,8 @@ export default function Select({
     onChange,
     disabled = false,
     placeholder = "Select...",
-    style
+    style,
+    className = ""
 }) {
 
     const showPlaceholder = value === "" || value == null;
@@ -16,7 +17,7 @@ export default function Select({
             value={showPlaceholder ? "" : value}
             onChange={onChange}
             disabled={disabled}
-            className="button-base"
+            className={`button-base${className ? ` ${className}` : ""}`}
             style={style}
         >
             {showPlaceholder && (

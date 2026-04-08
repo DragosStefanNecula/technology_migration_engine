@@ -1,5 +1,6 @@
 import { createPortal } from "react-dom";
 import React, { useEffect, useRef, useState } from "react";
+import "./FloatingWindow.css";
 import Button from "./Button";
 import { registerWindow, unregisterWindow } from "./floatingWindowRegistry";
 
@@ -42,44 +43,19 @@ export default function FloatingWindow({ open = true, title, children, onClose }
 
     return createPortal(
         <div className="modal">
-            <div
-                style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    padding: "12px 16px",
-                    borderBottom: "1px solid #eee",
-                    fontWeight: "600",
-                }}
-            >
+            <div className="modal__header">
                 <span>{title}</span>
                 {onClose && (
-                    <button
-                        onClick={closeWindow}
-                        style={{
-                            background: "none",
-                            border: "none",
-                            fontSize: "16px",
-                            cursor: "pointer",
-                        }}
-                    >
+                    <button className="modal__close" onClick={closeWindow}>
                         ✕
                     </button>
                 )}
             </div>
 
-            <div style={{ padding: "18px" }}>{body}</div>
+            <div className="modal__body">{body}</div>
 
             {footer && (
-                <div
-                    style={{
-                        padding: "12px 16px",
-                        borderTop: "1px solid #eee",
-                        display: "flex",
-                        justifyContent: "space-between",
-                        gap: "8px",
-                    }}
-                >
+                <div className="modal__footer">
                     <Button onClick={closeWindow}>Cancel</Button>
                     <div>{footer}</div>
                 </div>

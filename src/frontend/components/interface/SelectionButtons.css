@@ -1,0 +1,17 @@
+.selection-buttons {
+  height: auto;
+  width: 15%;
+}
+
+.selection-buttons__inner {
+  height: 100%;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.selection-buttons__btn {
+  margin-block: 2px;
+}

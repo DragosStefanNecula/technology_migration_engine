@@ -9,78 +9,64 @@ import SelectionButtons from './SelectionButtons';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import TextHelper from './TextHelper';
+import "./Pane.css";
 
 export const Pane = ({ currentCodeBuffer, sourceContext, functionName, onFinalText }) => {
 
     const { mode, setMode } = useAppContext();
 
-    const [firstPassText, setFirstPassText] = useState(null); 
+    const [firstPassText, setFirstPassText] = useState(null);
 
-    const [secondPassText, setSecondPassText] = useState(null); 
+    const [secondPassText, setSecondPassText] = useState(null);
 
-    const [finalPassText, setFinalPassText] = useState(null); 
+    const [finalPassText, setFinalPassText] = useState(null);
 
-    const [currentView, setCurrentView] = useState("1stPass"); 
-    
-    useEffect(() =>
-    {
+    const [currentView, setCurrentView] = useState("1stPass");
+
+    useEffect(() => {
         if (!firstPassText) return;
         setCurrentView("2ndPass");
-    }, [firstPassText]); 
+    }, [firstPassText]);
 
-    useEffect(() =>
-    {
-        if(!secondPassText) return;
-        if(mode === "2ndPass")
-        {
+    useEffect(() => {
+        if (!secondPassText) return;
+        if (mode === "2ndPass") {
             setFinalPassText(secondPassText);
         }
-    }, [secondPassText]); 
+    }, [secondPassText]);
 
     const handleConfirm = () => {
-        if(currentView === "1stPass") {
+        if (currentView === "1stPass") {
             setFinalPassText(firstPassText);
         }
-        if(currentView === "2ndPass")
-        {
+        if (currentView === "2ndPass") {
             setFinalPassText(secondPassText);
         }
-    }
+    };
 
-    useEffect(() =>
-    {
-        if(finalPassText===null) return;
-        onFinalText(functionName, finalPassText); 
-    }, [finalPassText]); 
+    useEffect(() => {
+        if (finalPassText === null) return;
+        onFinalText(functionName, finalPassText);
+    }, [finalPassText]);
 
     return (
-        <div style={{
-            marginBlock: "5px",
-            backgroundColor: "#f5f5f5",
-            borderRadius: "8px",
-        }}>
-            <div style={{ paddingBlock: "20px", width: "100%", display: "flex", flexDirection: "column", alignItems: "center" }}>
+        <div className="pane-card">
+            <div className="pane-card__header">
                 function {functionName}
-                {finalPassText !== null ? <TextHelper sourceContext={sourceContext} finalPassText={finalPassText}/> : <></>}
+                {finalPassText !== null ? <TextHelper sourceContext={sourceContext} finalPassText={finalPassText} /> : <></>}
             </div>
             {/* TODO: <TextHelper/> on top */}
-            <div
-                style={{
-                    display: "flex",
-                    backgroundColor: "#f5f5f5",
-                    borderRadius: "8px"
-                }}
-            >
+            <div className="pane-card__editors">
                 <ContextViewer code={sourceContext} />
                 {finalPassText === null ?
                     <>
                         <FirstPassEditor
-                        isVisible={currentView === "1stPass"}
-                        currentCodeBuffer={currentCodeBuffer}
-                        sourceContext={sourceContext}
-                        setFirstPassText={setFirstPassText}
+                            isVisible={currentView === "1stPass"}
+                            currentCodeBuffer={currentCodeBuffer}
+                            sourceContext={sourceContext}
+                            setFirstPassText={setFirstPassText}
                         />
-                        {firstPassText != null && 
+                        {firstPassText != null &&
                             <SecondPassEditor
                                 isVisible={currentView === "2ndPass"}
                                 currentIteration={firstPassText}
@@ -88,14 +74,14 @@ export const Pane = ({ currentCodeBuffer, sourceContext, functionName, onFinalTe
                                 setSecondPassText={setSecondPassText}
                             />
                         }
-                        {mode === "1stPass" && 
-                            <SelectionButtons setCurrentView={setCurrentView} currentView={currentView} 
-                            onConfirm={handleConfirm} firstPass={firstPassText!==null} secondPass={secondPassText != null}/>
+                        {mode === "1stPass" &&
+                            <SelectionButtons setCurrentView={setCurrentView} currentView={currentView}
+                                onConfirm={handleConfirm} firstPass={firstPassText !== null} secondPass={secondPassText != null} />
                         }
-                    </> 
-                    : 
+                    </>
+                    :
                     <>
-                        <LastPassEditor finalPassText={finalPassText} setFinalPassText={setFinalPassText}/>
+                        <LastPassEditor finalPassText={finalPassText} setFinalPassText={setFinalPassText} />
                     </>
                 }
             </div>
@@ -103,4 +89,4 @@ export const Pane = ({ currentCodeBuffer, sourceContext, functionName, onFinalTe
     );
 };
 
-export default Pane; 
+export default Pane;

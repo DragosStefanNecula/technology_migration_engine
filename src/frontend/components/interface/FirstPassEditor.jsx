@@ -6,6 +6,7 @@ import { firstPassGenAi } from "./genAi";
 import { useAppContext } from "../../renderer/renderer";
 import Spinner from "../base/Spinner";
 import { SmartTooltip } from "../base/SmartTooltip";
+import "./FirstPassEditor.css";
 
 class Widget {
     container = document.createElement("div");
@@ -15,12 +16,7 @@ class Widget {
         this.editor = editor;
         this.lineHeight = lineHeight;
 
-        this.container.style.color = "black";
-        this.container.style.display = "flex";
-        this.container.style.alignItems = "center";
-        this.container.style.padding = "0 10px";
-        this.container.style.background = "#f9ff53";
-        this.container.style.fontSize = "13px";
+        this.container.className = "editor-zone";
         this.root = createRoot(this.container);
         this.editor.changeViewZones((accessor) => {
             this.zoneId = accessor.addZone({
@@ -33,12 +29,13 @@ class Widget {
 
     load() {
         this.root.render(
-            <div style={{ display: "flex", alignItems: "center" }}>
-                <span style={{ marginInlineEnd: "5px" }}>
+            <div className="editor-zone__loading">
+                <span className="editor-zone__spinner">
                     <Spinner size={10} />
                 </span>
                 LOADING
-            </div>);
+            </div>
+        );
     }
 
     update(text, context) {
@@ -47,7 +44,7 @@ class Widget {
         const render = () => {
             this.root.render(
                 <SmartTooltip content={context} open={visible}>
-                    <div style={{ whiteSpace: "pre" }}>{text}</div>
+                    <div className="editor-zone__text">{text}</div>
                 </SmartTooltip>
             );
         };
@@ -123,7 +120,6 @@ export default function FirstPassEditor({ currentCodeBuffer, sourceContext, setF
 
     async function handleMount(editor, monaco) {
         setLoading(true);
-        // Initialise Widgets
         editorRef.current = editor;
         const lineHeight = editor.getOption(monaco.editor.EditorOption.lineHeight);
         let widgets = {};
@@ -135,7 +131,6 @@ export default function FirstPassEditor({ currentCodeBuffer, sourceContext, setF
             }
         }
 
-        // Create final text and update widgets as you go
         let runningContext;
         for (const node of contextedBuffer) {
             if (node.shard === "text") {
@@ -149,7 +144,7 @@ export default function FirstPassEditor({ currentCodeBuffer, sourceContext, setF
                     .map((line) => node.ind + line)
                     .join('\n');
                 widgets[node.uuid].update(modifiedResult, node.value);
-                runningContext += modifiedResult.replace(node.ind, ''); //first line already has a ident applied
+                runningContext += modifiedResult.replace(node.ind, '');
             }
         }
 
@@ -159,12 +154,14 @@ export default function FirstPassEditor({ currentCodeBuffer, sourceContext, setF
     }
 
     return (
-        <div style={{ width: "100%", display: isVisible ? "block" : "none" }}>
-            <div style={{ width: "100%", display: "flex", justifyContent: "center", alignItems: "center", marginBlock: "2px", height: "20px" }}>
+        <div className={`pass-editor${isVisible ? "" : " pass-editor--hidden"}`}>
+            <div className="pass-editor__label">
                 First Pass
-                {loading && <div style={{ marginInlineStart: "5px" }}>
-                    <Spinner size={10} />
-                </div>}
+                {loading && (
+                    <div className="pass-editor__spinner">
+                        <Spinner size={10} />
+                    </div>
+                )}
             </div>
             <Editor
                 height="400px"

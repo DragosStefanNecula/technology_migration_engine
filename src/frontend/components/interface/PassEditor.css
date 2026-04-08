@@ -1,0 +1,20 @@
+.pass-editor {
+  width: 100%;
+}
+
+.pass-editor--hidden {
+  display: none;
+}
+
+.pass-editor__label {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-block: 2px;
+  height: 20px;
+}
+
+.pass-editor__spinner {
+  margin-inline-start: 5px;
+}

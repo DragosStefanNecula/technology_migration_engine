@@ -1,0 +1,11 @@
+.context-viewer {
+  width: 100%;
+}
+
+.context-viewer__label {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-block: 2px;
+  height: 20px;
+}

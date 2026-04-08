@@ -1,11 +1,12 @@
 import * as React from "react"
 import * as Tooltip from "@radix-ui/react-tooltip"
+import "./SmartTooltip.css"
 
 export function SmartTooltip({
-  type = "hover",   
+  type = "hover",
   open: controlledOpen,
   onOpenChange,
-  disabled = false, 
+  disabled = false,
   children,
   content,
   ...props
@@ -41,28 +42,9 @@ export function SmartTooltip({
         </Tooltip.Trigger>
 
         <Tooltip.Portal>
-            <Tooltip.Content
-            sideOffset={5}
-            style={{
-                backgroundColor: "white",
-                color: "black",
-                padding: "8px 12px",
-                borderRadius: "6px",
-                boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
-                fontSize: "14px",
-                maxWidth: "600px",
-                whiteSpace: "pre-wrap",
-                overflowWrap: "break-word",
-                zIndex: 10000,
-            }}
-            >
+          <Tooltip.Content className="tooltip-content" sideOffset={5}>
             {content}
-
-            <Tooltip.Arrow
-              style={{
-                fill: "white",
-              }}
-            />
+            <Tooltip.Arrow className="tooltip-arrow" />
           </Tooltip.Content>
         </Tooltip.Portal>
       </Tooltip.Root>
