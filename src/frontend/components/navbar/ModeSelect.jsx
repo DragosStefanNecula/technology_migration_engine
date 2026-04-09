@@ -1,8 +1,8 @@
 import { useEffect } from "react";
-import { useAppContext } from "../../renderer/renderer";
-import Button from "../base/Button";
-import { OutlinedGroup } from "../base/OutlinedGroup";
-import "./ModeSelect.css";
+import { useAppContext } from "#src/frontend/renderer/renderer";
+import Button from "#src/frontend/components/base/Button";
+import { OutlinedGroup } from "#src/frontend/components/base/OutlinedGroup";
+import "#src/frontend/components/navbar/ModeSelect.css";
 
 export const ModeSelect = () => {
     const { mode, setMode } = useAppContext();

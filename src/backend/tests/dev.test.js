@@ -1,7 +1,7 @@
 import test from 'node:test';
 
-import { genJavaAstDebug, parseDebugOutput } from './testingFunctions.js';
-import { handlePerlDebug } from './testingFunctions.js';
+import { genJavaAstDebug, parseDebugOutput } from '#src/backend/tests/testingFunctions.js';
+import { handlePerlDebug } from '#src/backend/tests/testingFunctions.js';
 
 test('Dev', () => {
   const input = `

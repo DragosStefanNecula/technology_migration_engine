@@ -1,12 +1,12 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 
-import AgentPicker from "./AgentPicker";
-import AgentAdd from "./AgentAdd";
-import AgentEdit from "./AgentEdit";
+import AgentPicker from "#src/frontend/components/navbar/agent/AgentPicker";
+import AgentAdd from "#src/frontend/components/navbar/agent/AgentAdd";
+import AgentEdit from "#src/frontend/components/navbar/agent/AgentEdit";
 
-import { useAppContext } from '../../../renderer/renderer';
-import { OutlinedGroup } from '../../base/OutlinedGroup';
+import { useAppContext } from '#src/frontend/renderer/renderer';
+import { OutlinedGroup } from '#src/frontend/components/base/OutlinedGroup';
 
 const AgentBar = () => {
     const { selectedAgent, setSelectedAgent } = useAppContext();

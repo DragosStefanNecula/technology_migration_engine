@@ -1,6 +1,6 @@
 import React from "react";
-import "./Content.css";
-import InterfaceBase from "../components/interface/InterfaceBase";
+import "#src/frontend/layout/Content.css";
+import InterfaceBase from "#src/frontend/components/interface/InterfaceBase";
 
 export default function Content() {
     return (

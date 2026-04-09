@@ -1,6 +1,6 @@
-import Button from "../../base/Button";
-import { SmartTooltip } from "../../base/SmartTooltip";
-import "./AgentConfiguration.css";
+import Button from "#src/frontend/components/base/Button";
+import { SmartTooltip } from "#src/frontend/components/base/SmartTooltip";
+import "#src/frontend/components/navbar/agent/AgentConfiguration.css";
 
 export default function AgentConfiguration({
     config,

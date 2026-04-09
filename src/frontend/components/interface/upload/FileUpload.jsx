@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
-import { useAppContext } from "../../../renderer/renderer";
-import "./FileUpload.css";
+import { useAppContext } from "#src/frontend/renderer/renderer";
+import "#src/frontend/components/interface/upload/FileUpload.css";
 
 export default function FileUpload({ setCode }) {
     const fileInputRef = useRef(null);

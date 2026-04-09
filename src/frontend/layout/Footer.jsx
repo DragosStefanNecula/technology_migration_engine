@@ -1,8 +1,8 @@
 import React from "react";
-import "./Navbar.css";
-import { useAppContext } from "../renderer/renderer";
-import ExportJavaButton from "../components/interface/actions/ExportButton";
-import CopyToClipboardButton from "../components/interface/actions/CopyToClipboardButton";
+import "#src/frontend/layout/Navbar.css";
+import { useAppContext } from "#src/frontend/renderer/renderer";
+import ExportJavaButton from "#src/frontend/components/interface/actions/ExportButton";
+import CopyToClipboardButton from "#src/frontend/components/interface/actions/CopyToClipboardButton";
 
 export default function Footer() {
     const { output, setOutput } = useAppContext();

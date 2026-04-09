@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Button from "../../base/Button";
+import Button from "#src/frontend/components/base/Button";
 
 function CopyToClipboardButton({ content }) {
   const [copied, setCopied] = useState(false);

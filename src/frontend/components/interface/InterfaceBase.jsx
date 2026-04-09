@@ -1,8 +1,8 @@
 import React from 'react';
-import FileUpload from "./upload/FileUpload";
-import Checker from './checker/Checker';
+import FileUpload from "#src/frontend/components/interface/upload/FileUpload";
+import Checker from '#src/frontend/components/interface/checker/Checker';
 import { useState } from 'react';
-import { useAppContext } from '../../renderer/renderer';
+import { useAppContext } from '#src/frontend/renderer/renderer';
 
 const InterfaceBase = () => {
     const { processing } = useAppContext();

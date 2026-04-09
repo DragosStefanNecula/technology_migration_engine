@@ -1,8 +1,8 @@
 import { createPortal } from "react-dom";
 import React, { useEffect, useRef, useState } from "react";
-import "./FloatingWindow.css";
-import Button from "./Button";
-import { registerWindow, unregisterWindow } from "./floatingWindowRegistry";
+import "#src/frontend/components/base/FloatingWindow.css";
+import Button from "#src/frontend/components/base/Button";
+import { registerWindow, unregisterWindow } from "#src/frontend/components/base/floatingWindowRegistry";
 
 export default function FloatingWindow({ open = true, title, children, onClose }) {
     const [internalOpen, setInternalOpen] = useState(open);

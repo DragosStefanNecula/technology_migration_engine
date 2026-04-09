@@ -1,7 +1,7 @@
 import { ipcMain, dialog } from 'electron';
-import { handleFileUpload } from './backend/handlers.js';
+import { handleFileUpload } from '#src/backend/handlers.js';
 import Store from 'electron-store';
-import { processNodeWithAi, processBlockWithAi, processTextWithAi } from './backend/agent/agentRequester.js';
+import { processNodeWithAi, processBlockWithAi, processTextWithAi } from '#src/backend/agent/agentRequester.js';
 import fs from 'fs';
 
 export function registerConnectors() {

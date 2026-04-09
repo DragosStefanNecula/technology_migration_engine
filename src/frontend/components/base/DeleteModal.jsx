@@ -1,6 +1,6 @@
 import React from 'react';
-import Button from './Button';
-import FloatingWindow from './FloatingWindow';
+import Button from '#src/frontend/components/base/Button';
+import FloatingWindow from '#src/frontend/components/base/FloatingWindow';
 
 const DeleteModal = ({ onClick, line, open, setOpen }) => {
     return (

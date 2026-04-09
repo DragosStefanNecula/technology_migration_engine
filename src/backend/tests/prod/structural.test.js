@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert';
 
-import { handlePerlDebug } from '../testingFunctions.js';
+import { handlePerlDebug } from '#src/backend/tests/testingFunctions.js';
 
 test('FunctionDefinition', () => {
     const input = `sub profile :Path('/user/profile') :Args(1) {

@@ -1,6 +1,6 @@
 import React from 'react';
-import Select from '../../base/Select';
-import "./AgentPicker.css";
+import Select from '#src/frontend/components/base/Select';
+import "#src/frontend/components/navbar/agent/AgentPicker.css";
 
 const AgentPicker = ({ options, selectedAgent, setSelectedAgent }) => {
     return (

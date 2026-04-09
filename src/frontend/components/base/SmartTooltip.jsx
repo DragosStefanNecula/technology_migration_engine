@@ -1,6 +1,6 @@
 import * as React from "react"
 import * as Tooltip from "@radix-ui/react-tooltip"
-import "./SmartTooltip.css"
+import "#src/frontend/components/base/SmartTooltip.css"
 
 export function SmartTooltip({
   type = "hover",

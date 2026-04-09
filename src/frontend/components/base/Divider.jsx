@@ -1,5 +1,5 @@
 import React from "react";
-import "./Divider.css";
+import "#src/frontend/components/base/Divider.css";
 
 const Divider = () => <hr className="divider" />;
 

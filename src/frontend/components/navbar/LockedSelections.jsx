@@ -1,5 +1,5 @@
 import React from 'react';
-import "./LockedSelections.css";
+import "#src/frontend/components/navbar/LockedSelections.css";
 
 const LockedSelections = ({ mode, agent }) => {
     return (

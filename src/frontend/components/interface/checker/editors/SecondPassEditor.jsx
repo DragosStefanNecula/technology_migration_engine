@@ -1,10 +1,10 @@
 import Editor from "@monaco-editor/react";
 import React from "react";
 import { useState, useEffect } from "react";
-import { useAppContext } from "../../../../renderer/renderer";
-import { secondPassGenAi } from "../genAi";
-import Spinner from "../../../base/Spinner";
-import "./PassEditor.css";
+import { useAppContext } from "#src/frontend/renderer/renderer";
+import { secondPassGenAi } from "#src/frontend/components/interface/checker/genAi";
+import Spinner from "#src/frontend/components/base/Spinner";
+import "#src/frontend/components/interface/checker/editors/PassEditor.css";
 
 export default function SecondPassEditor({ currentIteration, sourceContext, setSecondPassText, isVisible }) {
 

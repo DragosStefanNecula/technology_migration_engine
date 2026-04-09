@@ -1,6 +1,9 @@
 {
   "type": "module",
   "name": "technology_migration_engine",
+  "imports": {
+    "#src/*": "./src/*"
+  },
   "version": "0.1.0",
   "main": "src/main.js",
   "scripts": {

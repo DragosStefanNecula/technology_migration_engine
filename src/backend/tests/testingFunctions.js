@@ -1,6 +1,6 @@
-import { parsePerl } from "../components/perlParser.js";
-import { genJavaAst } from "../components/javaAstGenerator.js";
-import { handlePerl } from "../components/migrationLogic.js";
+import { parsePerl } from "#src/backend/components/perlParser.js";
+import { genJavaAst } from "#src/backend/components/javaAstGenerator.js";
+import { handlePerl } from "#src/backend/components/migrationLogic.js";
 
 export function genJavaAstDebug(code) {
     const perlAst = parsePerl(code);

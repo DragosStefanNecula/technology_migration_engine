@@ -1,8 +1,8 @@
 import React from 'react';
-import { Pane } from './Pane';
+import { Pane } from '#src/frontend/components/interface/checker/Pane';
 import { useState, useMemo, useEffect } from 'react';
-import { useAppContext } from '../../../renderer/renderer';
-import "./Checker.css";
+import { useAppContext } from '#src/frontend/renderer/renderer';
+import "#src/frontend/components/interface/checker/Checker.css";
 
 const Checker = ({ code }) => {
 

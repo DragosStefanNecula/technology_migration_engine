@@ -1,5 +1,5 @@
-import "./Button.css";
-import { SmartTooltip } from "./SmartTooltip";
+import "#src/frontend/components/base/Button.css";
+import { SmartTooltip } from "#src/frontend/components/base/SmartTooltip";
 
 export default function Button({
     children,

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Editor } from '@monaco-editor/react';
-import "./PassEditor.css";
+import "#src/frontend/components/interface/checker/editors/PassEditor.css";
 
 export const LastPassEditor = ({ finalPassText, setFinalPassText }) => {
     const handleEditorChange = (value) => {

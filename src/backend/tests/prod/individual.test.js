@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert';
 
-import { handlePerlDebug } from '../testingFunctions.js';
+import { handlePerlDebug } from '#src/backend/tests/testingFunctions.js';
 
 test('ScalarVariableDeclaration', () => {
   const input = `

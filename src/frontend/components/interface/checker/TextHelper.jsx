@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { textGenAi } from './genAi';
-import { useAppContext } from '../../../renderer/renderer';
-import Spinner from '../../base/Spinner';
-import { SmartTooltip } from '../../base/SmartTooltip';
-import "./TextHelper.css";
+import { textGenAi } from '#src/frontend/components/interface/checker/genAi';
+import { useAppContext } from '#src/frontend/renderer/renderer';
+import Spinner from '#src/frontend/components/base/Spinner';
+import { SmartTooltip } from '#src/frontend/components/base/SmartTooltip';
+import "#src/frontend/components/interface/checker/TextHelper.css";
 
 export const TextHelper = ({ sourceContext, finalPassText }) => {
     const [hotTip, setHotTip] = useState();

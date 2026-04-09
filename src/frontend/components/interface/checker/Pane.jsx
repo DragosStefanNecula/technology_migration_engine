@@ -1,15 +1,15 @@
 // TODO: remember the text editor
 import React from 'react';
-import FirstPassEditor from './editors/FirstPassEditor';
-import ContextViewer from './ContextViewer';
-import { useAppContext } from '../../../renderer/renderer';
-import SecondPassEditor from './editors/SecondPassEditor';
-import LastPassEditor from './editors/LastPassEditor';
-import SelectionButtons from './SelectionButtons';
+import FirstPassEditor from '#src/frontend/components/interface/checker/editors/FirstPassEditor';
+import ContextViewer from '#src/frontend/components/interface/checker/ContextViewer';
+import { useAppContext } from '#src/frontend/renderer/renderer';
+import SecondPassEditor from '#src/frontend/components/interface/checker/editors/SecondPassEditor';
+import LastPassEditor from '#src/frontend/components/interface/checker/editors/LastPassEditor';
+import SelectionButtons from '#src/frontend/components/interface/checker/SelectionButtons';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import TextHelper from './TextHelper';
-import "./Pane.css";
+import TextHelper from '#src/frontend/components/interface/checker/TextHelper';
+import "#src/frontend/components/interface/checker/Pane.css";
 
 export const Pane = ({ currentCodeBuffer, sourceContext, functionName, onFinalText }) => {
 

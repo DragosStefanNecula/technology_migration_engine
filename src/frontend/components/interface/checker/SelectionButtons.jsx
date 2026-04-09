@@ -1,6 +1,6 @@
 import React from 'react';
-import Button from '../../base/Button';
-import "./SelectionButtons.css";
+import Button from '#src/frontend/components/base/Button';
+import "#src/frontend/components/interface/checker/SelectionButtons.css";
 
 export const SelectionButtons = ({ setCurrentView, currentView, onConfirm, firstPass, secondPass }) => {
     return (

@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
 
-import AgentConfiguration from './AgentConfiguration';
+import AgentConfiguration from '#src/frontend/components/navbar/agent/AgentConfiguration';
 import {
     hasValidationErrors,
     validateAgentConfig
-} from "./agentFormValidation";
+} from "#src/frontend/components/navbar/agent/agentFormValidation";
 
-import Button from '../../base/Button';
-import FloatingWindow from '../../base/FloatingWindow';
-import Select from '../../base/Select';
-import DeleteModal from '../../base/DeleteModal';
-import Divider from '../../base/Divider';
-import "./AgentAdd.css";
+import Button from '#src/frontend/components/base/Button';
+import FloatingWindow from '#src/frontend/components/base/FloatingWindow';
+import Select from '#src/frontend/components/base/Select';
+import DeleteModal from '#src/frontend/components/base/DeleteModal';
+import Divider from '#src/frontend/components/base/Divider';
+import "#src/frontend/components/navbar/agent/AgentAdd.css";
 
 const AgentEdit = ({ options, selectedAgent, setSelectedAgent, triggerReloadAgents }) => {
     const [open, setOpen] = useState(false);

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert';
-import { genJavaAstDebug } from '../testingFunctions.js';
+import { genJavaAstDebug } from '#src/backend/tests/testingFunctions.js';
 
 test('GenNode', () => {
   const input = `do {} while()`;

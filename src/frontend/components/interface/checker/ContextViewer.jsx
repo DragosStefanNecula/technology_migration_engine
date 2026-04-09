@@ -1,6 +1,6 @@
 import React from 'react';
 import { Editor } from '@monaco-editor/react';
-import "./ContextViewer.css";
+import "#src/frontend/components/interface/checker/ContextViewer.css";
 
 export const ContextViewer = ({ code }) => {
     return (

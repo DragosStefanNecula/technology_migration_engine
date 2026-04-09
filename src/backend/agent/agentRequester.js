@@ -1,4 +1,4 @@
-import { processBlockWithAiPrompt, processNodeWithAiPrompt, processTextWithAiPrompt } from "./prompts.js";
+import { processBlockWithAiPrompt, processNodeWithAiPrompt, processTextWithAiPrompt } from "#src/backend/agent/prompts.js";
 import Store from 'electron-store';
 const store = new Store();
 

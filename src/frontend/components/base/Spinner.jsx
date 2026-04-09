@@ -1,4 +1,4 @@
-import "./Spinner.css";
+import "#src/frontend/components/base/Spinner.css";
 
 export default function Spinner({ size = 24, thickness = 3 }) {
     return (
