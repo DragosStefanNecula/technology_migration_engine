@@ -330,10 +330,11 @@ function gen(node) {
     }
 
     if (node.type === "hash_access_variable") {
+        let key = Helper.filterNodesByTypes(node.children, [], ["{", "}"])[1].text;
         return {
             type: "HashAccess",
             left: gen(node.children[0]),
-            key: Helper.stripQuotes(node.children[2].text)
+            key: Helper.stripQuotes(key)
         }
     }
 

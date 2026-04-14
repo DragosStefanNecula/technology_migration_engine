@@ -4,7 +4,7 @@
 
 This is a list of every time Test Driven Development saved me.
 
-Current Count: 8
+Current Count: 9
 
 I forgot a extra bracket at the end: HashMap h = new HashMap(Map.of('name', "Alice", 'age', 30);
 
@@ -21,3 +21,5 @@ When modifying how hash access and array access works to be more general, broke 
 I needed to figure out what other syntaxes are based on ParanthesizedArgument, so I made that fail and saw what tests fail
 
 20 individual cases where it saved me whilst editing 400 lines of code to switch from string accumulation to emitting
+
+Had to modify the parser way late in the process, could have broken everything, however test driven development reassured me that only one case needed fixing
