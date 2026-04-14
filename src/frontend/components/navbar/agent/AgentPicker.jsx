@@ -8,6 +8,7 @@ const AgentPicker = ({ options, selectedAgent, setSelectedAgent }) => {
             options={options}
             value={selectedAgent}
             onChange={(e) => setSelectedAgent(e.target.value)}
+            disabled={options.length === 0}
             className="agent-picker-select"
         />
     );

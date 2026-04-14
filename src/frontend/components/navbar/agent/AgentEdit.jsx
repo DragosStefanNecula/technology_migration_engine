@@ -118,7 +118,14 @@ const AgentEdit = ({ options, selectedAgent, setSelectedAgent, triggerReloadAgen
 
     return (
         <>
-            <Button onClick={() => setOpen(!open)} variant="white">Edit Agent</Button>
+            <Button
+                onClick={() => setOpen(!open)}
+                variant="white"
+                disabled={options.length === 0}
+                reason="No agents to edit"
+            >
+                Edit Agent
+            </Button>
 
             <FloatingWindow
                 open={open}

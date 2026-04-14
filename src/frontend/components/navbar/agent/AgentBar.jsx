@@ -30,6 +30,8 @@ const AgentBar = () => {
 
             if (opts.length > 0 && !selectedAgent) {
                 setSelectedAgent(opts[0].value);
+            } else if (opts.length === 0) {
+                setSelectedAgent(null);
             }
         };
 

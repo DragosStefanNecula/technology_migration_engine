@@ -10,6 +10,7 @@ export default function Button({
     clickable = true,
     reason,
     tooltip,
+    tooltipOpen,
     style = {},
     className = ""
 }) {
@@ -26,7 +27,7 @@ export default function Button({
     ].filter(Boolean).join(" ");
 
     return (
-        <SmartTooltip disabled={isInteractive && tooltip == undefined} content={tooltip ? tooltip : reason}>
+        <SmartTooltip disabled={isInteractive && tooltip == undefined} content={tooltip ? tooltip : reason} open={tooltipOpen}>
             <button
                 onClick={isInteractive ? onClick : undefined}
                 disabled={disabled}

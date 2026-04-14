@@ -1,0 +1,32 @@
+.no-agent-wrapper {
+  flex-grow: 1;
+  height: 90%;
+  border: 2px dashed var(--color-border-medium);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: var(--spacing-xl);
+  background-color: var(--color-bg-muted);
+}
+
+.no-agent-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.no-agent-heading {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.no-agent-description {
+  font-size: 14px;
+  color: var(--color-text-muted);
+  max-width: 340px;
+  line-height: 1.5;
+}

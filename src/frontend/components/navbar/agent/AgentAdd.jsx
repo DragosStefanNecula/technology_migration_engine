@@ -12,9 +12,11 @@ import Select from '#src/frontend/components/base/Select';
 import Divider from '#src/frontend/components/base/Divider';
 import FloatingWindow from '#src/frontend/components/base/FloatingWindow';
 import { useToast } from '#src/frontend/components/base/Toast';
+import { useAppContext } from '#src/frontend/renderer/renderer';
 import "#src/frontend/components/navbar/agent/AgentAdd.css";
 
 const AgentAdd = ({ options, triggerReloadAgents }) => {
+    const { selectedAgent } = useAppContext();
     const showToast = useToast();
     const [open, setOpen] = useState(false);
     const [errors, setErrors] = useState({ name: "", requestBody: "", responsePath: "" });
@@ -69,7 +71,12 @@ const AgentAdd = ({ options, triggerReloadAgents }) => {
 
     return (
         <>
-            <Button onClick={() => setOpen(!open)} variant="white">
+            <Button
+                onClick={() => setOpen(!open)}
+                variant="white"
+                tooltip={!selectedAgent ? "Add your first agent to get started" : undefined}
+                tooltipOpen={!selectedAgent && !open ? true : undefined}
+            >
                 Add Agent
             </Button>
 
