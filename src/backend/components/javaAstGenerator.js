@@ -279,10 +279,8 @@ function gen(node) {
     }
 
     if (node.type === "method_invocation") {
-        return {
-            type: "MethodInvocation",
-            content: node.text,
-        }
+        const err = new Error("MethodInvocation");
+        throw err;
     }
 
     if (node.type === "return_expression") {
