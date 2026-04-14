@@ -11,7 +11,9 @@
     "setup": "npm install && npx patch-package && npm run pre-build --prefix node_modules/@ganezdragon/tree-sitter-perl && npm run build --prefix node_modules/@ganezdragon/tree-sitter-perl",
     "build": "vite build && electron-builder",
     "console": "node --test src/backend/tests/dev.test.js",
-    "test": "node --test src/backend/tests/prod",
+    "test:backend": "node --test src/backend/tests/prod",
+    "test:frontend": "playwright test",
+    "test:frontend:ui": "playwright test --ui",
     "postinstall": "patch-package"
   },
   "build": {
@@ -25,6 +27,7 @@
   "license": "ISC",
   "description": "A final year student project attempting to transpile Perl Catalyst into Java Spring MVC using transpiler and LLM methods.",
   "devDependencies": {
+    "@playwright/test": "^1.59.1",
     "@vitejs/plugin-react": "^5.1.1",
     "concurrently": "^9.2.1",
     "cross-env": "^10.1.0",

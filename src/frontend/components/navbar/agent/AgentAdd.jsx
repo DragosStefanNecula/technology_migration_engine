@@ -83,7 +83,7 @@ const AgentAdd = ({ options, triggerReloadAgents }) => {
             <FloatingWindow
                 open={open}
                 title="Agent Picker"
-                onClose={() => setOpen(false)}
+                onClose={() => { setOpen(false); setConfig(cloneAgentConfig(agentTemplates[0])); }}
             >
                 <FloatingWindow.Body>
                     <Select
