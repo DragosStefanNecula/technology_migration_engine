@@ -1,6 +1,7 @@
 import { createRoot } from "react-dom/client";
 import { useEffect, createContext, useContext, useState } from "react";
 import Main from "#src/frontend/layout/Main";
+import { ToastProvider } from "#src/frontend/components/base/Toast";
 
 const AppContext = createContext();
 
@@ -34,6 +35,8 @@ const root = createRoot(container);
 
 root.render(
     <AppProvider>
-        <App />
+        <ToastProvider>
+            <App />
+        </ToastProvider>
     </AppProvider>,
 );

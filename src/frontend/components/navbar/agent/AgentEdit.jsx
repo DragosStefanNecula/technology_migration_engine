@@ -11,9 +11,11 @@ import FloatingWindow from '#src/frontend/components/base/FloatingWindow';
 import Select from '#src/frontend/components/base/Select';
 import DeleteModal from '#src/frontend/components/base/DeleteModal';
 import Divider from '#src/frontend/components/base/Divider';
+import { useToast } from '#src/frontend/components/base/Toast';
 import "#src/frontend/components/navbar/agent/AgentAdd.css";
 
 const AgentEdit = ({ options, selectedAgent, setSelectedAgent, triggerReloadAgents }) => {
+    const showToast = useToast();
     const [open, setOpen] = useState(false);
     const [getConfirmation, setGetConfirmation] = useState(false);
     const [config, setConfig] = useState(null);
@@ -72,8 +74,10 @@ const AgentEdit = ({ options, selectedAgent, setSelectedAgent, triggerReloadAgen
 
         try {
             const response = await window.apiStore.editApiConfig(selectedAgent, apiConfigObject);
-            console.log(`API config "${response.name}" edited successfully.`);
             setApiError("");
+            setOpen(false);
+            showToast(`Agent "${response.name}" saved successfully.`);
+            console.log(`API config "${response.name}" edited successfully.`);
 
             triggerReloadAgents();
             if (selectedAgent !== apiConfigObject.name) {
@@ -97,10 +101,12 @@ const AgentEdit = ({ options, selectedAgent, setSelectedAgent, triggerReloadAgen
 
         try {
             const response = await window.apiStore.deleteApiConfig(selectedAgent);
-            console.log(`API config "${response.name}" deleted successfully.`);
             setApiError("");
-
             setGetConfirmation(false);
+            setOpen(false);
+            showToast(`Agent "${response.name}" deleted successfully.`);
+            console.log(`API config "${response.name}" deleted successfully.`);
+
             setSelectedAgent("");
             triggerReloadAgents();
         } catch (err) {

@@ -11,9 +11,11 @@ import Button from '#src/frontend/components/base/Button';
 import Select from '#src/frontend/components/base/Select';
 import Divider from '#src/frontend/components/base/Divider';
 import FloatingWindow from '#src/frontend/components/base/FloatingWindow';
+import { useToast } from '#src/frontend/components/base/Toast';
 import "#src/frontend/components/navbar/agent/AgentAdd.css";
 
 const AgentAdd = ({ options, triggerReloadAgents }) => {
+    const showToast = useToast();
     const [open, setOpen] = useState(false);
     const [errors, setErrors] = useState({ name: "", requestBody: "", responsePath: "" });
     const [apiError, setApiError] = useState("");
@@ -56,6 +58,7 @@ const AgentAdd = ({ options, triggerReloadAgents }) => {
             setConfig(cloneAgentConfig(agentTemplates[0]));
             setOpen(false);
             setApiError("");
+            showToast(`Agent "${response.name}" saved successfully.`);
             console.log(`API config "${response.name}" saved successfully.`);
         } catch (err) {
             const message = err?.message || "Failed to save agent. Please try again.";
