@@ -103,6 +103,48 @@ export function registerConnectors() {
         event.reply('delete-api-config-response', { success: true, name });
     });
 
+    ipcMain.handle('export-api-configs', async () => {
+        const configs = store.get('apiConfigs', {});
+        const { cancelled, filePath } = await dialog.showSaveDialog({
+            title: 'Export Agents',
+            defaultPath: 'agents.json',
+            filters: [{ name: 'JSON Files', extensions: ['json'] }]
+        });
+
+        if (cancelled || !filePath) return { success: false, cancelled: true };
+
+        fs.writeFileSync(filePath, JSON.stringify(configs, null, 2), 'utf-8');
+        return { success: true, filePath };
+    });
+
+    ipcMain.handle('import-api-configs', async (event, mergeMode) => {
+        const { cancelled, filePaths } = await dialog.showOpenDialog({
+            title: 'Import Agents',
+            filters: [{ name: 'JSON Files', extensions: ['json'] }],
+            properties: ['openFile']
+        });
+
+        if (cancelled || !filePaths || filePaths.length === 0) return { success: false, cancelled: true };
+
+        let imported;
+        try {
+            const raw = fs.readFileSync(filePaths[0], 'utf-8');
+            imported = JSON.parse(raw);
+        } catch (e) {
+            return { success: false, error: 'Invalid JSON file' };
+        }
+
+        if (typeof imported !== 'object' || Array.isArray(imported)) {
+            return { success: false, error: 'File must contain a JSON object of agent configs' };
+        }
+
+        const base = mergeMode ? store.get('apiConfigs', {}) : {};
+        const merged = { ...base, ...imported };
+        store.set('apiConfigs', merged);
+
+        return { success: true, count: Object.keys(imported).length };
+    });
+
     ipcMain.handle('ai-process-node', async (event, sourceContext, runningContext, node, selectedAgent) => {
     const result = await processNodeWithAi(sourceContext, runningContext, node, selectedAgent);
         return result;

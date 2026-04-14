@@ -64,5 +64,7 @@ contextBridge.exposeInMainWorld("apiStore", {
             });
             ipcRenderer.send('delete-api-config', name);
         });
-    }
+    },
+    exportApiConfigs: () => ipcRenderer.invoke('export-api-configs'),
+    importApiConfigs: (mergeMode) => ipcRenderer.invoke('import-api-configs', mergeMode)
 });
