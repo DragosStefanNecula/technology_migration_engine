@@ -2,6 +2,8 @@ import Button from "#src/frontend/components/base/Button";
 import { SmartTooltip } from "#src/frontend/components/base/SmartTooltip";
 import "#src/frontend/components/navbar/agent/AgentConfiguration.css";
 
+//[[req6impl| ]] Adheres to [[#req6spec|Requirement 6]]
+
 export default function AgentConfiguration({
     config,
     setConfig,

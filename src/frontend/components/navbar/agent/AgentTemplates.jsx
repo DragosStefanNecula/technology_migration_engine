@@ -1,3 +1,4 @@
+//[[req8impl| ]] Adheres to [[#req8spec|Requirement 8]]
 export const agentTemplates = [
   {
     name: "OpenAI Chat Completions",

@@ -4,6 +4,8 @@ import { useState, useMemo, useEffect } from 'react';
 import { useAppContext } from '#src/frontend/renderer/renderer';
 import "#src/frontend/components/interface/checker/Checker.css";
 
+//[[req2impl| ]] Adheres to [[#req2spec|Requirement 1]]
+
 const Checker = ({ code }) => {
 
     const { output, setOutput } = useAppContext();

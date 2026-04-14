@@ -1,3 +1,4 @@
+//[[req5impl| ]] Adheres to [[#req5spec|Requirement 5]]
 export function genJavaAst(astRoot) {
     return gen(astRoot);
 }

@@ -4,6 +4,8 @@ import Button from "#src/frontend/components/base/Button";
 import { OutlinedGroup } from "#src/frontend/components/base/OutlinedGroup";
 import "#src/frontend/components/navbar/ModeSelect.css";
 
+//[[req4impl| ]] Adheres to [[#req4spec|Requirement 4]]
+
 export const ModeSelect = () => {
     const { mode, setMode } = useAppContext();
 

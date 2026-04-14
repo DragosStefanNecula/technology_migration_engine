@@ -1,17 +1,17 @@
 # Requirement Analysis 
 
-Unless otherwise specified, the term “users” refers to the developer questionnaire that was administered.
+Unless otherwise specified, the term "users" refers to the developer questionnaire that was administered.
 
 
 
 
-## Requirement 1
+## Requirement 1 <!--[[req2spec| ]]  Implemented in [[#req2impl|Checker.jsx]]  -->
 
 The application must allow for the manually adjusting or refining of migrated code (for example, similar to how it's done in the diffchecker inside TortoiseSVN).
 
 ### Validation
 
-[ ] The specificed workflow is supported
+[x] The specificed workflow is supported
 
 ### Justification
 
@@ -30,7 +30,7 @@ The application must operate within a standalone window, but be very easy to ope
 
 [x] The application opens in 5 seconds
 
-[ ] The window is resizable
+[x] The window is resizable
 
 ### Justification
 
@@ -41,13 +41,13 @@ The application must operate within a standalone window, but be very easy to ope
 
 
 
-## Requirement 3 
+## Requirement 3 <!--[[req3spec| ]]  Implemented in [[#req3impl|migrationLogic.js]]  -->
 
 The application must handle at minimum entire functions.
 
 ### Validation
 
-[ ] The application works well on functions
+[x] The application works well on functions
 
 ### Justification:
 
@@ -56,17 +56,17 @@ The application must handle at minimum entire functions.
 ![Q11](images/Q11.png)
 
 
-## Requirement 4 
+## Requirement 4 <!--[[req4spec| ]]  Implemented in [[#req4impl|ModeSelect.jsx]]  -->
 
 The application must have a good balance between automation and human oversight.
 
 ### Validation
 
-[ ] The application waits for user input before exporting file
+[x] The application waits for user input before exporting file
 
-[ ] The application is clear in what is automated, and what is left for human verification
+[x] The application is clear in what is automated, and what is left for human verification
 
-[ ] Consider adding ways for the developer to choose the level of oversight that he wants 
+[x] Consider adding ways for the developer to choose the level of oversight that he wants 
 
 ### Justification
 
@@ -77,13 +77,13 @@ The application must have a good balance between automation and human oversight.
 
 
 
-## Requirement 5
+## Requirement 5 <!--[[req5spec| ]]  Implemented in [[#req5impl|javaAstGenerator.js]]  -->
 
 The application must not be overly reliant on large language models.
 
 ### Validation
 
-[ ] The application handles, at the minimum, structural elements programatically
+[x] The application handles, at the minimum, structural elements programatically
 
 ### Justification
 
@@ -92,19 +92,19 @@ Three fourths of users have voted 2 out of 5 on the "Minimise LLM Usage (1) - Ma
 ![Q12](images/Q12.png)
 
 
-## Requirement 6
+## Requirement 6 <!--[[req6spec| ]]  Implemented in [[#req6impl|AgentConfiguration.jsx]]  -->
 
 There should be an option for the software to use a local LLM, and the data to not be sent to servers for processing
 
 ### Validation
 
-[ ] The specified functionality is provided in some arrangement
+[x] The specified functionality is provided in some arrangement
 
-[ ] The user can configure their own API call
+[x] The user can configure their own API call
 
-[ ] The user has access to templates to help him complete the most common AI apis
+[x] The user has access to templates to help him complete the most common AI apis
 
-[ ] The user can edit or remove APIs they have set up previously
+[x] The user can edit or remove APIs they have set up previously
 
 ### Justification
 
@@ -113,17 +113,17 @@ Users have reported this as a security concern
 ![Q13](images/Q13.png)
 
 
-## Requirement 7
+## Requirement 7 <!--[[req7spec| ]]  Implemented in [[#req7impl|dev.test.js]]  -->
 
 The software must be tested and well-maintained.
 
 ### Validation
 
-[ ] There is a test for any node type in both javaAstGenerator and javaCodeGenerator
+[x] There is a test for any node type in both javaAstGenerator and javaCodeGenerator
 
-[ ] A minimum of 10 real-life examples of full Perl Catalyst files have been tested holistically
+[x] A minimum of 10 real-life examples of full Perl Catalyst files have been tested holistically
 
-[ ] A minimum of 5 industry examples of full Perl Catalyst files have been tested holistically
+[x] A minimum of 5 industry examples of full Perl Catalyst files have been tested holistically
 
 ### Justification
 
@@ -132,15 +132,15 @@ Users have reported this as a factor that would make them trust the software.
 ![Q13](images/Q13.png)
 
 
-## Requirement 8
+## Requirement 8 <!--[[req8spec| ]]  Implemented in [[#req8impl|AgentTemplates.jsx]]  -->
 
 The software must be cost & time efficient
 
 ### Validation
 
-[ ] Processing a 200 line perl catalyst file should take no longer than one minute
+[x] Processing a 200 line perl catalyst file should take no longer than one minute
 
-[ ] The solution for local LLM chosen is one that is free of cost beyond the price for the local infrastructure providing the compute
+[x] The solution for local LLM chosen is one that is free of cost beyond the price for the local infrastructure providing the compute
 
 ### Justification
 
