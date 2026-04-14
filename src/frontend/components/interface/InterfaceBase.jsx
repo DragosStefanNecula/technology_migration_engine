@@ -6,7 +6,7 @@ import RunConfirmModal from '#src/frontend/components/interface/RunConfirmModal'
 import { useAppContext } from '#src/frontend/renderer/renderer';
 
 const InterfaceBase = () => {
-    const { processing, setProcessing, selectedAgent, skipConfirmModal } = useAppContext();
+    const { processing, setProcessing, selectedAgent, skipConfirmModal, error } = useAppContext();
     const [code, setCode] = useState(null);
     const [pendingCode, setPendingCode] = useState(null);
 
@@ -32,6 +32,15 @@ const InterfaceBase = () => {
     const handleCancel = () => {
         setPendingCode(null);
     };
+
+    if (error) {
+        return (
+            <div className="interface-error">
+                <strong>Error</strong>
+                <p>{error}</p>
+            </div>
+        );
+    }
 
     if (!processing) {
         return (

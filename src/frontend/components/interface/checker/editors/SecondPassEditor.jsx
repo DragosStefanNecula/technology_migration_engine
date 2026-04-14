@@ -8,7 +8,7 @@ import "#src/frontend/components/interface/checker/editors/PassEditor.css";
 
 export default function SecondPassEditor({ currentIteration, sourceContext, setSecondPassText, isVisible }) {
 
-    const { selectedAgent, setSelectedAgent } = useAppContext();
+    const { selectedAgent, setSelectedAgent, setError, setProcessing } = useAppContext();
 
     const [showText, setShowText] = useState(currentIteration);
 
@@ -21,6 +21,9 @@ export default function SecondPassEditor({ currentIteration, sourceContext, setS
                 const result = await secondPassGenAi(sourceContext, currentIteration, selectedAgent);
                 setSecondPassText(result);
                 setShowText(result);
+            } catch (err) {
+                setError(err?.message ?? String(err));
+                setProcessing(false);
             } finally {
                 setLoading(false);
             }

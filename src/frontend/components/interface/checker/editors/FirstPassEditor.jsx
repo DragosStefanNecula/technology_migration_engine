@@ -87,7 +87,7 @@ class Widget {
 
 export default function FirstPassEditor({ currentCodeBuffer, sourceContext, setFirstPassText, isVisible }) {
 
-    const { selectedAgent, setSelectedAgent } = useAppContext();
+    const { selectedAgent, setSelectedAgent, setError, setProcessing } = useAppContext();
 
     const [loading, setLoading] = useState(false);
 
@@ -133,27 +133,33 @@ export default function FirstPassEditor({ currentCodeBuffer, sourceContext, setF
 
         const CONTEXT_WINDOW = 3000;
 
-        let runningContext = "";
-        for (const node of contextedBuffer) {
-            if (node.shard === "text") {
-                runningContext += node.value;
+        try {
+            let runningContext = "";
+            for (const node of contextedBuffer) {
+                if (node.shard === "text") {
+                    runningContext += node.value;
+                }
+
+                if (node.shard === "codeGen") {
+                    const windowedContext = runningContext.slice(-CONTEXT_WINDOW);
+                    let result = await firstPassGenAi(sourceContext, windowedContext, node, selectedAgent);
+                    let modifiedResult = result
+                        .split('\n')
+                        .map((line) => node.ind + line)
+                        .join('\n');
+                    widgets[node.uuid].update(modifiedResult, node.value);
+                    runningContext += modifiedResult.replace(node.ind, '');
+                }
             }
 
-            if (node.shard === "codeGen") {
-                const windowedContext = runningContext.slice(-CONTEXT_WINDOW);
-                let result = await firstPassGenAi(sourceContext, windowedContext, node, selectedAgent);
-                let modifiedResult = result
-                    .split('\n')
-                    .map((line) => node.ind + line)
-                    .join('\n');
-                widgets[node.uuid].update(modifiedResult, node.value);
-                runningContext += modifiedResult.replace(node.ind, '');
-            }
+            const finalText = runningContext;
+            setFirstPassText(finalText);
+        } catch (err) {
+            setError(err?.message ?? String(err));
+            setProcessing(false);
+        } finally {
+            setLoading(false);
         }
-
-        const finalText = runningContext;
-        setFirstPassText(finalText);
-        setLoading(false);
     }
 
     return (

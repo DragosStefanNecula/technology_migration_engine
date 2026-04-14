@@ -14,6 +14,7 @@ const AppProvider = ({ children }) => {
     });
     const [output, setOutput] = useState(null);
     const [processing, setProcessing] = useState(false);
+    const [error, setError] = useState(null);
     const [skipConfirmModal, setSkipConfirmModalState] = useState(() => {
         return localStorage.getItem("skipConfirmModal") === "true";
     });
@@ -25,7 +26,7 @@ const AppProvider = ({ children }) => {
 
     return (
         <AppContext.Provider
-            value={{ selectedAgent, setSelectedAgent, mode, setMode, output, setOutput, processing, setProcessing, skipConfirmModal, setSkipConfirmModal }}
+            value={{ selectedAgent, setSelectedAgent, mode, setMode, output, setOutput, processing, setProcessing, skipConfirmModal, setSkipConfirmModal, error, setError }}
         >
             {children}
         </AppContext.Provider>

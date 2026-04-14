@@ -7,7 +7,7 @@ import "#src/frontend/components/interface/checker/TextHelper.css";
 
 export const TextHelper = ({ sourceContext, finalPassText }) => {
     const [hotTip, setHotTip] = useState();
-    const { selectedAgent } = useAppContext();
+    const { selectedAgent, setError, setProcessing } = useAppContext();
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
@@ -16,6 +16,9 @@ export const TextHelper = ({ sourceContext, finalPassText }) => {
             try {
                 const result = await textGenAi(sourceContext, finalPassText, selectedAgent);
                 setHotTip(result);
+            } catch (err) {
+                setError(err?.message ?? String(err));
+                setProcessing(false);
             } finally {
                 setLoading(false);
             }
