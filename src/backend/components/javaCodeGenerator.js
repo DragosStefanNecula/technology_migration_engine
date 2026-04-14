@@ -6,16 +6,19 @@ export class JavaCodegen {
         this._buffer = [];
         this._function = "source";
         this._functionContext = {};
+        this._unsupportedFunctions = {};
     }
 
     generate(node) {
         this._buffer = [];
         this._currentIndent = 0;
         this._functionContext = {};
+        this._unsupportedFunctions = {};
         this.gen(node);
         return {
             buffer: this._buffer,
-            functionContext: this._functionContext
+            functionContext: this._functionContext,
+            unsupportedFunctions: this._unsupportedFunctions
         };
     }
 
@@ -99,6 +102,16 @@ export class JavaCodegen {
         this.gen(node.block);
 
         this._function = "source"
+    }
+
+    UnsupportedFunctionDefinition(node) {
+        this._function = node.definition;
+        this._functionContext[node.definition] = node.context;
+        this._unsupportedFunctions[node.definition] = node.reason;
+
+        this._emit("");
+
+        this._function = "source";
     }
 
     IfStatement(node) {

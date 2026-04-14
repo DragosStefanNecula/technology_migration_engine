@@ -11,7 +11,7 @@ import { useEffect } from 'react';
 import TextHelper from '#src/frontend/components/interface/checker/TextHelper';
 import "#src/frontend/components/interface/checker/Pane.css";
 
-export const Pane = ({ currentCodeBuffer, sourceContext, functionName, onFinalText }) => {
+export const Pane = ({ currentCodeBuffer, sourceContext, functionName, onFinalText, isUnsupported, unsupportedReason }) => {
 
     const { mode, setMode } = useAppContext();
 
@@ -48,6 +48,27 @@ export const Pane = ({ currentCodeBuffer, sourceContext, functionName, onFinalTe
         if (finalPassText === null) return;
         onFinalText(functionName, finalPassText);
     }, [finalPassText]);
+
+    useEffect(() => {
+        if (!isUnsupported) return;
+        onFinalText(functionName, `// UNSUPPORTED (${unsupportedReason}): ${functionName} — requires manual migration`);
+    }, []);
+
+    if (isUnsupported) {
+        return (
+            <div className="pane-card pane-card--unsupported">
+                <div className="pane-card__header">
+                    function {functionName}
+                    <span className="pane-card__unsupported-badge">
+                        UNSUPPORTED: {unsupportedReason}
+                    </span>
+                </div>
+                <div className="pane-card__editors">
+                    <ContextViewer code={sourceContext} />
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="pane-card">

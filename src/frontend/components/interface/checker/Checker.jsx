@@ -64,6 +64,8 @@ const Checker = ({ code }) => {
                         sourceContext={code.functionContext[functionName]}
                         functionName={functionName}
                         onFinalText={handleFinalText}
+                        isUnsupported={!!code.unsupportedFunctions?.[functionName]}
+                        unsupportedReason={code.unsupportedFunctions?.[functionName]}
                     />
                 </div> 
             ))}

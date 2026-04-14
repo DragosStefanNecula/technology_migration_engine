@@ -21,9 +21,12 @@ function gen(node) {
     }
 
     if (node.type === "function_definition") {
+        const hasScope = node.children[0].type === "scope";
+        const nameIndex = hasScope ? 2 : 1;
+
         let processedNode = {
             type: "FunctionDefinition",
-            definition: Helper.removeQuotes(node.children[1].text),
+            definition: Helper.removeQuotes(node.children[nameIndex].text),
             context: node.text
         }
 
@@ -31,8 +34,10 @@ function gen(node) {
             if (child.type === "function_attribute") {
                 let attrName = child.children[1].text.toLowerCase();
                 let functionSignature = child.children[2];
-                let attrValue = Helper.removeQuotes(functionSignature.children.find(n => n.text !== "(" && n.text !== ")" && n.text !== `"` && n.text !== `'`)?.text);
-                processedNode[attrName] = attrValue || -1;
+                let attrValue = Helper.removeQuotes(
+                    functionSignature?.children.find(n => n.text !== "(" && n.text !== ")" && n.text !== `"` && n.text !== `'`)?.text
+                );
+                processedNode[attrName] = attrValue ?? true;
             }
 
             if (child.type === "block") {
@@ -50,6 +55,29 @@ function gen(node) {
                 }
             }
         }
+
+        if (processedNode.chained !== undefined) {
+            return {
+                type: "UnsupportedFunctionDefinition",
+                reason: "chained",
+                definition: processedNode.definition,
+                context: node.text
+            };
+        }
+
+        if (processedNode.definition === "auto") {
+            return {
+                type: "UnsupportedFunctionDefinition",
+                reason: "auto",
+                definition: processedNode.definition,
+                context: node.text
+            };
+        }
+
+        if (!processedNode.private && (processedNode.path === -1 || processedNode.path === undefined)) {
+            processedNode.path = processedNode.definition;
+        }
+
         return processedNode;
     }
 
