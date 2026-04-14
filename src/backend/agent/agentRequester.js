@@ -2,31 +2,33 @@ import { processBlockWithAiPrompt, processNodeWithAiPrompt, processTextWithAiPro
 import Store from 'electron-store';
 const store = new Store();
 
+// GLOBAL REQUEST QUEUE — serializes all AI requests to avoid concurrent connection rate limits
+let requestQueue = Promise.resolve();
+
+function enqueue(fn) {
+    const result = requestQueue.then(fn);
+    requestQueue = result.catch(() => {});
+    return result;
+}
+
 // PROCESS FUNCTIONS
 
 export async function processNodeWithAi(sourceContext, runningContext, node, selectedAgent) {
     const prompt = processNodeWithAiPrompt(sourceContext, runningContext, node)
-
     const existingConfigs = store.get('apiConfigs', {});
-    
-    return await sendRequest(prompt, existingConfigs[selectedAgent]);
+    return enqueue(() => sendRequest(prompt, existingConfigs[selectedAgent]));
 }
-
 
 export async function processBlockWithAi(sourceContext, firstPassText, selectedAgent){
     const prompt = processBlockWithAiPrompt(sourceContext, firstPassText);
-
     const existingConfigs = store.get('apiConfigs', {});
-
-    return await sendRequest(prompt, existingConfigs[selectedAgent]); 
+    return enqueue(() => sendRequest(prompt, existingConfigs[selectedAgent]));
 }
 
 export async function processTextWithAi(sourceContext, finalText, selectedAgent){
     const prompt = processTextWithAiPrompt(sourceContext, finalText);
-
     const existingConfigs = store.get('apiConfigs', {});
-
-    return await sendRequest(prompt, existingConfigs[selectedAgent]); 
+    return enqueue(() => sendRequest(prompt, existingConfigs[selectedAgent]));
 }
 
 // HELPER FUNCTIONS
@@ -66,7 +68,6 @@ async function sendRequest(prompt, config) {
     const data = await response.json();
 
     const result = resolvePath(data, config.responsePath);
-    console.log(result)
 
     return result;
 }

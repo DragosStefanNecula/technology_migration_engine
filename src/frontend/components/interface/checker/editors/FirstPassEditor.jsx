@@ -131,14 +131,17 @@ export default function FirstPassEditor({ currentCodeBuffer, sourceContext, setF
             }
         }
 
-        let runningContext;
+        const CONTEXT_WINDOW = 3000;
+
+        let runningContext = "";
         for (const node of contextedBuffer) {
             if (node.shard === "text") {
                 runningContext += node.value;
             }
 
             if (node.shard === "codeGen") {
-                let result = await firstPassGenAi(sourceContext, runningContext, node, selectedAgent);
+                const windowedContext = runningContext.slice(-CONTEXT_WINDOW);
+                let result = await firstPassGenAi(sourceContext, windowedContext, node, selectedAgent);
                 let modifiedResult = result
                     .split('\n')
                     .map((line) => node.ind + line)
