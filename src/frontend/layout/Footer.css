@@ -1,0 +1,30 @@
+.footer {
+  justify-content: space-between;
+}
+
+.footer__left {
+  display: flex;
+  align-items: center;
+}
+
+.footer__right {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.footer__checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--font-base);
+  color: white;
+  cursor: pointer;
+  user-select: none;
+}
+
+.footer__checkbox {
+  cursor: pointer;
+  width: 14px;
+  height: 14px;
+}

@@ -14,10 +14,18 @@ const AppProvider = ({ children }) => {
     });
     const [output, setOutput] = useState(null);
     const [processing, setProcessing] = useState(false);
+    const [skipConfirmModal, setSkipConfirmModalState] = useState(() => {
+        return localStorage.getItem("skipConfirmModal") === "true";
+    });
+
+    const setSkipConfirmModal = (value) => {
+        localStorage.setItem("skipConfirmModal", value);
+        setSkipConfirmModalState(value);
+    };
 
     return (
         <AppContext.Provider
-            value={{ selectedAgent, setSelectedAgent, mode, setMode, output, setOutput, processing, setProcessing }}
+            value={{ selectedAgent, setSelectedAgent, mode, setMode, output, setOutput, processing, setProcessing, skipConfirmModal, setSkipConfirmModal }}
         >
             {children}
         </AppContext.Provider>

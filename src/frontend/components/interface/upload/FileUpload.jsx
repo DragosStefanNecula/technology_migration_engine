@@ -1,12 +1,10 @@
 import React, { useRef, useEffect, useState } from "react";
-import { useAppContext } from "#src/frontend/renderer/renderer";
 import "#src/frontend/components/interface/upload/FileUpload.css";
 
-export default function FileUpload({ setCode }) {
+export default function FileUpload({ onReadyRef }) {
     const fileInputRef = useRef(null);
     const [isDragging, setIsDragging] = useState(false);
     const [uploadError, setUploadError] = useState("");
-    const { setProcessing } = useAppContext();
 
     globalThis.electronAPI.sendReady();
 
@@ -36,8 +34,7 @@ export default function FileUpload({ setCode }) {
         if (globalThis.electronAPI) {
             globalThis.electronAPI.onSetValue((_, value) => {
                 setUploadError("");
-                setCode(value);
-                setProcessing(true);
+                onReadyRef.current(value);
             });
             globalThis.electronAPI.onFileUploadError(() => {
                 setUploadError("Couldn't process the file. Can you try another?");
