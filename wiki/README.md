@@ -2,6 +2,8 @@
 
 Documentation for the Technology Migration Engine, the Perl Catalyst to Java Spring MVC converter.
 
+> Exporting — these pages are designed to be exported as PDF project artefacts. Install [`yzane.markdown-pdf`](https://marketplace.visualstudio.com/items?itemName=yzane.markdown-pdf) (included in the VS Code recommended extensions), open any page, and run Markdown PDF: Export (pdf) from the command palette.
+
 ## Pages
 
 ### [Requirement Analysis](requirement_analysis/Requirement%20Analysis.md)
