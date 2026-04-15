@@ -4,7 +4,7 @@
   "imports": {
     "#src/*": "./src/*"
   },
-  "version": "0.1.0",
+  "version": "1.0.0",
   "main": "src/main.js",
   "scripts": {
     "start": "concurrently \"vite\" \"wait-on http://localhost:5173 && cross-env NODE_ENV=development electron .\"",
@@ -19,6 +19,7 @@
   },
   "build": {
     "appId": "com.dragosstefannecula.technology_migration_engine",
+    "productName": "Technology Migration Engine",
     "win": {
       "target": "portable"
     }
