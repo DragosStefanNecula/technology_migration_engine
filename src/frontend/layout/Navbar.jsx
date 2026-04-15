@@ -7,7 +7,7 @@ import LockedSelections from "#src/frontend/components/navbar/LockedSelections";
 import Button from "#src/frontend/components/base/Button";
 
 export default function Navbar() {
-    const { processing, setProcessing, mode, selectedAgent, setOutput } = useAppContext();
+    const { processing, setProcessing, mode, selectedAgent, setOutput, setError } = useAppContext();
     return (
         <nav className="navbar">
             <div className="navbar-left">
@@ -19,7 +19,7 @@ export default function Navbar() {
                     <AgentBar />
                 </>):(<>
                     <LockedSelections mode={mode} agent={selectedAgent}/>
-                    <Button onClick={() => {setProcessing(false); setOutput(null);}}>Reset</Button>
+                    <Button onClick={() => {setProcessing(false); setOutput(null); setError(null);}}>Reset</Button>
                 </>)} 
             </div>
         </nav>
