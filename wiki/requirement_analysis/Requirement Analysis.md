@@ -1,9 +1,10 @@
-# Requirement Analysis 
+# Requirement Analysis
+
+← [Wiki index](../README.md)
 
 Unless otherwise specified, the term "users" refers to the developer questionnaire that was administered.
 
-
-
+> Navigation: each requirement heading carries inline Comment Linking tags (install [`kratiuk.commentlinking`](https://marketplace.visualstudio.com/items?itemName=kratiuk.commentlinking) from the VS Code recommended extensions). `[[id| ]]` marks an anchor; `[[#id|Label]]` is a Alt+Click link that jumps to the matching anchor in the source file. This lets you navigate directly from a requirement to its implementation without a file search.
 
 ## Requirement 1 <!--[[req2spec| ]]  Implemented in [[#req2impl|Checker.jsx]]  -->
 
