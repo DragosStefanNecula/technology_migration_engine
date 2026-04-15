@@ -4,7 +4,7 @@ import { useState, useMemo, useEffect } from 'react';
 import { useAppContext } from '#src/frontend/renderer/renderer';
 import "#src/frontend/components/interface/checker/Checker.css";
 
-//[[req2impl| ]] Adheres to [[#req2spec|Requirement 1]]
+//[[req2impl| ]] Adheres to [[#req2spec|Requirement 2]]
 
 const Checker = ({ code }) => {
 
