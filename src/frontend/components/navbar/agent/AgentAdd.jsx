@@ -61,7 +61,6 @@ const AgentAdd = ({ options, triggerReloadAgents }) => {
             setOpen(false);
             setApiError("");
             showToast(`Agent "${response.name}" saved successfully.`);
-            console.log(`API config "${response.name}" saved successfully.`);
         } catch (err) {
             const message = err?.message || "Failed to save agent. Please try again.";
             setApiError(message);

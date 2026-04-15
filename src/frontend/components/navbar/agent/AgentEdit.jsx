@@ -77,7 +77,6 @@ const AgentEdit = ({ options, selectedAgent, setSelectedAgent, triggerReloadAgen
             setApiError("");
             setOpen(false);
             showToast(`Agent "${response.name}" saved successfully.`);
-            console.log(`API config "${response.name}" edited successfully.`);
 
             triggerReloadAgents();
             if (selectedAgent !== apiConfigObject.name) {
@@ -105,7 +104,6 @@ const AgentEdit = ({ options, selectedAgent, setSelectedAgent, triggerReloadAgen
             setGetConfirmation(false);
             setOpen(false);
             showToast(`Agent "${response.name}" deleted successfully.`);
-            console.log(`API config "${response.name}" deleted successfully.`);
 
             setSelectedAgent("");
             triggerReloadAgents();
