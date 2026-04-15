@@ -9,14 +9,14 @@ export const agentTemplates = [
       { key: "Content-Type", value: "application/json" }
     ],
     requestBody: `{
-      "model": "gpt-4o-mini",
-      "messages": [
-        {
-          "role": "user",
-          "content": "{{PROMPT}}"
-        }
-      ]
-    }`,
+  "model": "gpt-4o-mini",
+  "messages": [
+    {
+      "role": "user",
+      "content": "{{PROMPT}}"
+    }
+  ]
+}`,
     responsePath: "choices[0].message.content"
   },
   {
@@ -29,35 +29,36 @@ export const agentTemplates = [
       { key: "Content-Type", value: "application/json" }
     ],
     requestBody: `{
-      "model": "claude-sonnet-4-6",
-      "max_tokens": 1024,
-      "messages": [
-        {
-          "role": "user",
-          "content": "{{PROMPT}}"
-        }
-      ]
-    }`,
+  "model": "claude-sonnet-4-6",
+  "max_tokens": 1024,
+  "messages": [
+    {
+      "role": "user",
+      "content": "{{PROMPT}}"
+    }
+  ]
+}`,
     responsePath: "content[0].text"
   },
   {
     name: "Google Gemini",
-    url: "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent",
+    url: "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent",
     method: "POST",
     headers: [
+      { key: "x-goog-api-key", value: "YOUR_GEMINI_API_KEY" },
       { key: "Content-Type", value: "application/json" }
     ],
     requestBody: `{
-      "contents": [
+  "contents": [
+    {
+      "parts": [
         {
-          "parts": [
-            {
-              "text": "{{PROMPT}}"
-            }
-          ]
+          "text": "{{PROMPT}}"
         }
       ]
-    }`,
+    }
+  ]
+}`,
     responsePath: "candidates[0].content.parts[0].text"
   },
   {
@@ -68,15 +69,15 @@ export const agentTemplates = [
       { key: "Content-Type", value: "application/json" }
     ],
     requestBody: `{
-      "model": "llama3",
-      "messages": [
-        {
-          "role": "user",
-          "content": "{{PROMPT}}"
-        }
-      ],
-      "stream": false
-    }`,
+  "model": "llama3.2",
+  "messages": [
+    {
+      "role": "user",
+      "content": "{{PROMPT}}"
+    }
+  ],
+  "stream": false
+}`,
     responsePath: "message.content"
   },
   {
@@ -88,14 +89,14 @@ export const agentTemplates = [
       { key: "Content-Type", value: "application/json" }
     ],
     requestBody: `{
-      "model": "llama-3.1-70b-versatile",
-      "messages": [
-        {
-          "role": "user",
-          "content": "{{PROMPT}}"
-        }
-      ]
-    }`,
+  "model": "llama-3.3-70b-versatile",
+  "messages": [
+    {
+      "role": "user",
+      "content": "{{PROMPT}}"
+    }
+  ]
+}`,
     responsePath: "choices[0].message.content"
   }
 ];
