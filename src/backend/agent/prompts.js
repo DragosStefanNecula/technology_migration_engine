@@ -5,7 +5,7 @@ You are a fallback to a transpiler migrating Perl Catalyst to Java Spring MVC co
 ## Responsibilities
 - Interpret the information and produce a precise output.
 - Use ONLY the provided context.
-- Do NOT hallucinate missing data—if something is absent, consider it.
+- Do NOT hallucinate missing data, if something is absent, consider it.
 - Be concise and structured.`
 
 // CONTEXT INFO
@@ -61,7 +61,7 @@ You will receive:
 ## Rules
 - Prefer sourceContext over runningContext when conflicts arise.
 - Understand the node information well.
-- Output ONLY the result—no explanations unless explicitly requested.`
+- Output ONLY the result, no explanations unless explicitly requested.`
 
 const fullBlock = `## Input
 You will receive:
@@ -71,7 +71,7 @@ You will receive:
 ## Rules
 - Prefer sourceContext over runningContext when conflicts arise.
 - Understand the context information well.
-- Output ONLY the result—no explanations unless explicitly requested.`
+- Output ONLY the result, no explanations unless explicitly requested.`
 
 const hotTip = `## Input
 You will receive:

@@ -5,7 +5,12 @@ export function parsePerl(code) {
     const parser = new Parser();
     parser.setLanguage(Perl);
 
-    const tree = parser.parse(code);
+    let tree;
+    try {
+        tree = parser.parse(code);
+    } catch (err) {
+        throw new Error(`Failed to parse Perl source: ${err.message}`);
+    }
 
     return tree.rootNode;
 }

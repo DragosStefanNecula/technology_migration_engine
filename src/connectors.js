@@ -146,17 +146,26 @@ export function registerConnectors() {
     });
 
     ipcMain.handle('ai-process-node', async (event, sourceContext, runningContext, node, selectedAgent) => {
-    const result = await processNodeWithAi(sourceContext, runningContext, node, selectedAgent);
-        return result;
+        try {
+            return await processNodeWithAi(sourceContext, runningContext, node, selectedAgent);
+        } catch (err) {
+            throw new Error(err instanceof Error ? err.message : String(err));
+        }
     });
 
     ipcMain.handle('ai-process-block', async (event, sourceContext, firstPassText, selectedAgent) => {
-    const result = await processBlockWithAi(sourceContext, firstPassText, selectedAgent);
-        return result;
+        try {
+            return await processBlockWithAi(sourceContext, firstPassText, selectedAgent);
+        } catch (err) {
+            throw new Error(err instanceof Error ? err.message : String(err));
+        }
     });
 
     ipcMain.handle('ai-process-text', async (event, sourceContext, finalText, selectedAgent) => {
-    const result = await processTextWithAi(sourceContext, finalText, selectedAgent);
-        return result;
+        try {
+            return await processTextWithAi(sourceContext, finalText, selectedAgent);
+        } catch (err) {
+            throw new Error(err instanceof Error ? err.message : String(err));
+        }
     });
 }

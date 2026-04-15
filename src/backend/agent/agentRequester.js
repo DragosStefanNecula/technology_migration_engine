@@ -2,7 +2,7 @@ import { processBlockWithAiPrompt, processNodeWithAiPrompt, processTextWithAiPro
 import Store from 'electron-store';
 const store = new Store();
 
-// GLOBAL REQUEST QUEUE — serializes all AI requests to avoid concurrent connection rate limits
+// GLOBAL REQUEST QUEUE, serializes all AI requests to avoid concurrent connection rate limits
 let requestQueue = Promise.resolve();
 
 function enqueue(fn) {
@@ -68,6 +68,10 @@ async function sendRequest(prompt, config) {
     const data = await response.json();
 
     const result = resolvePath(data, config.responsePath);
+
+    if (result === undefined) {
+        throw new Error(`Response path "${config.responsePath}" did not match any value in the API response`);
+    }
 
     return result;
 }
