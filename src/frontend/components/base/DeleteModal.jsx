@@ -15,7 +15,7 @@ const DeleteModal = ({ onClick, line, open, setOpen }) => {
                 </FloatingWindow.Body>
                 <FloatingWindow.Footer>
                     <Button onClick={() => setOpen(!open)}>No</Button>
-                    <Button onClick={onClick}>Yes</Button>
+                    <Button variant="red" onClick={onClick}>Yes</Button>
                 </FloatingWindow.Footer>
             </FloatingWindow>
         </>

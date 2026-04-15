@@ -57,7 +57,7 @@ export default function FloatingWindow({ open = true, title, children, onClose }
             {footer && (
                 <div className="modal__footer">
                     <Button onClick={closeWindow}>Cancel</Button>
-                    <div>{footer}</div>
+                    <div className="modal__footer-actions">{footer}</div>
                 </div>
             )}
         </div>,

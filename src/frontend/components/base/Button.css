@@ -7,6 +7,7 @@
   box-shadow: var(--shadow-md);
   transition: transform var(--transition-fast), box-shadow var(--transition-fast);
   outline: none;
+  box-sizing: border-box;
 }
 
 .button:not(:disabled):not(.button-static):hover {
@@ -41,6 +42,30 @@
 .button-selected {
   border: 2px solid var(--color-btn-selected);
   font-weight: 600;
+}
+
+.button-danger {
+  background: white;
+  color: #333;
+  border: 2px solid var(--color-border);
+}
+
+.button-danger:not(:disabled):not(.button-static):hover {
+  background: var(--color-btn-red);
+  color: white;
+  border-color: var(--color-btn-red-border);
+}
+
+.button-success {
+  background: white;
+  color: #333;
+  border: 2px solid var(--color-border);
+}
+
+.button-success:not(:disabled):not(.button-static):hover {
+  background: var(--color-btn-green);
+  color: white;
+  border-color: var(--color-btn-green-border);
 }
 
 .button-static,

@@ -126,7 +126,7 @@ const AgentAdd = ({ options, triggerReloadAgents }) => {
                         </span>
                     )}
 
-                    <Button onClick={handleSubmit} clickable={!hasValidationErrors(errors)} reason="Please fix the highlighted form errors.">Save</Button>
+                    <Button variant="success" onClick={handleSubmit} clickable={!hasValidationErrors(errors)} reason="Please fix the highlighted form errors.">Save</Button>
                 </FloatingWindow.Footer>
             </FloatingWindow>
         </>

@@ -1,4 +1,6 @@
 .agent-picker-select {
-  display: inline-block;
+  display: block;
   width: 150px;
+  height: 100%;
+  box-sizing: border-box;
 }

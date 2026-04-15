@@ -165,10 +165,10 @@ const AgentEdit = ({ options, selectedAgent, setSelectedAgent, triggerReloadAgen
                         </span>
                     )}
 
-                    <Button onClick={() => setGetConfirmation(true)}>Delete</Button>
+                    <Button variant="danger" onClick={() => setGetConfirmation(true)}>Delete</Button>
 
                     {(config && !hasValidationErrors(errors)) ? (
-                        <Button onClick={handleEdit}>Save</Button>
+                        <Button variant="success" onClick={handleEdit}>Save</Button>
                     ) : (<></>)}
                 </FloatingWindow.Footer>
             </FloatingWindow>
