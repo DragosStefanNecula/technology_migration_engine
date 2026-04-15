@@ -25,7 +25,7 @@
 }
 
 .toast--success {
-    border-left: 3px solid var(--color-btn-green);
+    border-left: 3px solid var(--color-success);
 }
 
 .toast--error {

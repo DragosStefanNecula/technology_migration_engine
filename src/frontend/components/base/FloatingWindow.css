@@ -1,10 +1,17 @@
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: var(--color-overlay);
+  z-index: 9998;
+}
+
 .modal {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 820px;
-  background: white;
+  background: var(--color-bg-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg);
@@ -29,7 +36,7 @@
 }
 
 .modal__body {
-  padding: 18px;
+  padding: var(--spacing-2xl);
 }
 
 .modal__footer {

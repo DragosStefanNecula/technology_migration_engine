@@ -1,14 +1,14 @@
 .upload-wrapper {
   flex-grow: 1;
   height: 90%;
-  border: 2px dashed #ccc;
+  border: 2px dashed var(--color-border);
   border-radius: var(--radius-lg);
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   cursor: pointer;
-  transition: all var(--transition-base);
+  transition: all var(--transition-slow);
   margin: var(--spacing-xl);
   background-color: var(--color-bg-muted);
 }
@@ -29,7 +29,7 @@
 
 .upload-text {
   font-size: 18px;
-  color: #555;
+  color: var(--color-text-label);
 }
 
 .upload-text span {

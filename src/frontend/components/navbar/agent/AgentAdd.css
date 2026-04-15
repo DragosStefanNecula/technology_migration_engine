@@ -4,8 +4,14 @@
   min-width: 150px;
 }
 
+.agent-form-select:disabled {
+  background: var(--color-btn-disabled);
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+
 .agent-form-error {
-  color: red;
+  color: var(--color-error);
   font-size: 0.9em;
   margin-right: 10px;
 }

@@ -28,13 +28,13 @@
 
 .button-yellow {
   background: var(--color-btn-yellow);
-  color: #333;
+  color: var(--color-text-secondary);
   border: 2px solid var(--color-btn-yellow-border);
 }
 
 .button-white {
-  background: white;
-  color: #333;
+  background: var(--color-bg-surface);
+  color: var(--color-text-secondary);
   border: 2px solid var(--color-border);
   cursor: pointer;
 }
@@ -45,8 +45,8 @@
 }
 
 .button-danger {
-  background: white;
-  color: #333;
+  background: var(--color-bg-surface);
+  color: var(--color-text-secondary);
   border: 2px solid var(--color-border);
 }
 
@@ -57,15 +57,15 @@
 }
 
 .button-success {
-  background: white;
+  background: var(--color-success-bg);
   color: #333;
   border: 2px solid var(--color-border);
 }
 
 .button-success:not(:disabled):not(.button-static):hover {
-  background: var(--color-btn-green);
+  background: var(--color-success);
   color: white;
-  border-color: var(--color-btn-green-border);
+  border-color: var(--color-success);
 }
 
 .button-static,

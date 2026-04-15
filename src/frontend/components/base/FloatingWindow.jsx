@@ -42,6 +42,8 @@ export default function FloatingWindow({ open = true, title, children, onClose }
     });
 
     return createPortal(
+        <>
+        <div className="modal-backdrop" onClick={onClose ? closeWindow : undefined} />
         <div className="modal">
             <div className="modal__header">
                 <span>{title}</span>
@@ -60,7 +62,8 @@ export default function FloatingWindow({ open = true, title, children, onClose }
                     <div className="modal__footer-actions">{footer}</div>
                 </div>
             )}
-        </div>,
+        </div>
+        </>,
         document.body
     );
 }

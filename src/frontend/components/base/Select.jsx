@@ -25,7 +25,7 @@ export default function Select({
                     value=""
                     disabled
                     hidden
-                    style={{ color: "#999" }}
+                    style={{ color: "var(--color-text-disabled)" }}
                 >
                     {placeholder}
                 </option>
