@@ -2,6 +2,8 @@
 
 A final year student project that transpiles Perl Catalyst MVC controllers into Java Spring MVC controllers using a combination of transpiler and LLM (large language model) techniques.
 
+For deeper background, see the [wiki](wiki/README.md): requirements, supported Perl syntax, and the TDD incident log.
+
 ## Prerequisites
 
 Before running anything, make sure you have the following installed at the exact versions listed, later versions may not work:

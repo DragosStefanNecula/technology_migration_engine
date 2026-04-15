@@ -1,8 +1,12 @@
 # Test Driven Development
 
+← [Wiki index](README.md)
+
+Testing is a core requirement — see [Requirement 7](requirement_analysis/Requirement%20Analysis.md) for the formal validation criteria.
+
 ## List of Incidents
 
-This is a list of every time Test Driven Development saved me.
+This is a running log of every time the test suite caught a real mistake. Each entry is a concrete case where writing tests first prevented a regression or revealed an unexpected side-effect.
 
 Current Count: 9
 

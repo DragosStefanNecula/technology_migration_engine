@@ -1,6 +1,10 @@
 # Perl Syntax Inventory
 
+← [Wiki index](README.md)
+
 This aims to be a inventory of all relevant syntax that will be transpiled using programmatic methods. Notably, this is not a comprehensive inventory of all Perl syntax.
+
+Items marked `[X]` are handled structurally by the AST pipeline (`javaAstGenerator` → `javaCodeGenerator`). Items marked `[ ]` are not yet supported programmatically; when an LLM agent is configured they can fall back to AI-assisted translation at the node or block level. See [Requirement 5](requirement_analysis/Requirement%20Analysis.md) for the rationale behind keeping LLM usage minimal.
 
 ## Variables
 
