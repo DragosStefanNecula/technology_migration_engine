@@ -11,6 +11,7 @@
     "setup": "npm install && npx patch-package && npm run pre-build --prefix node_modules/@ganezdragon/tree-sitter-perl && npm run build --prefix node_modules/@ganezdragon/tree-sitter-perl",
     "build": "vite build && electron-builder",
     "console": "node --test src/backend/tests/dev.test.js",
+    "test": "npm run test:backend && npm run test:frontend",
     "test:backend": "node --test src/backend/tests/prod",
     "test:frontend": "playwright test",
     "test:frontend:ui": "playwright test --ui",
