@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain } from 'electron';
+import { app, BrowserWindow } from 'electron';
 import { registerConnectors } from '#src/connectors.js';
 
 const __filename = fileURLToPath(import.meta.url);
