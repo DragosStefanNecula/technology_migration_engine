@@ -27,8 +27,12 @@ export function registerConnectors() {
 
         if (cancelled || !filePath) return;
 
-        fs.writeFileSync(filePath, content, 'utf-8');
-        return filePath;
+        try {
+            fs.writeFileSync(filePath, content, 'utf-8');
+            return { success: true, filePath };
+        } catch (err) {
+            return { success: false, error: err.message };
+        }
     });
 
     const store = new Store();
