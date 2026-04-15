@@ -6,7 +6,9 @@ export default function FileUpload({ onReadyRef }) {
     const [isDragging, setIsDragging] = useState(false);
     const [uploadError, setUploadError] = useState("");
 
-    globalThis.electronAPI.sendReady();
+    useEffect(() => {
+        globalThis.electronAPI.sendReady();
+    }, []);
 
     const handleDrop = async (e) => {
         e.preventDefault();
@@ -63,7 +65,6 @@ export default function FileUpload({ onReadyRef }) {
         >
             <input
                 type="file"
-                multiple
                 ref={fileInputRef}
                 onChange={handleChange}
                 hidden
