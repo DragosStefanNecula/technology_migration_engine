@@ -8,6 +8,7 @@
         <Document ID="07A4B78F-8E4B-4180-8C9D-38C06178D9E9">
             <Title>Traditional Rule-Driven Transcompilation</Title>
         </Document>
+        <Document ID="0B00725F-0FED-4BAF-96E8-0E072B2A3396"/>
         <Document ID="1823B818-5DEF-4F6A-9832-C384AAF83052">
             <Title>Java Code Generator</Title>
             <Text>Graphic explainer
@@ -17,6 +18,21 @@ Adapted from original transpiler architecture as it was first implemented into n
 Method that does what it did originally provided for testing
 
 Emmission VS magic token VS fragments</Text>
+        </Document>
+        <Document ID="1AC1BBD1-CFA3-4E52-A14C-72CAA4DA6E35">
+            <Title>List of Acronyms</Title>
+            <Text>
+
+
+
+
+List of Acronyms
+LLM		Large Language Model
+MVC		Model-View-Controller
+PPI		Parse Perl Isolated
+AST		Abstract Syntax Tree
+CPU		Central Processing Unit
+RAM		Random Access Memory</Text>
         </Document>
         <Document ID="24B983DF-513C-48E2-9F77-101FB20B2ED6">
             <Title> Unsupervised Neural Transcompilation
@@ -106,6 +122,10 @@ https://arxiv.org/abs/2512.05858v1
             <Title>Tree-Sitter</Title>
             <Text>Massive changes to grammar</Text>
         </Document>
+        <Document ID="98D3ED69-3831-4F64-ADDB-06AA62A5E689">
+            <Title>FURTHER WORK</Title>
+            <Text>Evaluation method enables running it more and more to find the best one</Text>
+        </Document>
         <Document ID="9C28E0E3-F406-4ECE-A285-5715071F5CEA">
             <Title>Reactivity</Title>
         </Document>
@@ -114,6 +134,10 @@ https://arxiv.org/abs/2512.05858v1
         </Document>
         <Document ID="AAB90A7D-90FE-40FE-A577-53C96646E0A3">
             <Title>Decision Management</Title>
+        </Document>
+        <Document ID="AB741C68-B6BB-490B-8734-0246A49DEB6E">
+            <Title>Abstract</Title>
+            <Text>The objective of the “Technology Migration Engine” project was to develop software capabel of transforming Perl Catalyst MVC controllers into Java Spring MVC controllers. The system aims to be innovative, being grounded in a transpilation-LLM hybrid: Syntax that requires flexibility is handled using LLMs, whereas repetitive structural syntax is handled through traditional transpilation methods. The result is a software that strikes the perfect balance between implementation complexity and quality of output. Overall, the project demonstrates that integrating LLMs within a controlled framework allows their generative benefits to be realised without the risk of hallucination.</Text>
         </Document>
         <Document ID="ADEB9D92-D793-45C1-B65B-1A491F4FCFE6">
             <Title>Technology validation procedure</Title>
@@ -165,6 +189,7 @@ https://arxiv.org/abs/2512.05858v1
         </Document>
         <Document ID="F8F04C9E-94BC-4E02-BBD5-87CE1DF4226F">
             <Title>Short Intro</Title>
+            <Text>The Technology Migration Engine is a software developed to transform Perl Catalyst MVC controllers into Java Spring MVC controllers. This is done using both traditional transpilation methods to handle repetitive structural syntax, as well as LLMs for syntax that requires flexibility. The resulting software strikes the perfect balance between implementation complexity and quality of output. Overall, integrating LLMs within a controlled framework is an innovative way to harness their generative benefits without the risk of hallucination and fault. </Text>
         </Document>
         <Document ID="FABC9736-74A1-455D-9F52-8E7A3EE0E5DB">
             <Title>Intro</Title>
