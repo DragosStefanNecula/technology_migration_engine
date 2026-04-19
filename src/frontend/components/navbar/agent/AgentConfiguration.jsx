@@ -131,7 +131,9 @@ function BodyEditor({ value, onChange, error, templateHintsEnabled }) {
         <div className="form-group">
             <div className="section-title">Request Body</div>
             <p className="helper-text">
-                Insert <code>{"{{PROMPT}}"}</code> where the user's prompt should go.
+                Insert<code>{"{{PROMPT}}"}</code>anywhere the user's message should appear. When the request is sent,
+                this placeholder is replaced with the actual prompt text, usually inside a JSON string value such as 
+                <code>{`"prompt": "{{PROMPT}}"`}</code>.
             </p>
             <HintTooltip value={value} enabled={templateHintsEnabled}>
                 <textarea
