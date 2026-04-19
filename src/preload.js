@@ -4,6 +4,10 @@ contextBridge.exposeInMainWorld("electronAPI", {
     sendReady: () => ipcRenderer.send("renderer-ready"),
     onSetValue: (callback) => ipcRenderer.on("set-value", callback),
     onFileUploadError: (callback) => ipcRenderer.on("file-upload-error", callback),
+    removeUploadListeners: () => {
+        ipcRenderer.removeAllListeners("set-value");
+        ipcRenderer.removeAllListeners("file-upload-error");
+    },
     uploadFile: (fileData) => ipcRenderer.send("file-upload", fileData),
     saveJavaFile: (content) => ipcRenderer.invoke('save-java-file', content)
 });

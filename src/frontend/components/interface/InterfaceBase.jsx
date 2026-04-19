@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import FileUpload from "#src/frontend/components/interface/upload/FileUpload";
 import NoAgentState from "#src/frontend/components/interface/upload/NoAgentState";
 import Checker from '#src/frontend/components/interface/checker/Checker';
@@ -22,6 +22,13 @@ const InterfaceBase = () => {
             setPendingCode(value);
         }
     };
+
+    useEffect(() => {
+        if (!processing) {
+            setCode(null);
+            setPendingCode(null);
+        }
+    }, [processing]);
 
     const handleConfirm = () => {
         setCode(pendingCode);

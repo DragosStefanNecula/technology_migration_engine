@@ -42,6 +42,9 @@ export default function FileUpload({ onReadyRef }) {
                 setUploadError("Couldn't process the file. Can you try another?");
             });
         }
+        return () => {
+            globalThis.electronAPI?.removeUploadListeners();
+        };
     }, []);
 
     const handleFileChange = async (file) => {
@@ -53,6 +56,7 @@ export default function FileUpload({ onReadyRef }) {
 
     const handleChange = async (e) => {
         await handleFileChange(e.target.files[0]);
+        e.target.value = "";
     };
 
     return (
