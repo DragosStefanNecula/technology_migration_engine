@@ -11,7 +11,7 @@ const RunConfirmModal = ({ open, onConfirm, onCancel }) => {
         onConfirm();
     };
 
-    const modeLabel = mode === "1stPass" ? "1st Pass" : "2nd Pass";
+    const modeLabel = mode === "1stPass" ? "Detailed" : "Full Pass";
 
     return (
         <FloatingWindow
