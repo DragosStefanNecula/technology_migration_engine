@@ -75,7 +75,9 @@ test.describe('Add Agent modal', () => {
     test('Blank response path shows "Response field path is required"', async ({ appPage }) => {
         await appPage.locator('button.button', { hasText: 'Add Agent' }).click();
         const modal = getModal(appPage);
-        await expect(modal.locator('.field-error-text')).toContainText('Response field path is required');
+        await expect(
+            modal.locator('.field-error-text').filter({ hasText: 'Response field path is required' })
+        ).toBeVisible();
     });
 
     test('Invalid response path shows a format error', async ({ appPage }) => {
@@ -84,7 +86,9 @@ test.describe('Add Agent modal', () => {
         const responsePathInput = modal.locator('input[placeholder="e.g. choices[0].message.content"]');
 
         await responsePathInput.fill('!!invalid!!');
-        await expect(modal.locator('.field-error-text')).toContainText('Response field path is invalid');
+        await expect(
+            modal.locator('.field-error-text').filter({ hasText: 'Response field path is invalid' })
+        ).toBeVisible();
     });
 
     test('Request body missing {{PROMPT}} shows a validation error', async ({ appPage }) => {
