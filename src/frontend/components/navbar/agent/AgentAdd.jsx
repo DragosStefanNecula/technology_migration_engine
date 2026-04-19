@@ -15,6 +15,15 @@ import { useToast } from '#src/frontend/components/base/Toast';
 import { useAppContext } from '#src/frontend/renderer/renderer';
 import "#src/frontend/components/navbar/agent/AgentAdd.css";
 
+const emptyAgentConfig = {
+    name: "",
+    url: "",
+    method: "POST",
+    headers: [],
+    requestBody: "",
+    responsePath: ""
+};
+
 const AgentAdd = ({ options, triggerReloadAgents }) => {
     const { selectedAgent } = useAppContext();
     const showToast = useToast();
@@ -28,10 +37,7 @@ const AgentAdd = ({ options, triggerReloadAgents }) => {
             headers: (config?.headers || []).map((header) => ({ ...header }))
         };
     }
-    const [config, setConfig] = useState(() => {
-        const initial = agentTemplates[0];
-        return cloneAgentConfig(initial);
-    });
+    const [config, setConfig] = useState(() => cloneAgentConfig(emptyAgentConfig));
 
     useEffect(() => {
         setErrors(validateAgentConfig({ config, options }));
@@ -57,7 +63,7 @@ const AgentAdd = ({ options, triggerReloadAgents }) => {
         try {
             const response = await window.apiStore.saveApiConfig(apiConfigObject);
             triggerReloadAgents();
-            setConfig(cloneAgentConfig(agentTemplates[0]));
+            setConfig(cloneAgentConfig(emptyAgentConfig));
             setOpen(false);
             setApiError("");
             showToast(`Agent "${response.name}" saved successfully.`);
@@ -82,7 +88,7 @@ const AgentAdd = ({ options, triggerReloadAgents }) => {
             <FloatingWindow
                 open={open}
                 title="Agent Picker"
-                onClose={() => { setOpen(false); setConfig(cloneAgentConfig(agentTemplates[0])); }}
+                onClose={() => { setOpen(false); setConfig(cloneAgentConfig(emptyAgentConfig)); }}
             >
                 <FloatingWindow.Body>
                     <Select
