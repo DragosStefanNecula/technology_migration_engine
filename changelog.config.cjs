@@ -65,7 +65,7 @@ module.exports = {
 ## {{title}}
 
 {{#each commits}}
-- **{{typeTitle}}**{{#if scope}} **{{scope}}:**{{/if}} {{subject}}{{#if @root.repoUrl}} ([{{hash}}]({{@root.repoUrl}}/commit/{{raw.hash}})){{else}}{{#if raw.hash}} ({{hash}}){{/if}}{{/if}}
+- **{{typeTitle}}**{{#if scope}} **({{scope}}):**{{/if}} {{subject}}{{#if @root.repoUrl}} ([{{hash}}]({{@root.repoUrl}}/commit/{{raw.hash}})){{else}}{{#if raw.hash}} ({{hash}}){{/if}}{{/if}}
 {{/each}}
 
 {{/each}}{{#if noteGroups}}
