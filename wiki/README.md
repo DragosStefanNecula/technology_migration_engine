@@ -17,3 +17,7 @@ A checklist of every Perl construct the programmatic transpiler covers. Checked 
 ### [Test Driven Development](TestDrivenDevelopment.md)
 
 A running log of incidents where the test suite caught real mistakes during development, a practical record that fed directly into [Requirement 7](requirement_analysis/Requirement%20Analysis.md).
+
+### [Maintaining the Software](Maintaining%20the%20Software.md)
+
+A practical guide for future maintenance work: where core logic lives, how to keep the transpiler stable, and what to verify before considering a change complete.
