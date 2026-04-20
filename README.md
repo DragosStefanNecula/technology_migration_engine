@@ -40,6 +40,12 @@ Produces a production build. It:
 
 The output is placed in the `dist/` folder.
 
+### `npm run changelog`
+
+Regenerates `CHANGELOG.md` using the custom weekly grouping configuration.
+
+This is the write step after you are happy with the preview output.
+
 ### `npm run test`
 
 Runs the full test suite. There are three scopes available:
