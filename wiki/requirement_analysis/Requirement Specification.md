@@ -1,4 +1,4 @@
-# Requirement Analysis
+# Requirement Specification
 
 ← [Wiki index](../README.md)
 
