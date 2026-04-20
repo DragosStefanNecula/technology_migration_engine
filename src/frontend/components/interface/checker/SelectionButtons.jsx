@@ -29,7 +29,7 @@ export const SelectionButtons = ({ setCurrentView, currentView, onConfirm, first
                     reason="Please wait for the second pass to finish."
                     onClick={onConfirm}
                 >
-                    Confirm
+                    Choose
                 </Button>
             </div>
         </div>
