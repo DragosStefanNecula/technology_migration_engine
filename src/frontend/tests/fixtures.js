@@ -23,15 +23,12 @@ export const test = base.extend({
         { scope: 'worker' },
     ],
 
-    appPage: [
-        async ({ electronApp }, use) => {
-            const page = await electronApp.firstWindow();
-            await page.waitForLoadState('domcontentloaded');
-            await page.waitForSelector('nav.navbar:not(.footer)');
-            await use(page);
-        },
-        { scope: 'worker' },
-    ],
+    appPage: async ({ electronApp }, use) => {
+        const page = await electronApp.firstWindow();
+        await page.reload({ waitUntil: 'domcontentloaded' });
+        await page.waitForSelector('nav.navbar:not(.footer)');
+        await use(page);
+    },
 });
 
 export { expect } from '@playwright/test';
