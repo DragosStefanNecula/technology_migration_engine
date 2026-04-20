@@ -58,6 +58,8 @@ const InterfaceBase = () => {
                         open={true}
                         onConfirm={handleConfirm}
                         onCancel={handleCancel}
+                        fileName={pendingCode.fileName}
+                        lineCount={pendingCode.lineCount}
                     />
                 )}
             </>

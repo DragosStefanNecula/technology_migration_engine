@@ -3,8 +3,14 @@ import "#src/frontend/components/interface/upload/FileUpload.css";
 
 export default function FileUpload({ onReadyRef }) {
     const fileInputRef = useRef(null);
+    const uploadMetaRef = useRef({ fileName: null, lineCount: undefined });
     const [isDragging, setIsDragging] = useState(false);
     const [uploadError, setUploadError] = useState("");
+
+    const getLineCount = (content) => {
+        if (content === "") return 0;
+        return content.split(/\r?\n/).length;
+    };
 
     useEffect(() => {
         globalThis.electronAPI.sendReady();
@@ -36,7 +42,11 @@ export default function FileUpload({ onReadyRef }) {
         if (globalThis.electronAPI) {
             globalThis.electronAPI.onSetValue((_, value) => {
                 setUploadError("");
-                onReadyRef.current(value);
+                const valueWithMeta =
+                    value && typeof value === "object"
+                        ? { ...value, ...uploadMetaRef.current }
+                        : value;
+                onReadyRef.current(valueWithMeta);
             });
             globalThis.electronAPI.onFileUploadError(() => {
                 setUploadError("Couldn't process the file. Can you try another?");
@@ -51,7 +61,11 @@ export default function FileUpload({ onReadyRef }) {
         if (!file) return;
         setUploadError("");
         const content = await file.text();
-        globalThis.electronAPI.uploadFile({ name: file.name, content });
+        uploadMetaRef.current = {
+            fileName: file.name,
+            lineCount: getLineCount(content)
+        };
+        globalThis.electronAPI.uploadFile({ content });
     };
 
     const handleChange = async (e) => {

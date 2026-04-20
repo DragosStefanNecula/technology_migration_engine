@@ -3,7 +3,7 @@ import FloatingWindow from '#src/frontend/components/base/FloatingWindow';
 import Button from '#src/frontend/components/base/Button';
 import { useAppContext } from '#src/frontend/renderer/renderer';
 
-const RunConfirmModal = ({ open, onConfirm, onCancel }) => {
+const RunConfirmModal = ({ open, onConfirm, onCancel, fileName, lineCount }) => {
     const { mode, selectedAgent, setSkipConfirmModal } = useAppContext();
 
     const handleDontShowAgain = () => {
@@ -21,6 +21,12 @@ const RunConfirmModal = ({ open, onConfirm, onCancel }) => {
         >
             <FloatingWindow.Body>
                 <p>Are you sure you want to run this file?</p>
+                {fileName && (
+                    <p>
+                        <strong>File:</strong> {fileName}
+                        {lineCount !== undefined && <> <span>({lineCount} lines)</span></>}
+                    </p>
+                )}
                 <p><strong>Mode:</strong> {modeLabel}</p>
                 <p><strong>Agent:</strong> {selectedAgent}</p>
             </FloatingWindow.Body>
