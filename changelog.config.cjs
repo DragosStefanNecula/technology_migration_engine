@@ -58,7 +58,7 @@ module.exports = {
                 hash: typeof fullHash === "string" ? fullHash.slice(0, 7) : fullHash,
                 subject,
                 typeTitle: getTypeTitle(commit.type),
-                weekTitle: weekKey ? `Week ${weekKey}` : "Week Unknown",
+                weekTitle: weekKey ? `${weekKey}` : "Week Unknown",
             };
         },
         mainTemplate: `{{#each commitGroups}}
