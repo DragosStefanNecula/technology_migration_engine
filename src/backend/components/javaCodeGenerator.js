@@ -96,7 +96,7 @@ export class JavaCodegen {
         }
 
         this._emit(this._ind());
-        this._emit(`public String ${node.definition}(${javaParams})`);
+        this._emit(`public String ${node.definition}(${javaParams}, Model model)`);
         this._emit("\n");
 
         this.gen(node.block);
