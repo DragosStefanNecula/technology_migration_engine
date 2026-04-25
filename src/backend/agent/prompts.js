@@ -31,7 +31,8 @@ const codeOutput =
 `## Output
 - Return the processed result as plain text.
 - Don't include the language it was transpiled to.
-- Don't include any backticks or quotes.
+- Don't include any backticks or quote
+- Only include the code snippet for the code provided in the input, not for the whole context
 - If the task cannot be completed, return: ERROR: <reason>`
 
 const textOutput = 
