@@ -33,6 +33,7 @@ const codeOutput =
 - Don't include the language it was transpiled to.
 - Don't include any backticks or quote
 - Only include the code snippet for the code provided in the input, not for the whole context
+- Don't try to extrapolate what comes next after the code snippet, just focus on the piece of code you have been given to migrate
 - If the task cannot be completed, return: ERROR: <reason>`
 
 const textOutput = 
