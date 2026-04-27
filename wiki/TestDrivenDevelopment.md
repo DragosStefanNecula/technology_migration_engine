@@ -2,7 +2,7 @@
 
 ← [Wiki index](README.md)
 
-Testing is a core requirement (see [Requirement 7](requirement_analysis/Requirement%20Analysis.md)) for the formal validation criteria.
+Testing is a core requirement (see [Requirement 7](requirement_analysis/Requirement%20Specification.md)) for the formal validation criteria.
 
 ## List of Incidents
 
