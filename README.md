@@ -23,6 +23,7 @@ Run this once before anything else. It:
 3. Builds the native `@ganezdragon/tree-sitter-perl` grammar so the Perl parser works at runtime
 
 You must re-run this if you pull changes that add or modify dependencies.
+If this doesnt work, you must rerun after having deleted node_modules.
 
 ### `npm run start`
 
